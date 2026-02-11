@@ -13,11 +13,27 @@ This repository publishes as a **project site**:
 
 This repo includes `.github/workflows/pages.yml` for GitHub Pages deployment.
 
-1. Push to `main`.
+1. Push to your default branch (`main` or `master`).
 2. Go to **Settings → Pages**.
 3. Set **Source** to **GitHub Actions**.
 4. Wait for the **Deploy static site to GitHub Pages** workflow run to finish.
 5. Open the project URL above.
+
+## If your pull request shows "This branch has conflicts"
+
+Use command line resolution, then push the merge commit:
+
+```bash
+git checkout <your-pr-branch>
+git fetch origin
+git merge origin/main
+# resolve conflicts in the files GitHub lists
+git add .
+git commit -m "Resolve merge conflicts with main"
+git push
+```
+
+If your default branch is `master`, merge `origin/master` instead.
 
 ## Pages in this site
 

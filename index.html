@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signal Ledger — AI Investment Committee Journal</title>
   <meta name="description" content="Static AI investment committee blog for structured pitch deck reports." />
+  <title>Signal Ledger — Startup Review Journal</title>
+  <meta name="description" content="Static VC-style startup review journal with structured reports." />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -16,6 +18,8 @@
         <a href="#how">How It Works</a>
         <a href="#reports">Published Reports</a>
         <a href="#about-project">About</a>
+        <a href="about.html">Method</a>
+        <a href="#reports">Reports</a>
       </nav>
     </div>
   </header>
@@ -32,6 +36,12 @@
         <a href="#" role="listitem">YouTube</a>
         <a href="#" role="listitem">Announcements</a>
         <a href="#" role="listitem">Community Chat</a>
+      <p class="eyebrow">Static Founder Analysis Journal</p>
+      <h1>VC-style writeups, published like a blog.</h1>
+      <p class="lede">I review startup decks using a structured simulation format and publish my thinking as readable reports.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#upload">Start a Mock Review</a>
+        <a class="btn secondary" href="about.html">Read the Method</a>
       </div>
     </section>
 
@@ -70,12 +80,46 @@
         </div>
         <a class="report-link" href="prompt.html">View prompt and mechanics →</a>
       </article>
+      <p><strong>Fictional simulation:</strong> this project models an investment committee for analysis practice.</p>
+      <p><strong>Not real statements:</strong> outputs are interpretations, not quotes from real investors.</p>
+      <p><strong>Privacy warning:</strong> do not upload confidential information.</p>
+    </section>
+
+    <section class="container panel" id="upload">
+      <div class="panel-head">
+        <h2>Submit Your Pitch Deck (Static Demo)</h2>
+        <span class="pill">No API / No backend</span>
+      </div>
+      <p>This static version is built for GitHub Pages. Upload controls are UI-only placeholders so you can showcase the flow without processing files.</p>
+      <div class="upload-grid">
+        <label class="upload-box" for="deck-input">
+          <input id="deck-input" type="file" accept="application/pdf,.pdf" disabled />
+          <span>PDF upload (disabled in static mode)</span>
+        </label>
+        <ul>
+          <li>Accepted file type: PDF only</li>
+          <li>Recommended limit: 20 MB</li>
+          <li>Recommended max pages: 80</li>
+          <li>Processing phases: Extracting → Summarizing → Generating</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container" id="pipeline">
+      <h2>Analysis Pipeline</h2>
+      <div class="cards four-up">
+        <article class="card"><h3>01 — Deck Digest</h3><p>Extract key facts, constraints, and evidence snippets from the deck content.</p></article>
+        <article class="card"><h3>02 — 10 Persona Reviews</h3><p>Run ten independent perspectives with clear verdicts, concerns, and crux points.</p></article>
+        <article class="card"><h3>03 — 5-Round Debate</h3><p>Bull, Bear, and Wild Card challenge each other with increasing specificity.</p></article>
+        <article class="card"><h3>04 — Final Synthesis</h3><p>Publish key insights, founder questions, action plan, and executive summary.</p></article>
+      </div>
     </section>
 
     <section class="container" id="reports">
       <div class="section-head">
         <h2>Published Reports</h2>
         <a href="prompt.html#report-template">Report structure</a>
+        <a href="about.html#personas">Persona roster</a>
       </div>
       <div id="report-list" class="report-list">
         <article class="report-card fallback">
@@ -95,6 +139,14 @@
   <footer class="site-footer">
     <div class="container footer-row">
       <p>AIVC Reports · Powered by AI · <a href="#">GitHub</a></p>
+          <p>If this message remains, check that <code>assets/data/reports.json</code> is available.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
       <p>Inspired by Ian Park’s AIVC report format; implementation and content are original.</p>
     </div>
   </footer>

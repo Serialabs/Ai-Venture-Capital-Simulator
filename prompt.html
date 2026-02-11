@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Mechanics — Signal Ledger</title>
   <meta name="description" content="Pipeline, debate design, persona behavior, and output framing for the AIVC simulation." />
+  <meta name="description" content="Pipeline, debate design, personas, and report template for the static AIVC simulation." />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -15,6 +16,7 @@
         <a href="index.html">Home</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#framing">Framing Specs</a>
+        <a href="#debate">Debate</a>
         <a href="#personas">Personas</a>
         <a href="#raw-prompt">Raw Prompt</a>
       </nav>
@@ -155,6 +157,95 @@ Rules:
         </details>
       </section>
     </div>
+  <main class="container prose">
+    <p class="eyebrow">System Prompt v1</p>
+    <h1>AIVC Prompt</h1>
+    <p class="lede">How the investment committee simulation is structured for consistent report publishing.</p>
+    <button id="copy-prompt" class="btn secondary" type="button">Copy Full Prompt</button>
+
+    <section id="pipeline">
+      <h2>4-Stage Analysis Pipeline</h2>
+      <div class="cards four-up">
+        <article class="card"><h3>01 — Deal Memo Extraction</h3><p>Extract structured memo fields and identify debate triggers from the source deck.</p></article>
+        <article class="card"><h3>02 — 10-Person VC Evaluation</h3><p>Generate independent evaluations with strengths, concerns, and verdict labels.</p></article>
+        <article class="card"><h3>03 — 5-Round IC Debate</h3><p>Bull, Bear, and Wild Card debate in progressively narrower, evidence-led rounds.</p></article>
+        <article class="card"><h3>04 — Final Report</h3><p>Publish key insights, founder questions, action plan, and executive summary.</p></article>
+      </div>
+    </section>
+
+    <section id="debate">
+      <h2>Investment Committee Debate Structure</h2>
+      <div class="cards three-up">
+        <article class="card"><h3>Bull</h3><p>Champions upside, optionality, and pathways to category leadership.</p></article>
+        <article class="card"><h3>Bear</h3><p>Surfaces core downside, weak assumptions, and unpriced execution risk.</p></article>
+        <article class="card"><h3>Wild Card</h3><p>Introduces less obvious scenarios, second-order effects, and boundary cases.</p></article>
+      </div>
+      <ol class="timeline">
+        <li>Big Picture & Initial Positions</li>
+        <li>Sparring with Specific Numbers and Case Studies</li>
+        <li>Deepening the Core Issues</li>
+        <li>Converging on Key Contentions</li>
+        <li>Final Positions + Conditional Opinions</li>
+      </ol>
+    </section>
+
+    <section id="personas">
+      <h2>Investment Committee Personas</h2>
+      <p>Each card below is generated from local static data and can be edited without changing templates.</p>
+      <div id="persona-cards" class="persona-cards"></div>
+    </section>
+
+    <section id="raw-prompt">
+      <h2>Full Prompt Text</h2>
+      <details open>
+        <summary>Open prompt template</summary>
+        <pre id="prompt-text">SYSTEM INSTRUCTION START
+
+You are an investment committee simulator. Analyze one startup deck through a 4-stage process.
+
+Stage 1: Deal Memo Extraction
+- Output: problem, solution, business model, stage, market size, traction & ask, team,
+  competition, potential outcomes, and debate triggers.
+- Select a Bull, Bear, and Wild Card panel from the persona roster and explain why.
+
+Stage 2: Independent Evaluations
+- Produce 10 persona evaluations.
+- For each: strengths, concerns, unique perspective, and verdict (Invest / Pass / Dig Deeper).
+
+Stage 3: 5-Round Committee Debate
+- Roles: Bull, Bear, Wild Card.
+- Round goals:
+  1) Big picture and initial positions
+  2) Sparring with numbers and case studies
+  3) Deepening core issues
+  4) Converging on key contentions
+  5) Final positions and conditional opinions
+- Each round must rebut prior claims and increase specificity.
+
+Stage 4: Final Report
+- 5 key insights
+- Questions for the founder
+- Action plan by time horizon
+- Executive summary (3-5 sentences)
+
+RULES
+- Use only available evidence.
+- No fabricated numbers.
+- Mark missing data as "Not found in deck".
+
+SYSTEM INSTRUCTION END</pre>
+      </details>
+    </section>
+
+    <section id="report-template">
+      <h2>Report Page Template</h2>
+      <div class="cards two-up">
+        <article class="card"><h3>Stage 1: Founder's Brief</h3><p>Problem, Solution, Business Model, Market, Team, Competition, Potential Outcomes, Debate Triggers, Panel Selection.</p></article>
+        <article class="card"><h3>Stage 2: Expert Opinions</h3><p>Summarized strengths/concerns + verdict scoreboard from ten personas.</p></article>
+        <article class="card"><h3>Stage 3: Panel Discussion</h3><p>Five-round transcript plus final panel verdict table with rationale.</p></article>
+        <article class="card"><h3>Stage 4: Key Takeaways</h3><p>Five insights, founder questions, action plans, and executive summary.</p></article>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

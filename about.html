@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About and Method — Signal Ledger</title>
+  <title>Method — Signal Ledger</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -12,43 +12,57 @@
       <a class="brand" href="index.html">Signal Ledger</a>
       <nav>
         <a href="index.html">Home</a>
-        <a href="prompt.html">Prompt</a>
-        <a href="#method">Method</a>
+        <a href="#pipeline">Pipeline</a>
         <a href="#personas">Personas</a>
       </nav>
     </div>
   </header>
 
   <main class="container prose">
-    <h1>About this static project</h1>
-    <p class="lede">Signal Ledger is a publishing format for long-form startup analysis. It is intentionally static and built for GitHub Pages.</p>
+    <h1>How this static simulation works</h1>
+    <p>This site is intentionally static so it can run on GitHub Pages. Reports are hand-curated and posted as structured articles, not generated in real time.</p>
 
     <section class="disclaimers">
-      <p><strong>Fictional simulation:</strong> this framework is used to structure analysis consistency.</p>
-      <p><strong>Not real statements:</strong> persona outputs are editorial interpretation.</p>
-      <p><strong>Do not upload confidential information:</strong> keep source content public-safe.</p>
+      <p><strong>Fictional simulation:</strong> this is a framework to think through startup investment decisions.</p>
+      <p><strong>Not real statements:</strong> persona outputs are interpretive writing, not real investor quotes.</p>
+      <p><strong>Confidentiality:</strong> never post private company data on public pages.</p>
     </section>
 
-    <section id="method">
-      <h2>Method in one view</h2>
+    <section id="pipeline">
+      <h2>4-stage analysis pipeline</h2>
       <ol class="timeline">
-        <li><strong>Founder's Brief:</strong> extract problem, solution, model, market, and debate triggers.</li>
-        <li><strong>Expert Opinions:</strong> run 10 persona evaluations with verdicts and rationale.</li>
-        <li><strong>Panel Discussion:</strong> Bull / Bear / Wild Card debate in 5 rounds.</li>
-        <li><strong>Key Takeaways:</strong> publish insights, founder questions, plan, and summary.</li>
+        <li><strong>Structured digest:</strong> summarize core claims and supporting evidence by section/page.</li>
+        <li><strong>10 persona evaluations:</strong> each persona returns verdict, strengths, concerns, crux, and change-my-mind conditions.</li>
+        <li><strong>5-round debate:</strong> Bull / Bear / Wild Card debate with rebuttal requirements each round.</li>
+        <li><strong>Final synthesis:</strong> executive summary, key insights, founder questions, and action plan.</li>
       </ol>
-      <p>Full mechanics live on the <a href="prompt.html">prompt page</a>.</p>
+    </section>
+
+    <section>
+      <h2>Debate structure</h2>
+      <div class="cards three-up">
+        <article class="card"><h3>Bull</h3><p>Argues upside and strategic optionality from the best available evidence.</p></article>
+        <article class="card"><h3>Bear</h3><p>Focuses on failure modes, missing proof, and downside asymmetry.</p></article>
+        <article class="card"><h3>Wild Card</h3><p>Introduces second-order effects and non-obvious decision constraints.</p></article>
+      </div>
+      <ul>
+        <li>Round 1: framing and initial stances</li>
+        <li>Round 2: evidence challenge</li>
+        <li>Round 3: assumption stress test</li>
+        <li>Round 4: scenario sensitivity</li>
+        <li>Round 5: decision conditions and confidence</li>
+      </ul>
     </section>
 
     <section id="personas">
       <h2>Persona roster (names only)</h2>
+      <p>These names are kept in a dedicated data file for consistency across reports.</p>
       <div id="persona-grid" class="chips-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-row">
-      <p>AIVC Reports · Powered by AI · <a href="#">GitHub</a></p>
+    <div class="container">
       <p>Inspired by Ian Park’s AIVC report format; implementation and content are original.</p>
     </div>
   </footer>

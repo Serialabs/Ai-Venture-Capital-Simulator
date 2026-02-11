@@ -44,5 +44,73 @@ async function renderPersonas() {
   }
 }
 
+async function renderPersonaCards() {
+  const mount = document.getElementById('persona-cards');
+  if (!mount) return;
+
+  try {
+    const profiles = await fetchJson('assets/data/persona_profiles.json');
+    mount.innerHTML = profiles.map((p) => `
+      <article class="card persona-card reveal fade-up">
+        <h3>${p.name}</h3>
+        <p class="muted">${p.tagline}</p>
+        <p>${p.lens}</p>
+        <div class="inline-chips">
+          ${(p.keywords || []).map((k) => `<span class="meta-chip">${k}</span>`).join('')}
+        </div>
+      </article>
+    `).join('');
+    setupRevealOnScroll();
+  } catch (error) {
+    mount.innerHTML = `<article class="card"><p>${error.message}</p></article>`;
+  }
+}
+
+function setupCopyPromptButton() {
+  const copyButton = document.getElementById('copy-prompt');
+  const promptText = document.getElementById('prompt-text');
+  if (!copyButton || !promptText) return;
+
+  copyButton.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(promptText.textContent || '');
+      copyButton.textContent = 'Copied';
+      setTimeout(() => {
+        copyButton.textContent = 'Copy Full Prompt';
+      }, 1200);
+    } catch (_error) {
+      copyButton.textContent = 'Copy failed';
+      setTimeout(() => {
+        copyButton.textContent = 'Copy Full Prompt';
+      }, 1400);
+    }
+  });
+}
+
+function setupRevealOnScroll() {
+  const items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.16 });
+
+  items.forEach((el) => io.observe(el));
+}
+
+renderReports();
+renderPersonaNames();
+renderPersonaCards();
+setupCopyPromptButton();
+setupRevealOnScroll();
 renderReports();
 renderPersonas();

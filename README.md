@@ -2,12 +2,13 @@
 
 A static AI investment-committee blog format for publishing structured startup analyses.
 
-## Live URL behavior
+## Website link
 
-If `https://serialabs.github.io/` shows a 404, that means your user-site repo (`serialabs.github.io`) is not configured.
-This repository publishes as a **project site**:
+Use this project-site URL:
 
-- `https://serialabs.github.io/Ai-Venture-Capital-Simulator/`
+- **https://serialabs.github.io/Ai-Venture-Capital-Simulator/**
+
+If you open `https://serialabs.github.io/` and see 404, that is the user-site root and requires a repo named exactly `serialabs.github.io`.
 
 ## Deployment setup
 
@@ -19,21 +20,31 @@ This repo includes `.github/workflows/pages.yml` for GitHub Pages deployment.
 4. Wait for the **Deploy static site to GitHub Pages** workflow run to finish.
 5. Open the project URL above.
 
-## If your pull request shows "This branch has conflicts"
+## Fixing “This branch has conflicts” on your PR
 
-Use command line resolution, then push the merge commit:
+### Option A (recommended): helper script
+
+```bash
+git checkout <your-pr-branch>
+./scripts/sync-with-default-branch.sh
+# if conflicts appear, resolve them in your editor:
+git add .
+git commit -m "Resolve merge conflicts with default branch"
+git push
+```
+
+### Option B: manual commands
 
 ```bash
 git checkout <your-pr-branch>
 git fetch origin
 git merge origin/main
-# resolve conflicts in the files GitHub lists
+# if your default branch is master, merge origin/master instead
+# resolve conflicts in files listed by GitHub
 git add .
 git commit -m "Resolve merge conflicts with main"
 git push
 ```
-
-If your default branch is `master`, merge `origin/master` instead.
 
 ## Pages in this site
 

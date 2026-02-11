@@ -1,0 +1,22 @@
+[
+  {"name":"Peter Thiel","tagline":"Contrarian monopoly hunter","lens":"Looks for non-obvious truths and asymmetric outcomes.","keywords":["Zero-to-one","Moats","Secrets"]},
+  {"name":"Marc Andreessen","tagline":"Platform and software expansion","lens":"Prioritizes markets where software can redraw the value chain.","keywords":["Platforms","Timing","Disruption"]},
+  {"name":"Bill Gurley","tagline":"Marketplace and unit economics","lens":"Tests whether growth quality survives under realistic assumptions.","keywords":["Unit economics","Marketplaces","Discipline"]},
+  {"name":"Elad Gil","tagline":"Execution-first operator lens","lens":"Focuses on speed, market timing, and pragmatic go-to-market leverage.","keywords":["Scaling","Operations","Market timing"]},
+  {"name":"Fred Wilson","tagline":"Community and network effects","lens":"Evaluates whether user behavior compounds into durable defensibility.","keywords":["Network effects","Community","Open ecosystems"]},
+  {"name":"Arjun Sethi","tagline":"Data integrity watchdog","lens":"Demands evidence in retention, conversion, and cohort durability.","keywords":["Cohorts","Retention","Signal quality"]},
+  {"name":"Reid Hoffman","tagline":"Strategic blitzscaling","lens":"Assesses when speed creates irreversible category leadership.","keywords":["Blitzscaling","Strategy","Distribution"]},
+  {"name":"Sam Altman","tagline":"Category-defining ambition","lens":"Rewards bold technical bets with long-term societal upside.","keywords":["Moonshots","AI","Energy"]},
+  {"name":"Garry Tan","tagline":"Underdog conviction","lens":"Finds founder-market fit in overlooked, anti-consensus spaces.","keywords":["Underdogs","Product instinct","Contrarian"]},
+  {"name":"Naval Ravikant","tagline":"Compounding leverage","lens":"Frames outcomes through leverage, optionality, and specific knowledge.","keywords":["Leverage","Compounding","Specific knowledge"]},
+  {"name":"Paul Graham","tagline":"Founder craftsmanship","lens":"Looks for builder intensity and authentic problem obsession.","keywords":["Founder quality","Early signal","Craft"]},
+  {"name":"Clayton Christensen","tagline":"Disruption diagnostics","lens":"Tests jobs-to-be-done and entrant pathways from underserved segments.","keywords":["JTBD","Disruption","Incumbent risk"]},
+  {"name":"Elon Musk","tagline":"First-principles pressure test","lens":"Rebuilds assumptions from fundamentals and physics constraints.","keywords":["First principles","10x outcomes","Execution risk"]},
+  {"name":"Thales Teixeira","tagline":"Customer-value-chain decoupling","lens":"Analyzes where customer value is being unbundled and recaptured.","keywords":["Decoupling","Customer behavior","Value chain"]},
+  {"name":"Vinod Khosla","tagline":"High-variance frontier bets","lens":"Accepts failure distribution in exchange for transformational upside.","keywords":["Frontier tech","Risk appetite","Black swans"]},
+  {"name":"Michael Moritz","tagline":"Narrative and founder endurance","lens":"Looks for resilient founders who can execute through volatility.","keywords":["Narrative","Frugality","Long-term execution"]},
+  {"name":"Kirsten Green","tagline":"Consumer behavior signaler","lens":"Examines cultural pull, repeat behavior, and brand elasticity.","keywords":["Consumer psychology","Brand","Lifestyle shifts"]},
+  {"name":"Steve Jurvetson","tagline":"Future-tech pattern matcher","lens":"Searches for step-change technologies with nonlinear adoption curves.","keywords":["Deep tech","S-curves","Long horizon"]},
+  {"name":"Arthur Rock","tagline":"Character-first conviction","lens":"Weights founder integrity and judgment as primary decision criteria.","keywords":["Integrity","Leadership","Governance"]},
+  {"name":"Don Valentine","tagline":"Market-size realism","lens":"Starts with demand magnitude and monetization potential.","keywords":["Market size","Revenue path","Commercial fit"]}
+]

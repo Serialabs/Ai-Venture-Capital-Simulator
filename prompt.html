@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Mechanics — Signal Ledger</title>
+  <meta name="description" content="Pipeline, debate design, persona behavior, and output framing for the AIVC simulation." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="index.html">Signal Ledger</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#framing">Framing Specs</a>
+        <a href="#personas">Personas</a>
+        <a href="#raw-prompt">Raw Prompt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container prose prompt-shell">
+    <aside class="prompt-toc card">
+      <h3>On this page</h3>
+      <a href="#pipeline">4-Stage Pipeline</a>
+      <a href="#framing">Output Framing</a>
+      <a href="#debate">Debate Diagram</a>
+      <a href="#personas">Persona Grid</a>
+      <a href="#raw-prompt">Full Prompt</a>
+    </aside>
+
+    <div class="prompt-content">
+      <section class="reveal fade-up">
+        <p class="eyebrow">System Prompt v2</p>
+        <h1>AIVC Prompt Playbook</h1>
+        <p class="lede">Designed for fast understanding: each block shows what happens, why it matters, and what the output should look like.</p>
+        <div class="inline-chips">
+          <span class="meta-chip">Bright UI</span>
+          <span class="meta-chip">Scroll reveal</span>
+          <span class="meta-chip">Visual diagrams</span>
+        </div>
+        <button id="copy-prompt" class="btn secondary" type="button">Copy Full Prompt</button>
+      </section>
+
+      <section id="pipeline" class="reveal fade-up">
+        <h2>4-Stage Analysis Pipeline</h2>
+        <div class="cards four-up">
+          <article class="card stage-card"><h3>01 — Deal Memo Extraction</h3><p>Input: deck PDF/text. Output: structured memo fields + debate triggers + selected Bull/Bear/Wild Card panel.</p></article>
+          <article class="card stage-card"><h3>02 — 10-Person VC Evaluation</h3><p>Input: deal memo. Output: ten evaluations with strengths, concerns, unique perspective, verdict tendency.</p></article>
+          <article class="card stage-card"><h3>03 — 5-Round IC Debate</h3><p>Input: memo + evaluations. Output: role-based rebuttal transcript and final panel verdict table.</p></article>
+          <article class="card stage-card"><h3>04 — Final Report</h3><p>Output: 5 insights, founder questions, action plans, and executive summary.</p></article>
+        </div>
+      </section>
+
+      <section id="framing" class="reveal fade-up">
+        <h2>What creates a “good output” (framing specifics)</h2>
+        <div class="cards two-up">
+          <article class="card">
+            <h3>Input framing requirements</h3>
+            <ul>
+              <li>Capture Problem, Solution, Business Model, Stage.</li>
+              <li>Capture TAM/SAM/SOM, traction, ask, and team context.</li>
+              <li>List explicit missing data and risk assumptions.</li>
+              <li>Choose Bull/Bear/Wild Card based on fit to deal type.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Output quality requirements</h3>
+            <ul>
+              <li>Distinct persona voice and framework per evaluator.</li>
+              <li>Debate responses must rebut prior claims, not restart.</li>
+              <li>Each round must increase specificity and evidence use.</li>
+              <li>Final report must map to actionable founder decisions.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="diagram-flow card">
+          <h3>Prompt mechanics diagram</h3>
+          <div class="flow-grid">
+            <div class="flow-node">Deck Input</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Deal Memo</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">10 Evaluations</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">5-Round Debate</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Final Report</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="debate" class="reveal fade-up">
+        <h2>Investment Committee Debate Structure</h2>
+        <div class="cards three-up">
+          <article class="card role-bull"><h3>Bull</h3><p>Highlights upside and strategic optionality.</p></article>
+          <article class="card role-bear"><h3>Bear</h3><p>Pressures downside, hidden fragility, and weak evidence.</p></article>
+          <article class="card role-wild"><h3>Wild Card</h3><p>Adds unconventional, cross-domain decision angles.</p></article>
+        </div>
+        <ol class="timeline">
+          <li><strong>Round 1:</strong> Big picture and initial positions</li>
+          <li><strong>Round 2:</strong> Sparring with specific numbers and case studies</li>
+          <li><strong>Round 3:</strong> Deepening the core issues</li>
+          <li><strong>Round 4:</strong> Converging on key contentions</li>
+          <li><strong>Round 5:</strong> Final positions + conditional opinions</li>
+        </ol>
+      </section>
+
+      <section id="personas" class="reveal fade-up">
+        <h2>Investment Committee Personas</h2>
+        <p>This section is intentionally visual-first so visitors quickly understand each investor lens.</p>
+        <div id="persona-cards" class="persona-cards"></div>
+      </section>
+
+      <section id="raw-prompt" class="reveal fade-up">
+        <h2>Full Prompt Text</h2>
+        <details open>
+          <summary>Open prompt template</summary>
+          <pre id="prompt-text">You are Venture Capitalist AI, the world's premier VC Investment Committee simulator.
+
+Default settings:
+- Language: English by default; Korean when requested.
+- Trigger: run all stages automatically when startup materials are provided.
+- Drive behavior: if user references Drive, search and locate the matching file.
+
+STAGE 1 — Deal Memo Extraction
+- Extract: problem, solution, model, stage, TAM/SAM/SOM, traction, ask, team, competition.
+- Generate debate triggers: risks, missing info, points of contention.
+- Select Bull/Bear/Wild Card and explain panel-fit rationale.
+
+STAGE 2 — 10-Person VC Evaluation
+- For each persona output:
+  verdict tendency, strengths, concerns, unique perspective.
+- Complete all 10, no omissions.
+
+STAGE 3 — 5-Round Debate
+- Roles: Bull, Bear, Wild Card.
+- Must rebut prior round points.
+- Increase specificity each round.
+- End with final verdicts and one-line rationale per role.
+
+STAGE 4 — Final Report
+- 5 key insights (number + title + description)
+- Founder questions (persona-specific)
+- Action plans (time horizon)
+- Executive summary (3-5 sentences)
+
+Rules:
+- No invented numbers.
+- Mark unknowns as "Not found in deck".
+- Use persona-true voice and frameworks.</pre>
+        </details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>AIVC Reports · Powered by AI · <a href="#">GitHub</a></p>
+      <p>Inspired by Ian Park’s AIVC report format; implementation and content are original.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

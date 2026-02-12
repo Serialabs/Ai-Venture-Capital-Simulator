@@ -1,0 +1,114 @@
+{
+  "hero": {
+    "title": "WeWork — 2012 Pitch Deck",
+    "subtitle": "A high-variance model examined using the same fixed report structure.",
+    "date": "2026-02-11",
+    "source": "WeWork deck (2012)",
+    "chips": ["Real Estate", "Community", "Series A"]
+  },
+  "evidence_summary": {
+    "cards": [
+      {
+        "title": "Narrative strength",
+        "summary": "Brand and community framing is differentiated and compelling."
+      },
+      {
+        "title": "Fixed-cost exposure",
+        "summary": "Long-duration liabilities create significant macro and occupancy risk."
+      },
+      {
+        "title": "Scaling opacity",
+        "summary": "Rapid expansion can mask weak unit economics at location level."
+      }
+    ],
+    "verdict": "PASS"
+  },
+  "stages": {
+    "stage_1": {
+      "kv": {
+        "Market": "Flexible office space",
+        "Business model": "Membership + long-term leases",
+        "Primary risk": "Occupancy downside"
+      },
+      "lists": [
+        {
+          "title": "Core strengths",
+          "items": [
+            "Clear user-facing differentiation",
+            "Strong community-driven positioning",
+            "Potential premium pricing in select hubs"
+          ]
+        },
+        {
+          "title": "Open risks",
+          "items": [
+            "Lease duration mismatch",
+            "Capex-heavy expansion",
+            "Macro-sensitive demand"
+          ]
+        }
+      ]
+    },
+    "stage_2": {
+      "personas": [
+        {
+          "name": "Brand Optimist",
+          "summary": "Believes customer love can support premium occupancy outcomes.",
+          "signals": ["Strong product resonance", "Word-of-mouth leverage"]
+        },
+        {
+          "name": "Balance-Sheet Skeptic",
+          "summary": "Focuses on downside from fixed liabilities and demand shocks.",
+          "signals": ["Operating leverage cuts both ways", "Capital intensity remains high"]
+        },
+        {
+          "name": "Execution Moderate",
+          "summary": "Wants slower, gated expansion with strict unit thresholds.",
+          "signals": ["Site-level transparency required", "Expansion velocity should be capped"]
+        }
+      ]
+    },
+    "stage_3": {
+      "rounds": [
+        {
+          "title": "Round 1 — Initial IC pass",
+          "summary": "Narrative acknowledged, but core underwriting questions remain unresolved.",
+          "points": ["Product appeal is credible", "Economics proof remains thin"]
+        },
+        {
+          "title": "Round 2 — Downside simulation",
+          "summary": "Stress tests indicate fragile outcomes under mild occupancy compression.",
+          "points": ["Cash burn accelerates quickly", "Lease obligations dominate downside"]
+        },
+        {
+          "title": "Round 3 — Decision gate",
+          "summary": "Committee declines at current terms pending stronger site-level proof.",
+          "points": ["Pass for now", "Revisit if economics become demonstrably resilient"]
+        }
+      ]
+    },
+    "stage_4": {
+      "summary": "Compelling storytelling is outweighed by fixed-cost and scaling risk at this stage.",
+      "insights": [
+        "Demand narrative alone is insufficient for underwriting",
+        "Downside protection is weak without flexible cost structure",
+        "Location-level transparency is non-negotiable"
+      ],
+      "questions": [
+        "What occupancy threshold preserves contribution margin?",
+        "How resilient is churn in downturn conditions?",
+        "What objective signals trigger expansion pauses?"
+      ],
+      "plans": [
+        "Request standardized site cohorts",
+        "Model downside occupancy and pricing scenarios",
+        "Set explicit expansion guardrails"
+      ],
+      "checklist": [
+        "Per-site unit economics reviewed",
+        "Lease maturity ladder analyzed",
+        "Scenario plan validated"
+      ]
+    }
+  }
+}

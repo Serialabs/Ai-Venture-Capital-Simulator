@@ -1,6 +1,6 @@
 async function fetchJson(path) {
   const res = await fetch(path);
-  if (!res.ok) throw new Error(`Failed to load ${path}`);
+  if (!res.ok) throw new Error(`Failed to fetch ${path}`);
   return res.json();
 }
 
@@ -65,37 +65,19 @@ async function renderPersonas() {
   }
 }
 
-async function renderPersonaNameList() {
-  const mount = document.getElementById('persona-name-list');
-  if (!mount) return;
+async function loadPromptText() {
+  const promptText = document.getElementById('prompt-text');
+  if (!promptText) return;
+
+  const src = promptText.dataset.promptSrc;
+  if (!src) return;
 
   try {
-    const data = await fetchJson('assets/data/personas.json');
-    mount.innerHTML = data.names_exact.map((name) => `<li>${name}</li>`).join('');
+    const res = await fetch(src);
+    if (!res.ok) throw new Error('Failed to load prompt');
+    promptText.textContent = await res.text();
   } catch (error) {
-    mount.innerHTML = `<li>${error.message}</li>`;
-  }
-}
-
-async function renderPersonaCards() {
-  const mount = document.getElementById('persona-cards');
-  if (!mount) return;
-
-  try {
-    const profiles = await fetchJson('assets/data/persona_profiles.json');
-    mount.innerHTML = profiles.map((p) => `
-      <article class="card persona-card reveal fade-up">
-        <h3>${p.name}</h3>
-        <p class="muted">${p.tagline}</p>
-        <p>${p.lens}</p>
-        <div class="inline-chips">
-          ${(p.keywords || []).map((k) => `<span class="meta-chip">${k}</span>`).join('')}
-        </div>
-      </article>
-    `).join('');
-    setupRevealOnScroll();
-  } catch (error) {
-    mount.innerHTML = `<article class="card"><p>${error.message}</p></article>`;
+    promptText.textContent = error.message;
   }
 }
 
@@ -108,22 +90,18 @@ function setupCopyPromptButton() {
     try {
       await navigator.clipboard.writeText(promptText.textContent || '');
       copyButton.textContent = 'Copied';
-      setTimeout(() => {
-        copyButton.textContent = 'Copy Full Prompt';
-      }, 1200);
     } catch (_error) {
       copyButton.textContent = 'Copy failed';
-      setTimeout(() => {
-        copyButton.textContent = 'Copy Full Prompt';
-      }, 1400);
     }
+    setTimeout(() => {
+      copyButton.textContent = 'Copy Full Prompt';
+    }, 1200);
   });
 }
 
 function setupRevealOnScroll() {
   const items = document.querySelectorAll('.reveal');
   if (!items.length) return;
-
   if (!('IntersectionObserver' in window)) {
     items.forEach((el) => el.classList.add('is-visible'));
     return;
@@ -131,9 +109,7 @@ function setupRevealOnScroll() {
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
     });
   }, { threshold: 0.16 });
 
@@ -142,7 +118,6 @@ function setupRevealOnScroll() {
 
 renderReports();
 renderPersonas();
-renderPersonaNameList();
-renderPersonaCards();
+loadPromptText();
 setupCopyPromptButton();
 setupRevealOnScroll();

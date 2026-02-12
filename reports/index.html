@@ -5,23 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signal Ledger — Published Reports</title>
   <meta name="description" content="Published report cards for Signal Ledger." />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="../assets/report.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-row">
-      <a class="brand" href="index.html">Signal Ledger</a>
+      <a class="brand" href="../index.html">Signal Ledger</a>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="methods.html">Methods</a>
-        <a href="pipeline.html">Pipeline</a>
-        <a href="personas.html">Personas</a>
-        <a href="published-reports.html" aria-current="page">Published Reports</a>
+        <a href="../index.html">Home</a>
+        <a href="../methods.html">Methods</a>
+        <a href="../pipeline.html">Pipeline</a>
+        <a href="../personas.html">Personas</a>
+        <a href="./index.html" aria-current="page">Published Reports</a>
       </nav>
     </div>
   </header>
 
-  <main class="container prose">
+  <main class="container prose reports-root">
     <section class="reveal fade-up is-visible">
       <p class="eyebrow">Published Reports</p>
       <h1>Report Library</h1>
@@ -29,7 +30,7 @@
     </section>
 
     <section class="reveal fade-up is-visible">
-      <div id="report-list" class="report-list">
+      <div id="published-reports-list" class="report-list">
         <article class="report-card fallback">
           <h3>Loading reports…</h3>
           <p>Check <code>assets/data/reports.json</code> if this remains visible.</p>
@@ -45,6 +46,6 @@
     </div>
   </footer>
 
-  <script src="assets/app.js"></script>
+  <script src="../assets/report.js"></script>
 </body>
 </html>

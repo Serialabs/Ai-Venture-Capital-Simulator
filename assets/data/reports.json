@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "rep-001",
+    "slug": "ubercab-2008",
+    "title": "UberCab — 2008 Original Pitch Deck",
+    "published_at": "2026-02-11",
+    "summary": "A mobility marketplace thesis with high upside and significant operational/regulatory execution risk.",
+    "tags": ["Transportation", "Marketplace", "Pre-Seed"],
+    "decision_label": "Lean Invest",
+    "confidence": "Medium",
+    "reading_time": "7 min"
+  },
+  {
+    "id": "rep-002",
+    "slug": "wework-2012",
+    "title": "WeWork — 2012 Pitch Deck",
+    "published_at": "2026-02-11",
+    "summary": "A strong narrative business with heavy fixed-cost sensitivity and high expansion risk.",
+    "tags": ["Real Estate", "Community", "Series A"],
+    "decision_label": "Lean Pass",
+    "confidence": "Medium",
+    "reading_time": "8 min"
+  }
+]

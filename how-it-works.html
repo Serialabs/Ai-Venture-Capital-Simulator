@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Ledger — How It Works</title>
+  <meta name="description" content="How the VC investment committee simulation prompt works, with diagrams and framing specs." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="index.html">Signal Ledger</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="how-it-works.html" aria-current="page">How It Works</a>
+        <a href="published-reports.html">Published Reports</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container prose prompt-shell">
+    <aside class="prompt-toc card">
+      <h3>Page outline</h3>
+      <p class="muted">This page explains the full prompt mechanics and output framing rules.</p>
+      <div class="inline-chips">
+        <span class="meta-chip">4 Stages</span>
+        <span class="meta-chip">5 Rounds</span>
+        <span class="meta-chip">20 Personas</span>
+      </div>
+      <a class="btn secondary" href="published-reports.html">Go to reports</a>
+    </aside>
+
+    <div class="prompt-content">
+      <section class="reveal fade-up">
+        <p class="eyebrow">System Prompt v2</p>
+        <h1>AIVC Prompt — How the IC simulation works</h1>
+        <p class="lede">This page gives the exact framing details that produce higher-quality outputs: input requirements, role behavior, debate constraints, and final synthesis contract.</p>
+        <button id="copy-prompt" class="btn secondary" type="button">Copy Full Prompt</button>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>4-Stage Analysis Pipeline</h2>
+        <div class="cards four-up">
+          <article class="card stage-card"><h3>01 — Deal Memo Extraction</h3><p>Extract: Problem, Solution, Business Model, Stage, TAM/SAM/SOM, Traction, Ask, Team, Competition, Debate Triggers. Then select Bull/Bear/Wild Card with rationale.</p></article>
+          <article class="card stage-card"><h3>02 — 10-Person VC Evaluation</h3><p>Each persona outputs verdict tendency, strengths, concerns, and unique perspective. No omissions.</p></article>
+          <article class="card stage-card"><h3>03 — Investment Committee Debate</h3><p>3 selected members debate for 5 rounds, directly rebutting prior claims with increasing specificity.</p></article>
+          <article class="card stage-card"><h3>04 — Final Report</h3><p>Deliver 5 key insights, founder questions, action plans, and concise executive summary.</p></article>
+        </div>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Prompt mechanics diagram</h2>
+        <div class="diagram-flow card">
+          <div class="flow-grid">
+            <div class="flow-node">Deck Input</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Structured Deal Memo</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">10 Persona Evaluations</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">5-Round Debate</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Final Synthesis</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Debate structure (what makes it good)</h2>
+        <div class="cards three-up">
+          <article class="card role-bull"><h3>Bull</h3><p>Surfaces upside and investable pathways.</p></article>
+          <article class="card role-bear"><h3>Bear</h3><p>Tests downside, fragility, and missing evidence.</p></article>
+          <article class="card role-wild"><h3>Wild Card</h3><p>Adds unconventional angles and second-order effects.</p></article>
+        </div>
+        <ol class="timeline">
+          <li><strong>Round 1:</strong> Big picture and initial positions</li>
+          <li><strong>Round 2:</strong> Sparring with specific numbers and case studies</li>
+          <li><strong>Round 3:</strong> Deepening the core issues</li>
+          <li><strong>Round 4:</strong> Converging on key contentions</li>
+          <li><strong>Round 5:</strong> Final positions + conditional opinions</li>
+        </ol>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Output framing checklist</h2>
+        <div class="cards two-up">
+          <article class="card">
+            <h3>Input framing</h3>
+            <ul>
+              <li>Capture complete memo fields and metrics structure.</li>
+              <li>Explicitly log missing info and risk triggers.</li>
+              <li>Select panel by deal-fit, not random selection.</li>
+              <li>Keep evidence traceable to source deck content.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Output framing</h3>
+            <ul>
+              <li>Distinct persona voice and style in every entry.</li>
+              <li>Round-by-round rebuttal required.</li>
+              <li>No fabricated numbers; unknowns marked clearly.</li>
+              <li>Action plan must be specific and time-bounded.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Investment Committee Personas</h2>
+        <p>Quickly scan the investor personalities and lenses below.</p>
+        <div id="persona-cards" class="persona-cards"></div>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Full Prompt Text</h2>
+        <details open>
+          <summary>Open prompt template</summary>
+          <pre id="prompt-text">You are Venture Capitalist AI, the world's premier VC Investment Committee simulator.
+
+Default Settings
+- Default language: English (respond in Korean if requested)
+- Analysis trigger: automatically run full analysis when startup material is shared
+- Google Drive: if user asks to find in Drive, locate matching file
+
+Stage 1: Deal Memo Extraction
+- Extract Problem, Solution, Business Model, Stage, TAM/SAM/SOM, Traction, Ask, Team, Competition
+- Create Debate Triggers (risk factors, missing info, points of contention)
+- Select Bull / Bear / Wild Card and explain rationale
+
+Stage 2: 10-Person VC Evaluation
+- For each persona: verdict tendency, strengths, concerns, unique perspective
+- Complete all 10 without omission
+
+Stage 3: Investment Committee Debate (5 Rounds)
+- Role format:
+  Bull, Bear, Wild Card
+- Must rebut previous arguments
+- Must become more specific each round
+- End with final verdict table and one-line rationale
+
+Stage 4: Final Report
+- 5 Key Insights
+- Questions for the Founder
+- Action Plans (“If I were you…”)
+- Executive Summary (3-5 sentences)
+
+Rules
+- No invented numbers
+- Mark missing data as “Not found in deck”
+- Keep persona-specific voice and framework</pre>
+        </details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>AIVC Reports · Powered by AI</p>
+      <p>Inspired by Ian Park’s AIVC report format; implementation and content are original.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

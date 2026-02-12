@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REPLACE_ME — Signal Ledger Report</title>
+  <title>Mock Edge Cases — Signal Ledger Report</title>
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/report.css" />
 </head>
@@ -19,16 +19,25 @@
     </div>
   </header>
 
-  <main class="container report-page" data-report-slug="REPLACE_ME">
-    <article data-report-mount>
-      <p class="eyebrow">Published report</p>
-      <h1>REPLACE_ME</h1>
+  <main class="container report-page" data-report-slug="mock-edge-cases">
+    <article>
+      <p class="eyebrow">Mock report</p>
+      <h1>Mock Edge Cases</h1>
       <div class="report-meta-line" data-report-meta></div>
-      <p class="lede">REPLACE_ME</p>
+      <p class="lede">A stress fixture that exercises long labels, sparse data assumptions, and unusual-but-valid content patterns.</p>
 
       <section class="report-section">
         <h2>Executive Summary</h2>
-        <p>REPLACE_ME</p>
+        <p>This page is a development artifact used to smoke-test how report pages behave under atypical content conditions.</p>
+      </section>
+
+      <section class="report-section">
+        <h2>Edge Conditions Covered</h2>
+        <ul>
+          <li>Extra-long section text to evaluate wrapping and spacing behavior in narrow viewports.</li>
+          <li>Mixed content density with short and long paragraphs adjacent to each other.</li>
+          <li>Placeholder metrics where manifest metadata may be absent.</li>
+        </ul>
       </section>
     </article>
   </main>

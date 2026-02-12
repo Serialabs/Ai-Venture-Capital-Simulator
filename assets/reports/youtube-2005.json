@@ -1,74 +1,223 @@
 {
-  "hero": {
-    "title": "YouTube — 2005 Pitch Analysis",
-    "subtitle": "An early UGC video thesis assessed through the same static IC process.",
-    "date": "2026-02-12",
-    "source": "YouTube deck narrative (2005)",
-    "chips": ["Consumer Internet", "UGC", "Seed"]
+  "meta": {
+    "reportId": "yt-2005-early-stage-review",
+    "company": "YouTube",
+    "year": 2005,
+    "sector": "Consumer Internet / Video Sharing",
+    "stageAssessed": "Seed",
+    "analystTeam": [
+      "Generalist Partner",
+      "Consumer Growth Lead",
+      "Infrastructure Specialist"
+    ],
+    "datePrepared": "2026-02-12",
+    "decision": {
+      "verdict": "Invest",
+      "checkSizeUsd": 2500000,
+      "proposedOwnershipTarget": "12-15%",
+      "confidence": "Moderate"
+    }
   },
-  "evidence_summary": {
-    "cards": [
+  "evidenceSummary": {
+    "primarySignals": [
+      "Explosive organic upload and viewing behavior among early adopters, indicating real user pull instead of paid demand.",
+      "Simple embedding and sharing loops create distribution beyond the company-owned website.",
+      "Clear painkiller value proposition: make online video upload and playback easy for non-technical users."
+    ],
+    "openRisks": [
+      "Copyright enforcement exposure could trigger legal and platform-level disruption.",
+      "Bandwidth and storage costs may rise faster than monetization in the first 24 months.",
+      "Incumbent platforms with large audiences could replicate baseline functionality quickly."
+    ],
+    "evidenceQuality": "Mixed but directionally strong; product and usage data are compelling, legal durability remains uncertain.",
+    "recommendedNextEvidence": [
+      "Cohort retention split by uploaders vs viewers over 3-6 months.",
+      "Top 100 content category analysis to estimate copyright sensitivity.",
+      "Cost-per-hour-streamed curve under multiple growth scenarios."
+    ]
+  },
+  "stage1": {
+    "thesis": "User-generated video can become a default online behavior if creation, playback, and sharing are dramatically simplified.",
+    "problem": "Uploading and watching video online in 2005 is fragmented, technically difficult, and inconsistent across devices and browsers.",
+    "solution": "A browser-first video platform with fast uploads, automatic transcoding, embeddable players, and frictionless sharing links.",
+    "whyNow": [
+      "Consumer broadband penetration is reaching practical levels for casual video viewing.",
+      "Digital cameras and camera phones are increasing the supply of short-form content.",
+      "Social web behaviors are normalizing public identity and lightweight publishing."
+    ],
+    "initialView": {
+      "upside": "Potential category-defining consumer destination with powerful network effects between creators and viewers.",
+      "coreRisk": "Policy/legal constraints may cap growth or force a costly operating model early.",
+      "stage1Score": 8.1
+    }
+  },
+  "stage2": {
+    "personas": [
       {
-        "title": "Distribution strength",
-        "summary": "Low-friction sharing loops can accelerate awareness rapidly."
+        "name": "Bullish Consumer Investor",
+        "strengths": [
+          "Sees unusually strong product-market fit signals in early behavior.",
+          "Recognizes embedding as a structural distribution advantage.",
+          "Understands that creator-side tooling can deepen defensibility over time."
+        ],
+        "concerns": [
+          "Monetization is still conceptual rather than demonstrated.",
+          "Speed of growth may outpace hiring and trust-and-safety maturity."
+        ],
+        "crux": "If weekly active uploaders keep compounding with stable viewer retention, a winner-take-most dynamic is plausible.",
+        "changeMyMind": "Show that uploader retention is shallow and that most engagement is one-time novelty traffic."
       },
       {
-        "title": "Monetization uncertainty",
-        "summary": "Ad durability depends on moderation and brand-safety maturity."
+        "name": "Skeptical Legal/Regulatory Partner",
+        "strengths": [
+          "Maps legal exposure to financing and strategic exit scenarios.",
+          "Forces explicit assumptions about licensing, takedowns, and policy ops.",
+          "Stress-tests business continuity under adverse litigation outcomes."
+        ],
+        "concerns": [
+          "Copyright claims could trigger injunctions or expensive compliance overhead.",
+          "Advertisers may hesitate if brand safety controls remain immature."
+        ],
+        "crux": "Durability depends on whether the company can prove fast, repeatable rights-response systems while preserving creator velocity.",
+        "changeMyMind": "Provide third-party legal memo showing manageable liability posture with realistic operational controls."
+      },
+      {
+        "name": "Unit Economics Operator",
+        "strengths": [
+          "Focuses on gross margin trajectory under scaling load.",
+          "Builds practical infrastructure cost scenarios rather than static estimates.",
+          "Highlights the need for monetization sequencing tied to user experience."
+        ],
+        "concerns": [
+          "Serving costs could dominate as average watch time rises.",
+          "Premature ad load could damage user trust during critical adoption phase."
+        ],
+        "crux": "Business becomes compelling once contribution margin per engaged cohort trends toward breakeven without compromising growth.",
+        "changeMyMind": "Demonstrate no credible path to reducing stream-delivery cost per hour over the next 12-18 months."
+      },
+      {
+        "name": "Market Timing Contrarian",
+        "strengths": [
+          "Questions consensus assumptions and hype cycles.",
+          "Compares risk-adjusted return against other seed opportunities.",
+          "Presses on concentration risk in platform-dependent distribution."
+        ],
+        "concerns": [
+          "Large incumbents could bundle video features into existing portals.",
+          "Consumer attention may fragment before one platform dominates."
+        ],
+        "crux": "This is attractive only if product velocity and community identity outrun feature replication by incumbents.",
+        "changeMyMind": "Evidence that users treat the platform as a destination brand, not just a utility widget."
       }
     ],
-    "verdict": "INVEST"
-  },
-  "stages": {
-    "stage_1": {
-      "kv": {
-        "Market": "User-generated online video",
-        "Business model": "Advertising + creator ecosystem",
-        "Primary risk": "Policy and copyright enforcement"
-      },
-      "lists": [
-        {
-          "title": "Core strengths",
-          "items": [
-            "Strong creator and viewer pull",
-            "Shareability drives top-of-funnel growth",
-            "Large long-term ad inventory potential"
-          ]
-        }
-      ]
-    },
-    "stage_2": {
-      "personas": [
-        {
-          "name": "Growth Optimist",
-          "summary": "Expects audience and creator loops to outpace incumbents.",
-          "signals": ["Retention cohorts improving", "Network effects compounding"]
-        }
-      ]
-    },
-    "stage_3": {
-      "rounds": [
-        {
-          "title": "Round 1 — Initial IC pass",
-          "summary": "Team views engagement dynamics as unusually strong for the stage.",
-          "points": ["Usage growth credible", "Governance model still early"]
-        }
-      ]
-    },
-    "stage_4": {
-      "summary": "Strong engagement signal with material policy and moderation execution risk.",
-      "insights": [
-        "Creator supply appears durable",
-        "Monetization must follow trust and safety maturity"
-      ],
-      "questions": [
-        "How quickly can takedown workflows scale?",
-        "Which cohorts best predict ad-quality inventory?"
-      ],
-      "plans": [
-        "Collect creator/viewer retention cohorts",
-        "Review trust-and-safety operating model"
-      ]
+    "stage2Synthesis": {
+      "alignment": "All personas agree demand is real; disagreement centers on legal durability and timing of monetization.",
+      "decisionPressurePoint": "Can the team operationalize policy/compliance fast enough without stalling growth?",
+      "stage2Score": 7.6
     }
+  },
+  "stage3": {
+    "debateRounds": [
+      {
+        "round": 1,
+        "topic": "Is current traction durable or novelty-driven?",
+        "proInvestArgument": "Uploader-to-viewer feedback loops and external embeds suggest repeated behavior, not single-session curiosity.",
+        "counterArgument": "Traffic concentration in a few viral clips may overstate true recurring engagement.",
+        "roundTakeaway": "Need cohort cut to separate durable creator activity from viral spikes."
+      },
+      {
+        "round": 2,
+        "topic": "Can legal risk be managed before it becomes existential?",
+        "proInvestArgument": "Early implementation of notice-and-takedown workflows can reduce practical litigation exposure.",
+        "counterArgument": "Reactive systems may not scale if infringement velocity accelerates faster than moderation capacity.",
+        "roundTakeaway": "Legal design must be treated as core product infrastructure, not back-office support."
+      },
+      {
+        "round": 3,
+        "topic": "What creates defensibility against incumbents?",
+        "proInvestArgument": "Creator community identity and distribution primitives (embed + share) can compound into switching costs.",
+        "counterArgument": "Incumbents with larger logged-in user bases can copy features and acquire creator mindshare quickly.",
+        "roundTakeaway": "Defensibility is behavioral and brand-led today; technical moat is still thin."
+      },
+      {
+        "round": 4,
+        "topic": "Are economics salvageable at projected growth rates?",
+        "proInvestArgument": "Scale should improve transcoding efficiency and ad products can be introduced progressively.",
+        "counterArgument": "Cost curves could stay steep if usage shifts toward longer-form, higher-resolution content.",
+        "roundTakeaway": "Management reporting must include cost-per-hour trends and monetization readiness milestones."
+      },
+      {
+        "round": 5,
+        "topic": "Should we lead, follow, or pass at this round?",
+        "proInvestArgument": "Category leadership is still contestable; moving now secures meaningful ownership before valuation rerates.",
+        "counterArgument": "Unresolved legal and margin uncertainty may justify waiting for clearer operating controls.",
+        "roundTakeaway": "Proceed with investment if governance rights include quarterly legal/compliance and unit-economics checkpoints."
+      }
+    ],
+    "stage3Conclusion": {
+      "position": "Lean invest with structured risk controls",
+      "confidence": "Moderate",
+      "stage3Score": 7.9
+    }
+  },
+  "stage4": {
+    "executiveSummary": "YouTube demonstrates rare early consumer pull with credible potential to become the default video layer of the social web. The opportunity is compelling enough to invest at seed, provided we treat legal operations and infrastructure economics as first-class diligence and governance topics.",
+    "keyInsights": [
+      "The strongest moat candidate is behavioral: creator habit + viewer discovery + off-platform embedding.",
+      "Legal response capability will be a valuation multiplier or destroyer over the next 18 months.",
+      "Monetization should be sequenced after engagement durability is validated to avoid harming growth quality.",
+      "Board-level instrumentation is required early because the primary risks are operationally dynamic."
+    ],
+    "founderQuestions": [
+      "What are the current uploader retention rates at 4, 8, and 12 weeks by content category?",
+      "How quickly can your team execute rights-response workflows at 10x current upload volume?",
+      "Which product surfaces drive the highest repeated viewing behavior today?",
+      "What monetization experiments can launch without degrading creator and viewer trust?",
+      "What is your hiring plan for trust-and-safety, policy, and infrastructure over the next two quarters?"
+    ],
+    "actionPlans": {
+      "first30Days": [
+        "Complete legal diligence memo with external counsel focused on likely claim vectors.",
+        "Establish baseline metrics dashboard: uploader retention, watch-time cohorts, cost per streamed hour.",
+        "Define governance package for information rights and risk triggers."
+      ],
+      "day31To90": [
+        "Support leadership hiring for policy operations and infrastructure planning.",
+        "Pressure-test monetization hypotheses with low-intrusion pilots.",
+        "Run scenario model linking growth, cost, and moderation staffing needs."
+      ],
+      "postInvestment": [
+        "Quarterly board review dedicated to legal/compliance health.",
+        "Bi-monthly product checkpoint on creator supply quality.",
+        "Semiannual strategic review on competitive responses from major incumbents."
+      ]
+    },
+    "diligenceChecklist": [
+      {
+        "item": "User Cohort Durability",
+        "owner": "Consumer Growth Lead",
+        "status": "In Progress"
+      },
+      {
+        "item": "Copyright and Liability Review",
+        "owner": "External Counsel + Legal Partner",
+        "status": "Pending"
+      },
+      {
+        "item": "Infrastructure Cost Model Validation",
+        "owner": "Infrastructure Specialist",
+        "status": "In Progress"
+      },
+      {
+        "item": "Monetization Experiment Design",
+        "owner": "Product + Revenue Advisor",
+        "status": "Pending"
+      },
+      {
+        "item": "Founder Reference Calls",
+        "owner": "Generalist Partner",
+        "status": "Completed"
+      }
+    ]
   }
 }

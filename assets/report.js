@@ -34,19 +34,19 @@ function renderPublishedReports(reports) {
   mount.innerHTML = reports.map((report) => `
     <article class="report-card reveal fade-up">
       <div class="report-top">
-        <h3>${report.title}</h3>
+        <h3>${escapeHtml(asText(report.title, 'Untitled report'))}</h3>
         <div class="report-meta">
-          <span class="meta-chip">${report.decision_label}</span>
-          <span class="meta-chip">${report.confidence}</span>
-          <span class="meta-chip">${report.reading_time}</span>
+          <span class="meta-chip">${escapeHtml(asText(report.decision_label))}</span>
+          <span class="meta-chip">${escapeHtml(asText(report.confidence))}</span>
+          <span class="meta-chip">${escapeHtml(asText(report.reading_time))}</span>
         </div>
       </div>
-      <p>${report.summary}</p>
+      <p>${escapeHtml(asText(report.summary, 'Summary unavailable.'))}</p>
       <div class="report-meta">
-        ${(report.tags || []).map((tag) => `<span class="meta-chip">${tag}</span>`).join('')}
-        <span class="meta-chip">${report.published_at}</span>
+        ${asArray(report.tags).map((tag) => `<span class="meta-chip">${escapeHtml(asText(tag, 'Tag'))}</span>`).join('')}
+        <span class="meta-chip">${escapeHtml(asText(report.published_at))}</span>
       </div>
-      <a class="report-link" href="/reports/${report.slug}.html">Read report →</a>
+      <a class="report-link" href="/reports/${encodeURIComponent(asText(report.slug, 'unknown'))}.html">Read report →</a>
     </article>
   `).join('');
 }
@@ -366,7 +366,7 @@ window.ReportRenderer = window.ReportRenderer || createReportRenderer();
   } catch (error) {
     const mount = document.getElementById('published-reports-list');
     if (mount) {
-      mount.innerHTML = `<article class="report-card"><h3>Unable to load report feed</h3><p>${error.message}</p></article>`;
+      mount.innerHTML = `<article class="report-card"><h3>Unable to load report feed</h3><p>${escapeHtml(error.message)}</p></article>`;
     }
   } finally {
     setupMotionPreference();
@@ -375,4 +375,6 @@ window.ReportRenderer = window.ReportRenderer || createReportRenderer();
     setupCollapsibles();
     setupRevealOnScroll();
   }
+
+  hydrateDynamicReportPage();
 })();

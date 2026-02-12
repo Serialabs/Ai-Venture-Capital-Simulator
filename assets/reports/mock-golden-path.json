@@ -1,0 +1,259 @@
+{
+  "hero": {
+    "title": "MockCo — 2026 Pitch Analysis",
+    "subtitle": "A complete happy-path fixture for exercising the full dynamic report renderer.",
+    "date": "2026-02-12",
+    "source": "MockCo test fixture",
+    "chips": [
+      "AI SaaS",
+      "Seed",
+      "B2B",
+      "Workflow Automation",
+      "Recurring Revenue",
+      "North America"
+    ]
+  },
+  "evidence_summary": {
+    "cards": [
+      {
+        "title": "Growth quality",
+        "summary": "Net revenue retention has held above 120% for three quarters."
+      },
+      {
+        "title": "Go-to-market",
+        "summary": "Expansion channel through implementation partners lowers CAC pressure."
+      },
+      {
+        "title": "Product moat",
+        "summary": "Workflow data lock-in increases switching costs over time."
+      }
+    ],
+    "verdict": "INVEST"
+  },
+  "stages": {
+    "stage_1": {
+      "kv": {
+        "Problem": "Ops teams spend excess time reconciling fragmented business workflows.",
+        "Solution": "Unified orchestration layer that automates cross-tool handoffs.",
+        "Business model": "Seat + usage subscription with annual prepay discounts.",
+        "Primary risk": "Enterprise expansion cycles may slow in constrained macro periods."
+      },
+      "lists": [
+        {
+          "title": "Core strengths",
+          "items": [
+            "Fast deployment with prebuilt connectors",
+            "Expansion motion in existing accounts",
+            "Strong founder-market fit"
+          ]
+        },
+        {
+          "title": "Open risks",
+          "items": [
+            "Dependence on third-party API stability",
+            "Need to prove repeatability beyond design partners",
+            "Potential pressure from platform bundling"
+          ]
+        }
+      ],
+      "triggers": [
+        "Can net revenue retention remain above 115% post-scale?",
+        "How quickly does sales velocity change at 100+ customer count?",
+        "What percentage of onboarding still requires custom implementation?",
+        "Does product usage correlate with procurement renewal outcomes?",
+        "How defensible are integrations if incumbents ship native alternatives?",
+        "Is pipeline quality sustained without founder-led selling?",
+        "How sensitive is payback period to longer procurement cycles?",
+        "What security milestones are required for regulated buyers?"
+      ]
+    },
+    "stage_2": {
+      "personas": [
+        {
+          "name": "Product-led Optimist",
+          "summary": "Sees early compounding signs from product adoption depth and low churn.",
+          "signals": [
+            "High weekly active usage in power cohorts",
+            "Seat expansion in under 90 days"
+          ],
+          "verdict": "Invest",
+          "confidence": "High"
+        },
+        {
+          "name": "Enterprise Operator",
+          "summary": "Focuses on deployment complexity and services burden at scale.",
+          "signals": [
+            "Implementation effort dropping quarter-over-quarter",
+            "Security review pass rates trending upward"
+          ],
+          "verdict": "Dig Deeper",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Distribution Realist",
+          "summary": "Evaluates whether channel leverage can outpace direct sales costs.",
+          "signals": [
+            "Partner-influenced pipeline growing",
+            "Lower blended CAC via channel"
+          ],
+          "verdict": "Invest",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Unit Economics Skeptic",
+          "summary": "Wants clear proof that gross margin durability survives support overhead.",
+          "signals": [
+            "Services ratio down with product maturity",
+            "Support tickets per account stable"
+          ],
+          "verdict": "Dig Deeper",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Platform Threat Watcher",
+          "summary": "Examines risk from bundled features offered by larger suites.",
+          "signals": [
+            "Differentiation strongest in multi-system orchestration",
+            "Win rates hold against bundled alternatives"
+          ],
+          "verdict": "Dig Deeper",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Regulatory Pragmatist",
+          "summary": "Checks compliance posture for expansion into healthcare and fintech segments.",
+          "signals": [
+            "SOC 2 and audit roadmap on schedule",
+            "Data governance controls improving"
+          ],
+          "verdict": "Invest",
+          "confidence": "Low"
+        },
+        {
+          "name": "Talent Builder",
+          "summary": "Assesses ability to scale leadership and preserve product velocity.",
+          "signals": [
+            "Recent VP hires from relevant scale environments",
+            "Attrition remains below benchmark"
+          ],
+          "verdict": "Invest",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Market Expansion Analyst",
+          "summary": "Tests adjacency assumptions before committing to category expansion.",
+          "signals": [
+            "Cross-sell demand present in top accounts",
+            "ICP extension still disciplined"
+          ],
+          "verdict": "Dig Deeper",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Risk-Adjusted Investor",
+          "summary": "Balances upside against concentration and execution dependencies.",
+          "signals": [
+            "Top-10 customer concentration decreasing",
+            "Pipeline diversity improving"
+          ],
+          "verdict": "Invest",
+          "confidence": "Medium"
+        },
+        {
+          "name": "Contrarian Bear",
+          "summary": "Challenges assumptions around durability in a cyclical budget environment.",
+          "signals": [
+            "Downmarket churn risk remains uncertain",
+            "Budget freeze resilience still untested"
+          ],
+          "verdict": "Pass",
+          "confidence": "Low"
+        }
+      ]
+    },
+    "stage_3": {
+      "rounds": [
+        {
+          "title": "Round 1 — Opening positions",
+          "summary": "Panel aligns that demand quality is real but debates moat durability.",
+          "points": [
+            "Retention profile is above category average",
+            "Integrations are a strength but may commoditize"
+          ],
+          "role_content": "Bull: The strongest signal is sustained expansion across cohorts, which usually predicts efficient growth if onboarding effort continues to fall.\n\nBear: Expansion can mask fragility when a small number of enthusiastic teams over-index usage. We still need evidence across slower-moving enterprise departments.\n\nWild Card: Both views are valid; the decision hinges on whether value capture remains tied to workflow criticality, not feature novelty."
+        },
+        {
+          "title": "Round 2 — Go-to-market stress test",
+          "summary": "Debate centers on direct sales efficiency versus channel leverage.",
+          "points": [
+            "Partner channel appears promising",
+            "Founder dependence in late-stage deals must decline"
+          ],
+          "role_content": "Bull: Channel-assisted deals are closing faster and with less discounting, suggesting the product can be sold through trusted advisors.\n\nBear: Channel momentum can be cyclical and relationship-driven. If direct pipeline quality softens, growth could decelerate faster than expected.\n\nWild Card: Ask for cohort-level data split by channel origin to separate true efficiency gains from temporary tailwinds."
+        },
+        {
+          "title": "Round 3 — Moat and competition",
+          "summary": "Committee evaluates incumbent response scenarios.",
+          "points": [
+            "Bundling risk is credible",
+            "Cross-tool orchestration depth may remain defensible"
+          ],
+          "role_content": "Bull: Depth of orchestration across heterogeneous stacks remains non-trivial for larger suites to replicate quickly.\n\nBear: Incumbents can underprice and absorb functionality, especially if buyers view this as a convenience layer.\n\nWild Card: A defensible moat likely depends on proprietary workflow telemetry and superior implementation velocity."
+        },
+        {
+          "title": "Round 4 — Execution plan",
+          "summary": "The panel designs conditions for an evidence-based investment.",
+          "points": [
+            "Milestone-based trancheing reduces downside",
+            "Operational KPIs should gate follow-on capital"
+          ],
+          "role_content": "Bull: Structure the check around clear milestones tied to deployment efficiency and net retention.\n\nBear: Include downside protections if enterprise cycles stretch materially or if services burden rises unexpectedly.\n\nWild Card: Require a monthly dashboard with implementation hours, churn attribution, and pipeline conversion by segment."
+        },
+        {
+          "title": "Round 5 — Final conditional verdicts",
+          "summary": "Panel converges on a conditional invest with explicit guardrails.",
+          "points": [
+            "Proceed with disciplined position sizing",
+            "Re-underwrite after two quarter milestones"
+          ],
+          "role_content": "Bull: Invest now while category leadership is still contestable; momentum indicators justify early conviction.\n\nBear: Invest only if downside controls are contractually clear and there is no surprise deterioration in gross margin profile.\n\nWild Card: Consensus supports action, but only with explicit milestone governance and rapid response plans for execution drift."
+        }
+      ]
+    },
+    "stage_4": {
+      "summary": "MockCo shows strong early product-market fit and credible expansion dynamics, with manageable execution risk under milestone governance.",
+      "insights": [
+        "Retention quality is the strongest leading indicator for long-term compounding.",
+        "Channel leverage can improve efficiency if direct pipeline discipline remains intact.",
+        "Moat durability depends on workflow depth, not connector count.",
+        "Execution risk is concentrated in onboarding and support efficiency.",
+        "Milestone-based deployment can preserve upside while constraining downside."
+      ],
+      "questions": [
+        "Which customer cohorts sustain expansion without heavy services involvement?",
+        "What are the earliest warning indicators of bundling-driven churn?",
+        "How quickly can security and compliance maturity unlock higher-ACV segments?",
+        "What proportion of deals close without founder participation?",
+        "How resilient is demand under procurement slowdowns?"
+      ],
+      "plans": [
+        "Instrument a weekly retention and expansion dashboard by segment.",
+        "Codify channel qualification criteria and attribution standards.",
+        "Run competitive win/loss interviews each month for six months.",
+        "Gate headcount increases on implementation productivity targets.",
+        "Re-underwrite economics after two quarters using standardized cohorts."
+      ],
+      "checklist": [
+        "Retention cohorts validated",
+        "Channel attribution audited",
+        "Onboarding hours per account tracked",
+        "Security roadmap reviewed",
+        "Milestone covenants documented"
+      ]
+    }
+  },
+  "epilogue": {
+    "big_number": "$420M",
+    "context": "Illustrative projected ARR opportunity under a base-case five-year scenario if retention, expansion, and channel efficiency remain on current trajectory."
+  }
+}

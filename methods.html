@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Ledger — Methods</title>
+  <meta name="description" content="Learn how Signal Ledger runs a static-by-design VC simulation workflow and debate process." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="index.html">Signal Ledger</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="methods.html" aria-current="page">Methods</a>
+        <a href="published-reports.html">Published Reports</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container prose info-page">
+    <section class="hero reveal fade-up">
+      <p class="eyebrow">Methods</p>
+      <h1>How this static simulation works</h1>
+      <p class="lede">This project is static by design so it can run reliably on GitHub Pages with no backend dependencies. Inputs and outputs can still be curated manually today, while real-time and dynamic tooling can be added in later phases.</p>
+    </section>
+
+    <section class="disclaimers reveal fade-up" aria-label="Simulation disclaimers">
+      <p><strong>Fictional simulation:</strong> This workflow is a structured thought exercise, not an actual investment committee.</p>
+      <p><strong>Not real investor quotes:</strong> Persona responses are synthetic and style-based, not verbatim statements.</p>
+      <p><strong>Confidentiality reminder:</strong> Do not upload or publish sensitive, private, or regulated information.</p>
+    </section>
+
+    <section class="reveal fade-up">
+      <h2>4-stage analysis pipeline</h2>
+      <div class="cards four-up">
+        <article class="card stage-card">
+          <h3>1. Parse the deal brief</h3>
+          <p>Capture core facts, assumptions, unknowns, and explicit debate triggers from the startup input.</p>
+        </article>
+        <article class="card stage-card">
+          <h3>2. Run persona evaluation</h3>
+          <p>Generate concise individual reads so each investor lens surfaces distinct upside and risk signals.</p>
+        </article>
+        <article class="card stage-card">
+          <h3>3. Conduct committee debate</h3>
+          <p>Assign Bull, Bear, and Wild Card roles to pressure-test claims with escalating specificity.</p>
+        </article>
+        <article class="card stage-card">
+          <h3>4. Synthesize decision memo</h3>
+          <p>Summarize key insights, decision posture, follow-up questions, and practical next actions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal fade-up">
+      <h2>Debate structure</h2>
+      <div class="cards three-up">
+        <article class="card role-bull">
+          <h3>Bull</h3>
+          <p>Argues why the opportunity could compound and what conditions make it investable.</p>
+        </article>
+        <article class="card role-bear">
+          <h3>Bear</h3>
+          <p>Challenges assumptions, stresses downside cases, and tests evidentiary gaps.</p>
+        </article>
+        <article class="card role-wild">
+          <h3>Wild Card</h3>
+          <p>Introduces non-obvious vectors, edge scenarios, and second-order consequences.</p>
+        </article>
+      </div>
+
+      <ul class="round-list">
+        <li><strong>Round 1:</strong> Frame first positions and define the central thesis conflict.</li>
+        <li><strong>Round 2:</strong> Introduce concrete support, counterpoints, and evidence quality checks.</li>
+        <li><strong>Round 3:</strong> Probe model durability across execution, market, and timing risks.</li>
+        <li><strong>Round 4:</strong> Narrow disagreements to the highest-impact decision variables.</li>
+        <li><strong>Round 5:</strong> State final conditional verdicts and what would change each view.</li>
+      </ul>
+    </section>
+
+    <section class="reveal fade-up">
+      <h2>Persona roster</h2>
+      <p class="muted">Names are loaded directly from <code>/assets/data/personas.json</code>.</p>
+      <ul id="persona-name-list" class="name-list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>Inspired by an IC-style report format; implementation and content are original.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

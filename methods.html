@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Ledger — Methods</title>
+  <meta name="description" content="How the AI VC Investment Committee simulation works." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="index.html">Signal Ledger</a>
+      <nav>
+        <a href="methods.html" aria-current="page">Methods</a>
+        <a href="pipeline.html">Pipeline</a>
+        <a href="personas.html">Personas</a>
+        <a href="published-reports.html">Reports</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container prose prompt-shell">
+    <aside class="prompt-toc card">
+      <h3>Method overview</h3>
+      <p class="muted">Static GitHub Pages implementation of the AIVC simulation workflow.</p>
+      <div class="inline-chips">
+        <span class="meta-chip">4 Stages</span>
+        <span class="meta-chip">5 Rounds</span>
+        <span class="meta-chip">20 Personas</span>
+      </div>
+      <a class="btn secondary" href="published-reports.html">View reports</a>
+    </aside>
+
+    <div class="prompt-content">
+      <section class="reveal fade-up">
+        <p class="eyebrow">Method</p>
+        <h1>AIVC prompt and committee simulation</h1>
+        <p class="lede">This page explains the complete process used to produce each report: structured memo extraction, persona analysis, staged debate, and final synthesis output.</p>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>4-stage analysis pipeline</h2>
+        <div class="cards four-up">
+          <article class="card"><h3>01 — Deal Memo</h3><p>Normalize deck claims into a structured memo with explicit unknowns and risks.</p></article>
+          <article class="card"><h3>02 — Persona Evaluation</h3><p>Collect 10 independent investor lenses with verdicts, strengths, and concerns.</p></article>
+          <article class="card"><h3>03 — IC Debate</h3><p>Bull, Bear, and Wild Card conduct a five-round rebuttal-driven discussion.</p></article>
+          <article class="card"><h3>04 — Final Report</h3><p>Publish key insights, founder questions, an action plan, and an executive summary.</p></article>
+        </div>
+        <p><a href="pipeline.html">View pipeline page →</a></p>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Debate structure</h2>
+        <div class="cards three-up">
+          <article class="card role-bull"><h3>Bull</h3><p>Argues upside and conditions for category leadership.</p></article>
+          <article class="card role-bear"><h3>Bear</h3><p>Tests downside paths, weak assumptions, and evidence gaps.</p></article>
+          <article class="card role-wild"><h3>Wild Card</h3><p>Adds non-obvious constraints and second-order effects.</p></article>
+        </div>
+        <ol class="timeline">
+          <li>Round 1: Positioning and initial stances</li>
+          <li>Round 2: Evidence challenges</li>
+          <li>Round 3: Assumption stress test</li>
+          <li>Round 4: Scenario convergence</li>
+          <li>Round 5: Final conditions and confidence</li>
+        </ol>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>Persona roster</h2>
+        <p>Persona names are loaded from a static data file.</p>
+        <div id="persona-grid" class="chips-grid"></div>
+        <p><a href="personas.html">View personas page →</a></p>
+      </section>
+
+      <section class="reveal fade-up">
+        <h2>IC prompt v2</h2>
+        <button id="copy-prompt" class="btn secondary" type="button">Copy Full Prompt</button>
+        <pre id="prompt-text" data-prompt-src="assets/content/ic_prompt_v2.txt">Loading prompt...</pre>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

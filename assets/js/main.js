@@ -38,7 +38,7 @@ async function renderPersonas() {
     const res = await fetch('assets/data/personas.json');
     if (!res.ok) throw new Error('Failed to load personas');
     const data = await res.json();
-    mount.innerHTML = data.names_exact.map((name) => `<span class="chip">${name}</span>`).join('');
+    mount.innerHTML = data.personas.map((name) => `<span class="chip">${name}</span>`).join('');
   } catch (error) {
     mount.innerHTML = `<p>${error.message}</p>`;
   }

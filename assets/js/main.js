@@ -1,12 +1,15 @@
+async function fetchJson(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Failed to load ${path}`);
+  return res.json();
+}
+
 async function renderReports() {
   const mount = document.getElementById('report-list');
   if (!mount) return;
 
   try {
-    const res = await fetch('assets/data/reports.json');
-    if (!res.ok) throw new Error('Failed to load report metadata');
-    const reports = await res.json();
-
+    const reports = await fetchJson('assets/data/reports.json');
     mount.innerHTML = reports.map((report) => `
       <article class="report-card">
         <div class="report-top">
@@ -35,12 +38,22 @@ async function renderPersonas() {
   if (!mount) return;
 
   try {
-    const res = await fetch('assets/data/personas.json');
-    if (!res.ok) throw new Error('Failed to load personas');
-    const data = await res.json();
+    const data = await fetchJson('assets/data/personas.json');
     mount.innerHTML = data.names_exact.map((name) => `<span class="chip">${name}</span>`).join('');
   } catch (error) {
     mount.innerHTML = `<p>${error.message}</p>`;
+  }
+}
+
+async function renderPersonaNameList() {
+  const mount = document.getElementById('persona-name-list');
+  if (!mount) return;
+
+  try {
+    const data = await fetchJson('assets/data/personas.json');
+    mount.innerHTML = data.names_exact.map((name) => `<li>${name}</li>`).join('');
+  } catch (error) {
+    mount.innerHTML = `<li>${error.message}</li>`;
   }
 }
 
@@ -108,9 +121,8 @@ function setupRevealOnScroll() {
 }
 
 renderReports();
-renderPersonaNames();
+renderPersonas();
+renderPersonaNameList();
 renderPersonaCards();
 setupCopyPromptButton();
 setupRevealOnScroll();
-renderReports();
-renderPersonas();

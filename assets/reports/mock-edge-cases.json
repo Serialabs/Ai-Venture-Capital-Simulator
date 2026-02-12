@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "MockEdgeCaseCo \u2014 2026 Pitch Analysis Title That Is Intentionally Extremely Long To Validate Multi-Line Wrapping, Overflow Behavior, And Header Stability Across Very Narrow Viewports",
+    "subtitle": "Subtitle intentionally stretches far beyond normal usage to test clipping, wrapping, and readability when the content contains symbols like <> {} [] () :: == !== and pseudo-code snippets such as if(user?.role==='admin'){return allow();} plus mixed unicode \u2605\u2606\u2713",
+    "date": "2026-02-12",
+    "source": "Edge-case fixture with malformed fields",
+    "chips": [],
+    "chips_overflow": [
+      "Overflow-Chip-01",
+      "Overflow-Chip-02",
+      "Overflow-Chip-03",
+      "Overflow-Chip-04",
+      "Overflow-Chip-05",
+      "Overflow-Chip-06",
+      "Overflow-Chip-07",
+      "Overflow-Chip-08",
+      "Overflow-Chip-09",
+      "Overflow-Chip-10",
+      "Overflow-Chip-11",
+      "Overflow-Chip-12",
+      "Overflow-Chip-13",
+      "Overflow-Chip-14",
+      "Overflow-Chip-15",
+      "Overflow-Chip-16",
+      "Overflow-Chip-17",
+      "Overflow-Chip-18"
+    ]
+  },
+  "evidence_summary": {
+    "verdict": "DIG DEEPER \u26a0\ufe0f"
+  },
+  "stages": {
+    "stage_1": {
+      "kv": {
+        "Problem": "Testing odd and malformed data payload handling",
+        "Strange Field": "<script>alert('xss?')</script> should be escaped"
+      },
+      "lists": [
+        {
+          "title": "Overflow chips scenario",
+          "items": [
+            "chip-01",
+            "chip-02",
+            "chip-03",
+            "chip-04",
+            "chip-05",
+            "chip-06",
+            "chip-07",
+            "chip-08",
+            "chip-09",
+            "chip-10",
+            "chip-11",
+            "chip-12"
+          ]
+        }
+      ],
+      "triggers": [
+        "Edge trigger with emoji \ud83d\ude80\ud83d\udd25",
+        "Edge trigger with symbols <> {} [] && ||",
+        "ThisIsAnIntentionallyLongUnbrokenWordForOverflowTesting_ThisIsAnIntentionallyLongUnbrokenWordForOverflowTesting_ThisIsAnIntentionallyLongUnbrokenWordForOverflowTesting"
+      ]
+    },
+    "stage_2": {
+      "personas": [
+        {
+          "name": "Missing summary persona",
+          "signals": [
+            "Signal with markdown-like content **bold**",
+            "Signal with code-like text const x = y?.z ?? 'fallback';"
+          ]
+        },
+        {
+          "summary": "Missing name should fallback",
+          "signals": []
+        },
+        {
+          "name": "Malformed signals",
+          "summary": "Signals is not an array",
+          "signals": "not-an-array",
+          "verdict": "PASS"
+        },
+        {
+          "name": "Null fields",
+          "summary": null,
+          "signals": null,
+          "confidence": null
+        },
+        {
+          "name": "Emoji persona \ud83d\ude3c",
+          "summary": "Uses symbols \u00a7 \u00b6 \u2206 and emojis \ud83e\udd16\ud83d\udca5 to stress rendering.",
+          "signals": [
+            "{}[]()<>=+-/*",
+            "DROP TABLE investors; -- (string only, not executable)"
+          ],
+          "verdict": "INVEST",
+          "confidence": "???"
+        }
+      ]
+    },
+    "stage_3": {
+      "rounds": [
+        {
+          "title": "Round 1 \u2014 Very short",
+          "summary": "ok",
+          "points": [],
+          "role_content": "short"
+        },
+        {
+          "title": "Round 2 \u2014 Extremely long",
+          "summary": "This round includes oversized role content to test multi-paragraph handling.",
+          "points": [
+            "One",
+            "Two"
+          ],
+          "role_content": "Paragraph one starts with code-ish text: function debate(){return 'continue';} and keeps going to test wrapping across long content blocks with punctuation !!! ??? ###.\n\nParagraph two intentionally includes repeated symbols ~~~ *** ::: plus unicode glyphs \u03a9 \u03bb \u03c0 and a very long sequence of words to verify that the rendering remains readable even as line lengths grow significantly across the viewport.\n\nParagraph three contains a deliberately oversized token ThisIsAnotherVeryLongUnbrokenWordDesignedToForceOverflowBehaviorChecksAndEnsureTheUIStillRemainsUsableWithoutHorizontalScrollingInMostCases"
+        },
+        {
+          "title": "Round 3 \u2014 Missing fields"
+        },
+        {
+          "summary": "Missing title should be replaced by fallback title",
+          "points": "bad-type"
+        },
+        {
+          "title": "Round 5 \u2014 Emoji & symbols",
+          "summary": "\u2705 \u26a0\ufe0f \u274c <xml></xml> `inline`",
+          "role_content": "Bull: Invest? maybe.\n\nBear: pass??\n\nWild: dig deeper..."
+        }
+      ]
+    }
+  },
+  "epilogue": {
+    "big_number": "\u221e",
+    "context": "Context includes symbols \u00a9\u00ae\u2122 and pseudo-json {\"key\":\"value\"}; optional stage_4 is intentionally missing."
+  }
+}

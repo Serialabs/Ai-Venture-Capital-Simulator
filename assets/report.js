@@ -1,34 +1,14 @@
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+const REVEAL_TIMING_MS = 420;
+const REVEAL_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+const REVEAL_STAGGER_MS = 70;
 
-function asArray(value) {
-  return Array.isArray(value) ? value : [];
-}
-
-function asText(value, fallback = 'N/A') {
-  if (typeof value === 'string' && value.trim()) return value.trim();
-  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
-  return fallback;
-}
-
-function verdictClass(verdict) {
-  const normalized = asText(verdict, 'dig-deeper').toLowerCase();
-  if (normalized.includes('invest')) return 'invest';
-  if (normalized.includes('pass')) return 'pass';
-  return 'dig-deeper';
-}
-
-function splitParagraphs(content) {
-  return String(content ?? '')
-    .split(/\n{2,}/)
-    .map((chunk) => chunk.trim())
-    .filter(Boolean);
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 }
 
 async function loadReportManifest() {
@@ -39,12 +19,20 @@ async function loadReportManifest() {
   return response.json();
 }
 
+async function loadReportPayload(slug) {
+  const response = await fetch(`../assets/reports/${slug}.json`);
+  if (!response.ok) {
+    return null;
+  }
+  return response.json();
+}
+
 function renderPublishedReports(reports) {
   const mount = document.getElementById('published-reports-list');
   if (!mount) return;
 
-  mount.innerHTML = asArray(reports).map((report) => `
-    <article class="report-card">
+  mount.innerHTML = reports.map((report) => `
+    <article class="report-card reveal fade-up">
       <div class="report-top">
         <h3>${escapeHtml(asText(report.title, 'Untitled report'))}</h3>
         <div class="report-meta">
@@ -63,240 +51,329 @@ function renderPublishedReports(reports) {
   `).join('');
 }
 
-function hydrateReportPage(reports) {
-  const root = document.querySelector('[data-report-slug]:not([data-report-root])');
-  if (!root) return;
-
-  const slug = root.dataset.reportSlug;
-  const report = asArray(reports).find((item) => item.slug === slug);
-  const meta = document.querySelector('[data-report-meta]');
-
-  if (!report || !meta) return;
-
-  meta.innerHTML = `
-    <span class="meta-chip">${escapeHtml(asText(report.published_at))}</span>
-    <span class="meta-chip">${escapeHtml(asText(report.decision_label))}</span>
-    <span class="meta-chip">${escapeHtml(asText(report.confidence))}</span>
-    <span class="meta-chip">${escapeHtml(asText(report.reading_time))}</span>
-  `;
+function getReportMount(root) {
+  return root.querySelector('[data-report-mount]')
+    || root.querySelector('[data-report-root]')
+    || root.querySelector('article');
 }
 
-async function copyText(text, button) {
-  const label = button?.dataset?.label || 'Copy';
-  try {
-    await navigator.clipboard.writeText(text);
-    if (button) {
-      button.textContent = 'Copied';
-      setTimeout(() => {
-        button.textContent = label;
-      }, 1400);
-    }
-  } catch (_error) {
-    const area = document.createElement('textarea');
-    area.value = text;
-    area.setAttribute('readonly', 'readonly');
-    area.style.position = 'fixed';
-    area.style.left = '-9999px';
-    document.body.appendChild(area);
-    area.select();
-    document.execCommand('copy');
-    document.body.removeChild(area);
-    if (button) {
-      button.textContent = 'Copied*';
-      setTimeout(() => {
-        button.textContent = label;
-      }, 1400);
-    }
-  }
+function toDecisionClass(verdict) {
+  return verdict === 'INVEST' ? 'decision-invest' : 'decision-pass';
 }
 
-function buildDynamicReportMarkup(report, slug) {
-  const hero = report?.hero || {};
-  const evidenceSummary = report?.evidence_summary || {};
-  const stages = report?.stages || {};
-  const chips = asArray(hero.chips).filter((chip) => asText(chip, '').trim());
-  const overflowChips = asArray(hero.chips_overflow).filter((chip) => asText(chip, '').trim());
-  const stage1 = stages.stage_1 || {};
-  const stage2 = stages.stage_2 || {};
-  const stage3 = stages.stage_3 || {};
-  const stage4 = stages.stage_4 || {};
+function renderStructuredReport(mount, report, payload) {
+  const evidenceCards = payload.evidence_summary?.cards || [];
+  const strengths = payload.stages?.stage_1?.lists?.[0]?.items || [];
+  const risks = payload.stages?.stage_1?.lists?.[1]?.items || [];
+  const insights = payload.stages?.stage_4?.insights || [];
+  const questions = payload.stages?.stage_4?.questions || [];
+  const plans = payload.stages?.stage_4?.plans || [];
 
-  const kvEntries = Object.entries(stage1.kv || {}).filter(([, value]) => asText(value, '').trim());
-  const stage1Lists = asArray(stage1.lists);
-  const stage1Triggers = asArray(stage1.triggers).filter((item) => asText(item, '').trim());
+  mount.innerHTML = `
+    <p class="eyebrow">Published report</p>
+    <h1>${payload.hero?.title || report.title}</h1>
+    <div class="report-meta-line">
+      <span class="meta-chip">${report.published_at}</span>
+      <span class="meta-chip">${report.decision_label}</span>
+      <span class="meta-chip">${report.confidence}</span>
+      <span class="meta-chip">${report.reading_time}</span>
+    </div>
+    <p class="lede">${payload.hero?.subtitle || report.summary}</p>
 
-  const personaCards = asArray(stage2.personas).map((persona, index) => {
-    const name = asText(persona?.name, `Unknown persona #${index + 1}`);
-    const summary = asText(persona?.summary, 'No summary provided.');
-    const signals = asArray(persona?.signals).filter((item) => asText(item, '').trim());
-    const verdict = asText(persona?.verdict, 'Dig Deeper');
-    const confidence = asText(persona?.confidence, 'Unstated confidence');
+    <section class="report-section">
+      <h2>Executive Summary</h2>
+      <p>
+        <span class="decision ${toDecisionClass(payload.evidence_summary?.verdict)}">${report.decision_label}</span>
+        ${payload.stages?.stage_4?.summary || report.summary}
+      </p>
+    </section>
 
-    return `
-      <details class="report-section">
-        <summary>${escapeHtml(name)}</summary>
-        <p>${escapeHtml(summary)}</p>
-        <p><strong>Verdict:</strong> ${escapeHtml(verdict)} · <strong>Confidence:</strong> ${escapeHtml(confidence)}</p>
-        <ul>${signals.length ? signals.map((signal) => `<li>${escapeHtml(asText(signal))}</li>`).join('') : '<li>No signals provided.</li>'}</ul>
-      </details>
-    `;
-  }).join('') || '<p class="report-error">No persona records found for Stage 2.</p>';
+    <section class="report-section">
+      <h2>Key Insights</h2>
+      <ul>
+        ${insights.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </section>
 
-  const roundsMarkup = asArray(stage3.rounds).map((round, index) => {
-    const title = asText(round?.title, `Round ${index + 1}`);
-    const summary = asText(round?.summary, 'No summary provided.');
-    const points = asArray(round?.points).filter((item) => asText(item, '').trim());
-    const roleContent = splitParagraphs(round?.role_content || round?.content).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('');
+    <section class="report-section">
+      <h2>Strengths & Risks</h2>
+      <ul>
+        ${strengths.map((item) => `<li><strong>Strength:</strong> ${item}</li>`).join('')}
+        ${risks.map((item) => `<li><strong>Risk:</strong> ${item}</li>`).join('')}
+      </ul>
+    </section>
 
-    return `
-      <details class="report-section">
-        <summary>${escapeHtml(title)}</summary>
-        <p>${escapeHtml(summary)}</p>
-        ${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(asText(point))}</li>`).join('')}</ul>` : '<p class="evidence">No bullet points provided.</p>'}
-        ${roleContent || '<p class="evidence">No role dialogue provided.</p>'}
-      </details>
-    `;
-  }).join('') || '<p class="report-error">No rounds provided for Stage 3.</p>';
+    <section class="report-section">
+      <h2>Evidence Snapshots</h2>
+      <ul>
+        ${evidenceCards.map((card) => `<li><strong>${card.title}:</strong> ${card.summary}</li>`).join('')}
+      </ul>
+    </section>
 
-  const safeReportJson = JSON.stringify(report, null, 2);
+    <section class="report-section">
+      <h2>Founder Questions</h2>
+      <ol>
+        ${questions.map((item) => `<li>${item}</li>`).join('')}
+      </ol>
+    </section>
 
-  return `
-    <section class="dynamic-report">
-      <p class="eyebrow">Published report</p>
-      <div class="dynamic-report__hero">
-        <div>
-          <h1>${escapeHtml(asText(hero.title, `${slug} report`))}</h1>
-          <p class="lede">${escapeHtml(asText(hero.subtitle, 'No subtitle provided.'))}</p>
-          <div class="report-meta">
-            <span class="meta-chip">${escapeHtml(asText(hero.date, 'Date unknown'))}</span>
-            <span class="meta-chip">${escapeHtml(asText(hero.source, 'Source unknown'))}</span>
-            <span class="meta-chip">${escapeHtml(asText(slug, 'unknown-slug'))}</span>
-          </div>
-          <div class="chips-grid">
-            ${((chips.length ? chips : []).concat(overflowChips)).length ? ((chips.length ? chips : []).concat(overflowChips)).map((chip) => `<span class="chip">${escapeHtml(asText(chip))}</span>`).join('') : '<span class="chip">No chips provided</span>'}
-          </div>
-          <div class="verdict-strip ${verdictClass(evidenceSummary.verdict)}">
-            <strong>Verdict:</strong> ${escapeHtml(asText(evidenceSummary.verdict, 'DIG DEEPER'))}
-          </div>
-        </div>
-        <div class="dynamic-report__actions">
-          <button class="btn secondary" type="button" data-copy-json data-label="Copy JSON">Copy JSON</button>
-          <button class="btn secondary" type="button" data-copy-summary data-label="Copy Summary">Copy Summary</button>
-        </div>
-      </div>
-
-      <nav class="dynamic-report__toc" aria-label="Report sections">
-        <a href="#stage-1">Stage 1</a>
-        <a href="#stage-2">Stage 2</a>
-        <a href="#stage-3">Stage 3</a>
-        <a href="#stage-4">Stage 4</a>
-        <a href="#epilogue">Epilogue</a>
-      </nav>
-
-      <section id="stage-1" class="report-section">
-        <h2>Stage 1 — Memo extraction</h2>
-        ${kvEntries.length ? `<div class="cards three-up">${kvEntries.map(([key, value]) => `<article class="card"><h3>${escapeHtml(key)}</h3><p>${escapeHtml(asText(value))}</p></article>`).join('')}</div>` : '<p class="report-error">Stage 1 key-value summary is missing.</p>'}
-        ${stage1Lists.length ? stage1Lists.map((list) => `<article class="card"><h3>${escapeHtml(asText(list?.title, 'Untitled list'))}</h3><ul>${asArray(list?.items).map((item) => `<li>${escapeHtml(asText(item, 'Missing item'))}</li>`).join('') || '<li>No items provided.</li>'}</ul></article>`).join('') : '<p class="evidence">No Stage 1 lists provided.</p>'}
-        <article class="card">
-          <h3>Debate triggers</h3>
-          <ul>${stage1Triggers.length ? stage1Triggers.map((trigger) => `<li>${escapeHtml(asText(trigger))}</li>`).join('') : '<li>No triggers provided.</li>'}</ul>
-        </article>
-      </section>
-
-      <section id="stage-2">
-        <h2>Stage 2 — Persona evaluations</h2>
-        ${personaCards}
-      </section>
-
-      <section id="stage-3">
-        <h2>Stage 3 — IC debate rounds</h2>
-        ${roundsMarkup}
-      </section>
-
-      <section id="stage-4" class="report-section">
-        <h2>Stage 4 — Synthesis</h2>
-        <p><strong>Executive summary:</strong> ${escapeHtml(asText(stage4.summary, 'No executive summary provided.'))}</p>
-        <div class="cards three-up">
-          <article class="card"><h3>Insights</h3><ul>${asArray(stage4.insights).map((item) => `<li>${escapeHtml(asText(item, 'Missing insight'))}</li>`).join('') || '<li>No insights provided.</li>'}</ul></article>
-          <article class="card"><h3>Founder questions</h3><ul>${asArray(stage4.questions).map((item) => `<li>${escapeHtml(asText(item, 'Missing question'))}</li>`).join('') || '<li>No founder questions provided.</li>'}</ul></article>
-          <article class="card"><h3>Action plans</h3><ul>${asArray(stage4.plans).map((item) => `<li>${escapeHtml(asText(item, 'Missing plan'))}</li>`).join('') || '<li>No action plans provided.</li>'}</ul></article>
-        </div>
-        <article class="card">
-          <h3>Checklist</h3>
-          <ul>${asArray(stage4.checklist).map((item) => `<li>${escapeHtml(asText(item, 'Missing checklist item'))}</li>`).join('') || '<li>No checklist provided.</li>'}</ul>
-        </article>
-      </section>
-
-      <section id="epilogue" class="report-section">
-        <h2>Epilogue</h2>
-        <p><strong>Big number:</strong> ${escapeHtml(asText(report?.epilogue?.big_number, 'Not provided'))}</p>
-        <p>${escapeHtml(asText(report?.epilogue?.context, 'No epilogue context provided.'))}</p>
-      </section>
-
-      <details class="report-section">
-        <summary>Raw report JSON</summary>
-        <pre><code>${escapeHtml(safeReportJson)}</code></pre>
-      </details>
+    <section class="report-section">
+      <h2>Action Plan</h2>
+      <ul>
+        ${plans.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
     </section>
   `;
 }
 
-function getSummaryForCopy(report) {
-  const stage4 = report?.stages?.stage_4 || {};
-  const insights = asArray(stage4.insights).slice(0, 5).map((line) => `- ${asText(line, 'Missing insight')}`).join('\n');
-  return [
-    asText(report?.hero?.title, 'Untitled report'),
-    asText(stage4.summary, 'No executive summary provided.'),
-    '',
-    'Top insights:',
-    insights || '- No insights provided.'
-  ].join('\n');
-}
+async function hydrateReportPage(reports) {
+  const root = document.querySelector('.report-page[data-report-slug]');
+  if (!root) return;
 
-async function hydrateDynamicReportPage() {
-  const mount = document.querySelector('[data-report-root]');
+  const slug = root.dataset.reportSlug;
+  const report = reports.find((item) => item.slug === slug);
+  if (!report) return;
+
+  const meta = root.querySelector('[data-report-meta]');
+  if (meta) {
+    meta.innerHTML = `
+      <span class="meta-chip">${report.published_at}</span>
+      <span class="meta-chip">${report.decision_label}</span>
+      <span class="meta-chip">${report.confidence}</span>
+      <span class="meta-chip">${report.reading_time}</span>
+    `;
+  }
+
+  const mount = getReportMount(root);
   if (!mount) return;
 
-  const slug = mount.dataset.reportSlug;
-  if (!slug) {
-    mount.innerHTML = '<p class="report-error">Missing report slug.</p>';
-    return;
-  }
-
-  try {
-    const response = await fetch(`../assets/reports/${encodeURIComponent(slug)}.json`);
-    if (!response.ok) {
-      throw new Error(`Unable to load report source for ${slug}.`);
-    }
-
-    const report = await response.json();
-    mount.innerHTML = buildDynamicReportMarkup(report, slug);
-
-    const copyJsonButton = mount.querySelector('[data-copy-json]');
-    const copySummaryButton = mount.querySelector('[data-copy-summary]');
-
-    copyJsonButton?.addEventListener('click', () => {
-      copyText(JSON.stringify(report, null, 2), copyJsonButton);
-    });
-
-    copySummaryButton?.addEventListener('click', () => {
-      copyText(getSummaryForCopy(report), copySummaryButton);
-    });
-  } catch (error) {
-    mount.innerHTML = `<p class="report-error">${escapeHtml(error.message)}</p>`;
+  const payload = await loadReportPayload(slug);
+  if (payload) {
+    renderStructuredReport(mount, report, payload);
   }
 }
+
+function createReportRenderer() {
+  let activeReportElement = null;
+  const state = {
+    jsonLoadState: 'idle',
+    activeSection: 'n/a',
+    progress: 0,
+    countersRunning: false,
+    counterValues: [],
+  };
+
+  const listeners = new Set();
+
+  function emitStatus() {
+    listeners.forEach((listener) => listener({ ...state }));
+  }
+
+  function onStatusChange(listener) {
+    listeners.add(listener);
+    listener({ ...state });
+    return () => listeners.delete(listener);
+  }
+
+  function setJsonLoadState(value) {
+    state.jsonLoadState = value;
+    emitStatus();
+  }
+
+  function setActiveReportElement(el) {
+    activeReportElement = el;
+    updateScrollState();
+  }
+
+  function setReducedMotionSimulation(enabled) {
+    document.documentElement.classList.toggle('reduced-motion-sim', Boolean(enabled));
+  }
+
+  function queryActive(selector) {
+    return activeReportElement ? Array.from(activeReportElement.querySelectorAll(selector)) : [];
+  }
+
+  function resetReveals() {
+    queryActive('[data-reveal]').forEach((node) => node.classList.remove('is-revealed'));
+  }
+
+  function forceReveal() {
+    queryActive('[data-reveal]').forEach((node) => node.classList.add('is-revealed'));
+  }
+
+  function setPersonasExpanded(expanded) {
+    queryActive('[data-persona-details]').forEach((node) => {
+      node.open = Boolean(expanded);
+    });
+  }
+
+  function setRoundsExpanded(expanded) {
+    queryActive('[data-round-details]').forEach((node) => {
+      node.open = Boolean(expanded);
+    });
+  }
+
+  function startCounters() {
+    const counters = queryActive('[data-counter-target]');
+    if (!counters.length) {
+      state.countersRunning = false;
+      state.counterValues = [];
+      emitStatus();
+      return;
+    }
+
+    state.countersRunning = true;
+    state.counterValues = counters.map(() => 0);
+    emitStatus();
+
+    const startedAt = performance.now();
+    const durationMs = document.documentElement.classList.contains('reduced-motion-sim') ? 50 : 900;
+
+    function tick(now) {
+      const ratio = Math.min(1, (now - startedAt) / durationMs);
+      counters.forEach((counterNode, index) => {
+        const target = Number(counterNode.dataset.counterTarget || 0);
+        const value = Math.round(target * ratio);
+        counterNode.textContent = String(value);
+        state.counterValues[index] = value;
+      });
+      emitStatus();
+      if (ratio < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        state.countersRunning = false;
+        emitStatus();
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function updateScrollState() {
+    if (!activeReportElement) return;
+    const sections = queryActive('[data-scrollspy-section]');
+    if (!sections.length) return;
+
+    const viewportLine = window.scrollY + 120;
+    let active = sections[0];
+    sections.forEach((section) => {
+      if (section.offsetTop <= viewportLine) {
+        active = section;
+      }
+    });
+    state.activeSection = active.dataset.scrollspySection || active.id || 'n/a';
+
+    const top = activeReportElement.offsetTop;
+    const total = Math.max(activeReportElement.scrollHeight - window.innerHeight, 1);
+    const progressed = Math.max(0, Math.min(window.scrollY - top, total));
+    state.progress = Math.round((progressed / total) * 100);
+    emitStatus();
+  }
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+
+  function renderInteractiveReport(mount, data) {
+    if (!mount || !data) return;
+
+    mount.innerHTML = `
+      <article class="dev-report" data-report-shell>
+        <header class="dev-report-hero" data-scrollspy-section="hero">
+          <p class="eyebrow">${data.hero.date} · ${data.hero.source}</p>
+          <h2>${data.hero.title}</h2>
+          <p>${data.hero.subtitle}</p>
+          <div class="chip-row">${(data.hero.chips || []).map((chip) => `<span class="meta-chip">${chip}</span>`).join('')}</div>
+        </header>
+
+        <section data-scrollspy-section="summary" data-reveal>
+          <h3>Evidence Summary</h3>
+          <div class="counter-row">
+            <div class="counter-card"><span data-counter-target="${(data.evidence_summary.cards || []).length}">0</span><small>Cards</small></div>
+            <div class="counter-card"><span data-counter-target="${(data.stages.stage_2.personas || []).length}">0</span><small>Personas</small></div>
+            <div class="counter-card"><span data-counter-target="${(data.stages.stage_3.rounds || []).length}">0</span><small>Rounds</small></div>
+          </div>
+          <div class="card-grid">
+            ${(data.evidence_summary.cards || []).map((card) => `<article class="report-card"><h4>${card.title}</h4><p>${card.summary}</p></article>`).join('')}
+          </div>
+        </section>
+
+        <section data-scrollspy-section="personas" data-reveal>
+          <h3>Personas</h3>
+          ${(data.stages.stage_2.personas || []).map((persona) => `
+            <details data-persona-details>
+              <summary>${persona.name}</summary>
+              <p>${persona.summary}</p>
+              <ul>${(persona.signals || []).map((signal) => `<li>${signal}</li>`).join('')}</ul>
+            </details>
+          `).join('')}
+        </section>
+
+        <section data-scrollspy-section="rounds" data-reveal>
+          <h3>IC Rounds</h3>
+          ${(data.stages.stage_3.rounds || []).map((round) => `
+            <details data-round-details>
+              <summary>${round.title}</summary>
+              <p>${round.summary}</p>
+              <ul>${(round.points || []).map((point) => `<li>${point}</li>`).join('')}</ul>
+            </details>
+          `).join('')}
+        </section>
+      </article>
+    `;
+
+    setActiveReportElement(mount.querySelector('[data-report-shell]'));
+    forceReveal();
+    updateScrollState();
+  }
+
+  async function loadReportJson(path) {
+    setJsonLoadState('loading');
+    try {
+      const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${path}`);
+      }
+      const data = await response.json();
+      setJsonLoadState('loaded');
+      return data;
+    } catch (error) {
+      setJsonLoadState('error');
+      throw error;
+    }
+  }
+
+  return {
+    loadReportJson,
+    onStatusChange,
+    renderInteractiveReport,
+    setActiveReportElement,
+    setReducedMotionSimulation,
+    resetReveals,
+    forceReveal,
+    setPersonasExpanded,
+    setRoundsExpanded,
+    startCounters,
+    updateScrollState,
+  };
+}
+
+window.ReportRenderer = window.ReportRenderer || createReportRenderer();
 
 (async () => {
   try {
     const reports = await loadReportManifest();
     renderPublishedReports(reports);
-    hydrateReportPage(reports);
+    await hydrateReportPage(reports);
   } catch (error) {
     const mount = document.getElementById('published-reports-list');
     if (mount) {
       mount.innerHTML = `<article class="report-card"><h3>Unable to load report feed</h3><p>${escapeHtml(error.message)}</p></article>`;
     }
+  } finally {
+    setupMotionPreference();
+    setupTocAndScrollspy();
+    setupReadingProgress();
+    setupCollapsibles();
+    setupRevealOnScroll();
   }
 
   hydrateDynamicReportPage();

@@ -143,3 +143,21 @@ h2 { margin-top: 2.7rem; margin-bottom: 1rem; font-size: clamp(1.5rem, 2.5vw, 2r
 @media (max-width: 900px) {
   .dynamic-report__hero { flex-direction: column; }
 }
+
+.dynamic-report,
+.dynamic-report p,
+.dynamic-report li,
+.dynamic-report h1,
+.dynamic-report h2,
+.dynamic-report h3,
+.dynamic-report summary,
+.dynamic-report .chip,
+.dynamic-report code,
+.dynamic-report pre {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.dynamic-report pre {
+  white-space: pre-wrap;
+}

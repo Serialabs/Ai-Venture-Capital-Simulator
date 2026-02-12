@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports Dev Harness — Signal Ledger</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="../assets/report.css" />
+  <style>
+    .harness-shell { display: grid; gap: 1rem; }
+    .harness-panel { border: 1px solid var(--border, #d9d9d9); border-radius: 12px; padding: 1rem; background: #fff; }
+    .harness-controls, .harness-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .harness-btn { border: 1px solid #cfcfcf; border-radius: 999px; background: #fff; padding: 0.35rem 0.8rem; cursor: pointer; }
+    .harness-btn[aria-selected="true"] { background: #111; color: #fff; border-color: #111; }
+    .harness-status { margin-top: 0.75rem; padding: 0.75rem; border-radius: 8px; background: #f7f7f7; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .harness-view { border: 1px solid #d9d9d9; border-radius: 12px; overflow: hidden; }
+    .harness-frame { width: 100%; height: min(70vh, 900px); border: 0; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../index.html">Signal Ledger</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="./index.html">Published Reports</a>
+        <a href="./dev-harness.html" aria-current="page">Dev Harness</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container prose harness-shell">
+    <section>
+      <p class="eyebrow">Development</p>
+      <h1>Reports Dev Harness</h1>
+      <p class="lede">Use this page to quickly switch between mock report fixtures and run lightweight rendering checks.</p>
+    </section>
+
+    <section class="harness-panel" aria-labelledby="tabs-heading">
+      <h2 id="tabs-heading">Mock Tabs</h2>
+      <div class="harness-tabs" role="tablist" aria-label="Mock reports">
+        <button class="harness-btn" role="tab" id="tab-golden" aria-selected="true" aria-controls="harness-frame" data-target="./mock-golden-path.html">Mock Golden Path</button>
+        <button class="harness-btn" role="tab" id="tab-edge" aria-selected="false" aria-controls="harness-frame" data-target="./mock-edge-cases.html">Mock Edge Cases</button>
+      </div>
+    </section>
+
+    <section class="harness-panel" aria-labelledby="controls-heading">
+      <h2 id="controls-heading">Test Panel</h2>
+      <div class="harness-controls">
+        <button class="harness-btn" type="button" data-action="reload">Reload active tab</button>
+        <button class="harness-btn" type="button" data-action="open">Open active tab in new page</button>
+        <button class="harness-btn" type="button" data-action="smoke">Run smoke check</button>
+      </div>
+      <div id="status-area" class="harness-status" aria-live="polite">Ready.</div>
+    </section>
+
+    <section class="harness-view" aria-label="Report preview">
+      <iframe
+        id="harness-frame"
+        class="harness-frame"
+        title="Mock report preview"
+        src="./mock-golden-path.html">
+      </iframe>
+    </section>
+  </main>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const frame = document.getElementById('harness-frame');
+    const statusArea = document.getElementById('status-area');
+
+    function setStatus(message) {
+      statusArea.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    }
+
+    function activateTab(nextTab) {
+      tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab === nextTab)));
+      frame.src = nextTab.dataset.target;
+      setStatus(`Loaded ${nextTab.textContent.trim()}.`);
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => activateTab(tab));
+    });
+
+    document.querySelector('[data-action="reload"]').addEventListener('click', () => {
+      frame.src = frame.src;
+      setStatus('Reloaded active mock report.');
+    });
+
+    document.querySelector('[data-action="open"]').addEventListener('click', () => {
+      const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true');
+      window.location.href = active?.dataset.target || './mock-golden-path.html';
+    });
+
+    document.querySelector('[data-action="smoke"]').addEventListener('click', () => {
+      const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true');
+      const checks = [
+        ['Active tab exists', Boolean(active)],
+        ['Frame mounted', Boolean(frame)],
+        ['Status area mounted', Boolean(statusArea)],
+      ];
+      const passed = checks.filter(([, ok]) => ok).length;
+      setStatus(`Smoke check ${passed}/${checks.length} passed for ${active?.textContent.trim() || 'unknown tab'}.`);
+    });
+  </script>
+</body>
+</html>

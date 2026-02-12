@@ -1,3 +1,16 @@
+const REVEAL_TIMING_MS = 420;
+const REVEAL_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+const REVEAL_STAGGER_MS = 70;
+
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
 async function loadReportManifest() {
   const response = await fetch('../assets/data/reports.json');
   if (!response.ok) {
@@ -19,7 +32,7 @@ function renderPublishedReports(reports) {
   if (!mount) return;
 
   mount.innerHTML = reports.map((report) => `
-    <article class="report-card">
+    <article class="report-card reveal fade-up">
       <div class="report-top">
         <h3>${report.title}</h3>
         <div class="report-meta">
@@ -355,5 +368,11 @@ window.ReportRenderer = window.ReportRenderer || createReportRenderer();
     if (mount) {
       mount.innerHTML = `<article class="report-card"><h3>Unable to load report feed</h3><p>${error.message}</p></article>`;
     }
+  } finally {
+    setupMotionPreference();
+    setupTocAndScrollspy();
+    setupReadingProgress();
+    setupCollapsibles();
+    setupRevealOnScroll();
   }
 })();

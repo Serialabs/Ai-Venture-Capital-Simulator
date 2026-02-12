@@ -19,6 +19,14 @@ async function loadReportManifest() {
   return response.json();
 }
 
+async function loadReportPayload(slug) {
+  const response = await fetch(`../assets/reports/${slug}.json`);
+  if (!response.ok) {
+    return null;
+  }
+  return response.json();
+}
+
 function renderPublishedReports(reports) {
   const mount = document.getElementById('published-reports-list');
   if (!mount) return;
@@ -43,291 +51,318 @@ function renderPublishedReports(reports) {
   `).join('');
 }
 
-function hydrateReportPage(reports) {
-  const root = document.querySelector('[data-report-slug]');
+function getReportMount(root) {
+  return root.querySelector('[data-report-mount]')
+    || root.querySelector('[data-report-root]')
+    || root.querySelector('article');
+}
+
+function toDecisionClass(verdict) {
+  return verdict === 'INVEST' ? 'decision-invest' : 'decision-pass';
+}
+
+function renderStructuredReport(mount, report, payload) {
+  const evidenceCards = payload.evidence_summary?.cards || [];
+  const strengths = payload.stages?.stage_1?.lists?.[0]?.items || [];
+  const risks = payload.stages?.stage_1?.lists?.[1]?.items || [];
+  const insights = payload.stages?.stage_4?.insights || [];
+  const questions = payload.stages?.stage_4?.questions || [];
+  const plans = payload.stages?.stage_4?.plans || [];
+
+  mount.innerHTML = `
+    <p class="eyebrow">Published report</p>
+    <h1>${payload.hero?.title || report.title}</h1>
+    <div class="report-meta-line">
+      <span class="meta-chip">${report.published_at}</span>
+      <span class="meta-chip">${report.decision_label}</span>
+      <span class="meta-chip">${report.confidence}</span>
+      <span class="meta-chip">${report.reading_time}</span>
+    </div>
+    <p class="lede">${payload.hero?.subtitle || report.summary}</p>
+
+    <section class="report-section">
+      <h2>Executive Summary</h2>
+      <p>
+        <span class="decision ${toDecisionClass(payload.evidence_summary?.verdict)}">${report.decision_label}</span>
+        ${payload.stages?.stage_4?.summary || report.summary}
+      </p>
+    </section>
+
+    <section class="report-section">
+      <h2>Key Insights</h2>
+      <ul>
+        ${insights.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </section>
+
+    <section class="report-section">
+      <h2>Strengths & Risks</h2>
+      <ul>
+        ${strengths.map((item) => `<li><strong>Strength:</strong> ${item}</li>`).join('')}
+        ${risks.map((item) => `<li><strong>Risk:</strong> ${item}</li>`).join('')}
+      </ul>
+    </section>
+
+    <section class="report-section">
+      <h2>Evidence Snapshots</h2>
+      <ul>
+        ${evidenceCards.map((card) => `<li><strong>${card.title}:</strong> ${card.summary}</li>`).join('')}
+      </ul>
+    </section>
+
+    <section class="report-section">
+      <h2>Founder Questions</h2>
+      <ol>
+        ${questions.map((item) => `<li>${item}</li>`).join('')}
+      </ol>
+    </section>
+
+    <section class="report-section">
+      <h2>Action Plan</h2>
+      <ul>
+        ${plans.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </section>
+  `;
+}
+
+async function hydrateReportPage(reports) {
+  const root = document.querySelector('.report-page[data-report-slug]');
   if (!root) return;
 
   const slug = root.dataset.reportSlug;
   const report = reports.find((item) => item.slug === slug);
-  const meta = document.querySelector('[data-report-meta]');
+  if (!report) return;
 
-  if (!report || !meta) return;
-
-  meta.innerHTML = `
-    <span class="meta-chip">${report.published_at}</span>
-    <span class="meta-chip">${report.decision_label}</span>
-    <span class="meta-chip">${report.confidence}</span>
-    <span class="meta-chip">${report.reading_time}</span>
-  `;
-}
-
-function isReducedMotion() {
-  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-function setupMotionPreference() {
-  document.documentElement.classList.toggle('motion-reduce', isReducedMotion());
-}
-
-function setupRevealOnScroll() {
-  const items = Array.from(document.querySelectorAll('.reveal'));
-  if (!items.length) return;
-
-  const reduced = isReducedMotion();
-  items.forEach((el, index) => {
-    el.style.setProperty('--reveal-duration', `${REVEAL_TIMING_MS}ms`);
-    el.style.setProperty('--reveal-easing', REVEAL_EASING);
-    el.style.setProperty('--reveal-delay', reduced ? '0ms' : `${index * REVEAL_STAGGER_MS}ms`);
-  });
-
-  if (reduced || !('IntersectionObserver' in window)) {
-    items.forEach((el) => el.classList.add('is-visible'));
-    return;
+  const meta = root.querySelector('[data-report-meta]');
+  if (meta) {
+    meta.innerHTML = `
+      <span class="meta-chip">${report.published_at}</span>
+      <span class="meta-chip">${report.decision_label}</span>
+      <span class="meta-chip">${report.confidence}</span>
+      <span class="meta-chip">${report.reading_time}</span>
+    `;
   }
 
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    rootMargin: '0px 0px -12% 0px',
-    threshold: 0.12,
-  });
+  const mount = getReportMount(root);
+  if (!mount) return;
 
-  items.forEach((el) => io.observe(el));
+  const payload = await loadReportPayload(slug);
+  if (payload) {
+    renderStructuredReport(mount, report, payload);
+  }
 }
 
-function withUniqueHeadingIds(headings) {
-  const used = new Set();
-  headings.forEach((heading, index) => {
-    if (!heading.id) {
-      const base = slugify(heading.textContent) || `section-${index + 1}`;
-      let id = base;
-      let count = 2;
-      while (used.has(id) || document.getElementById(id)) {
-        id = `${base}-${count++}`;
-      }
-      heading.id = id;
-    }
-    used.add(heading.id);
-  });
-}
-
-function getPageReadPercent() {
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  if (docHeight <= 0) return 100;
-  return Math.max(0, Math.min(100, (scrollTop / docHeight) * 100));
-}
-
-function setupReadingProgress() {
-  const page = document.querySelector('.report-page');
-  if (!page) return;
-
-  const bar = document.createElement('div');
-  bar.className = 'report-progress';
-  bar.setAttribute('aria-hidden', 'true');
-  bar.innerHTML = '<span class="report-progress__bar"></span>';
-  document.body.prepend(bar);
-
-  const progress = bar.querySelector('.report-progress__bar');
-  const update = () => {
-    progress.style.transform = `scaleX(${getPageReadPercent() / 100})`;
+function createReportRenderer() {
+  let activeReportElement = null;
+  const state = {
+    jsonLoadState: 'idle',
+    activeSection: 'n/a',
+    progress: 0,
+    countersRunning: false,
+    counterValues: [],
   };
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-}
+  const listeners = new Set();
 
-async function writeToClipboard(value) {
-  await navigator.clipboard.writeText(value);
-}
-
-function attachCopyFeedback(button, successLabel) {
-  const defaultLabel = button.textContent;
-  button.textContent = successLabel;
-  setTimeout(() => {
-    button.textContent = defaultLabel;
-  }, 1200);
-}
-
-function setupCopyActions(reportPage, headingNodes) {
-  const article = reportPage.querySelector('article');
-  if (!article) return;
-
-  const toolbar = document.createElement('div');
-  toolbar.className = 'report-actions reveal fade-up';
-  toolbar.innerHTML = `
-    <button type="button" data-copy="full">Copy full report</button>
-    <button type="button" data-copy="link">Copy report link</button>
-  `;
-
-  const insertTarget = article.querySelector('h1');
-  if (insertTarget) {
-    insertTarget.insertAdjacentElement('afterend', toolbar);
-  } else {
-    article.prepend(toolbar);
+  function emitStatus() {
+    listeners.forEach((listener) => listener({ ...state }));
   }
 
-  toolbar.addEventListener('click', async (event) => {
-    const btn = event.target.closest('button[data-copy]');
-    if (!btn) return;
+  function onStatusChange(listener) {
+    listeners.add(listener);
+    listener({ ...state });
+    return () => listeners.delete(listener);
+  }
 
-    try {
-      if (btn.dataset.copy === 'full') {
-        await writeToClipboard(article.innerText.trim());
-        attachCopyFeedback(btn, 'Copied');
-      } else if (btn.dataset.copy === 'link') {
-        await writeToClipboard(window.location.href);
-        attachCopyFeedback(btn, 'Copied');
-      }
-    } catch (_error) {
-      attachCopyFeedback(btn, 'Copy failed');
+  function setJsonLoadState(value) {
+    state.jsonLoadState = value;
+    emitStatus();
+  }
+
+  function setActiveReportElement(el) {
+    activeReportElement = el;
+    updateScrollState();
+  }
+
+  function setReducedMotionSimulation(enabled) {
+    document.documentElement.classList.toggle('reduced-motion-sim', Boolean(enabled));
+  }
+
+  function queryActive(selector) {
+    return activeReportElement ? Array.from(activeReportElement.querySelectorAll(selector)) : [];
+  }
+
+  function resetReveals() {
+    queryActive('[data-reveal]').forEach((node) => node.classList.remove('is-revealed'));
+  }
+
+  function forceReveal() {
+    queryActive('[data-reveal]').forEach((node) => node.classList.add('is-revealed'));
+  }
+
+  function setPersonasExpanded(expanded) {
+    queryActive('[data-persona-details]').forEach((node) => {
+      node.open = Boolean(expanded);
+    });
+  }
+
+  function setRoundsExpanded(expanded) {
+    queryActive('[data-round-details]').forEach((node) => {
+      node.open = Boolean(expanded);
+    });
+  }
+
+  function startCounters() {
+    const counters = queryActive('[data-counter-target]');
+    if (!counters.length) {
+      state.countersRunning = false;
+      state.counterValues = [];
+      emitStatus();
+      return;
     }
-  });
 
-  headingNodes.forEach((heading) => {
-    const section = heading.closest('.report-section');
-    if (!section) return;
+    state.countersRunning = true;
+    state.counterValues = counters.map(() => 0);
+    emitStatus();
 
-    const actions = document.createElement('div');
-    actions.className = 'section-actions';
-    actions.innerHTML = `
-      <button type="button" data-copy="section">Copy section</button>
-      <button type="button" data-copy="section-link">Copy link</button>
+    const startedAt = performance.now();
+    const durationMs = document.documentElement.classList.contains('reduced-motion-sim') ? 50 : 900;
+
+    function tick(now) {
+      const ratio = Math.min(1, (now - startedAt) / durationMs);
+      counters.forEach((counterNode, index) => {
+        const target = Number(counterNode.dataset.counterTarget || 0);
+        const value = Math.round(target * ratio);
+        counterNode.textContent = String(value);
+        state.counterValues[index] = value;
+      });
+      emitStatus();
+      if (ratio < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        state.countersRunning = false;
+        emitStatus();
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function updateScrollState() {
+    if (!activeReportElement) return;
+    const sections = queryActive('[data-scrollspy-section]');
+    if (!sections.length) return;
+
+    const viewportLine = window.scrollY + 120;
+    let active = sections[0];
+    sections.forEach((section) => {
+      if (section.offsetTop <= viewportLine) {
+        active = section;
+      }
+    });
+    state.activeSection = active.dataset.scrollspySection || active.id || 'n/a';
+
+    const top = activeReportElement.offsetTop;
+    const total = Math.max(activeReportElement.scrollHeight - window.innerHeight, 1);
+    const progressed = Math.max(0, Math.min(window.scrollY - top, total));
+    state.progress = Math.round((progressed / total) * 100);
+    emitStatus();
+  }
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+
+  function renderInteractiveReport(mount, data) {
+    if (!mount || !data) return;
+
+    mount.innerHTML = `
+      <article class="dev-report" data-report-shell>
+        <header class="dev-report-hero" data-scrollspy-section="hero">
+          <p class="eyebrow">${data.hero.date} · ${data.hero.source}</p>
+          <h2>${data.hero.title}</h2>
+          <p>${data.hero.subtitle}</p>
+          <div class="chip-row">${(data.hero.chips || []).map((chip) => `<span class="meta-chip">${chip}</span>`).join('')}</div>
+        </header>
+
+        <section data-scrollspy-section="summary" data-reveal>
+          <h3>Evidence Summary</h3>
+          <div class="counter-row">
+            <div class="counter-card"><span data-counter-target="${(data.evidence_summary.cards || []).length}">0</span><small>Cards</small></div>
+            <div class="counter-card"><span data-counter-target="${(data.stages.stage_2.personas || []).length}">0</span><small>Personas</small></div>
+            <div class="counter-card"><span data-counter-target="${(data.stages.stage_3.rounds || []).length}">0</span><small>Rounds</small></div>
+          </div>
+          <div class="card-grid">
+            ${(data.evidence_summary.cards || []).map((card) => `<article class="report-card"><h4>${card.title}</h4><p>${card.summary}</p></article>`).join('')}
+          </div>
+        </section>
+
+        <section data-scrollspy-section="personas" data-reveal>
+          <h3>Personas</h3>
+          ${(data.stages.stage_2.personas || []).map((persona) => `
+            <details data-persona-details>
+              <summary>${persona.name}</summary>
+              <p>${persona.summary}</p>
+              <ul>${(persona.signals || []).map((signal) => `<li>${signal}</li>`).join('')}</ul>
+            </details>
+          `).join('')}
+        </section>
+
+        <section data-scrollspy-section="rounds" data-reveal>
+          <h3>IC Rounds</h3>
+          ${(data.stages.stage_3.rounds || []).map((round) => `
+            <details data-round-details>
+              <summary>${round.title}</summary>
+              <p>${round.summary}</p>
+              <ul>${(round.points || []).map((point) => `<li>${point}</li>`).join('')}</ul>
+            </details>
+          `).join('')}
+        </section>
+      </article>
     `;
-    heading.insertAdjacentElement('afterend', actions);
 
-    actions.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-copy]');
-      if (!btn) return;
-
-      try {
-        if (btn.dataset.copy === 'section') {
-          await writeToClipboard(section.innerText.trim());
-          attachCopyFeedback(btn, 'Copied');
-        } else {
-          const url = new URL(window.location.href);
-          url.hash = heading.id;
-          await writeToClipboard(url.toString());
-          history.replaceState(null, '', url.hash);
-          attachCopyFeedback(btn, 'Copied');
-        }
-      } catch (_error) {
-        attachCopyFeedback(btn, 'Copy failed');
-      }
-    });
-  });
-}
-
-function setupCollapsibles() {
-  const candidates = Array.from(document.querySelectorAll('.report-section')).filter((section) => {
-    const heading = section.querySelector('h2, h3, h4');
-    if (!heading) return false;
-    const text = heading.textContent || '';
-    return /persona|round/i.test(text) || /persona|round/i.test(section.className);
-  });
-
-  candidates.forEach((section, idx) => {
-    if (section.dataset.collapsibleReady === 'true') return;
-
-    const heading = section.querySelector('h2, h3, h4');
-    if (!heading) return;
-
-    const panel = document.createElement('div');
-    panel.className = 'report-collapsible__panel';
-
-    while (heading.nextSibling) {
-      panel.appendChild(heading.nextSibling);
-    }
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'report-collapsible__toggle';
-    toggle.setAttribute('aria-expanded', 'false');
-
-    const panelId = `${heading.id || `collapsible-${idx + 1}`}-panel`;
-    panel.id = panelId;
-    panel.hidden = true;
-    toggle.setAttribute('aria-controls', panelId);
-    toggle.textContent = heading.textContent?.trim() || `Section ${idx + 1}`;
-
-    heading.hidden = true;
-    section.classList.add('report-collapsible');
-    section.insertBefore(toggle, heading);
-    section.appendChild(panel);
-    section.dataset.collapsibleReady = 'true';
-
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-      panel.hidden = isOpen;
-    });
-
-    toggle.addEventListener('keydown', (event) => {
-      if (event.key === ' ' || event.key === 'Enter') {
-        event.preventDefault();
-        toggle.click();
-      }
-    });
-  });
-}
-
-function setupTocAndScrollspy() {
-  const reportPage = document.querySelector('.report-page');
-  if (!reportPage) return;
-
-  const headings = Array.from(reportPage.querySelectorAll('.report-section h2, .report-section h3'));
-  if (!headings.length) return;
-
-  withUniqueHeadingIds(headings);
-
-  const toc = document.createElement('nav');
-  toc.className = 'report-toc reveal fade-up';
-  toc.setAttribute('aria-label', 'Report table of contents');
-  toc.innerHTML = `
-    <p class="report-toc__title">On this page</p>
-    <ul>
-      ${headings.map((heading) => `<li><a href="#${heading.id}">${heading.textContent?.trim() || heading.id}</a></li>`).join('')}
-    </ul>
-  `;
-
-  const article = reportPage.querySelector('article');
-  const firstSection = reportPage.querySelector('.report-section');
-  if (article && firstSection) {
-    article.insertBefore(toc, firstSection);
+    setActiveReportElement(mount.querySelector('[data-report-shell]'));
+    forceReveal();
+    updateScrollState();
   }
 
-  const linkMap = new Map(Array.from(toc.querySelectorAll('a')).map((link) => [link.getAttribute('href')?.slice(1), link]));
+  async function loadReportJson(path) {
+    setJsonLoadState('loading');
+    try {
+      const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${path}`);
+      }
+      const data = await response.json();
+      setJsonLoadState('loaded');
+      return data;
+    } catch (error) {
+      setJsonLoadState('error');
+      throw error;
+    }
+  }
 
-  if (!('IntersectionObserver' in window)) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      linkMap.forEach((link) => link.classList.remove('is-active'));
-      const active = linkMap.get(entry.target.id);
-      if (active) active.classList.add('is-active');
-    });
-  }, {
-    rootMargin: '-30% 0px -55% 0px',
-    threshold: [0, 0.25, 0.6],
-  });
-
-  headings.forEach((heading) => observer.observe(heading));
-
-  setupCopyActions(reportPage, headings);
+  return {
+    loadReportJson,
+    onStatusChange,
+    renderInteractiveReport,
+    setActiveReportElement,
+    setReducedMotionSimulation,
+    resetReveals,
+    forceReveal,
+    setPersonasExpanded,
+    setRoundsExpanded,
+    startCounters,
+    updateScrollState,
+  };
 }
+
+window.ReportRenderer = window.ReportRenderer || createReportRenderer();
 
 (async () => {
   try {
     const reports = await loadReportManifest();
     renderPublishedReports(reports);
-    hydrateReportPage(reports);
+    await hydrateReportPage(reports);
   } catch (error) {
     const mount = document.getElementById('published-reports-list');
     if (mount) {

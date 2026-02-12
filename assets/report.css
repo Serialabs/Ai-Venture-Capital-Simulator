@@ -1,0 +1,83 @@
+.reports-root .report-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.reports-root .report-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+}
+
+.reports-root .report-top {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.reports-root .report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.reports-root .meta-chip {
+  background: rgba(122, 162, 247, 0.18);
+  border: 1px solid rgba(122, 162, 247, 0.35);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+}
+
+.reports-root .report-link {
+  color: #9ab4ff;
+  display: inline-block;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.reports-root .report-link:hover,
+.reports-root .report-link:focus-visible {
+  text-decoration: underline;
+}
+
+.report-page {
+  margin: 2rem auto;
+  max-width: 860px;
+}
+
+.report-page .report-meta-line {
+  color: rgba(255, 255, 255, 0.72);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.report-page .report-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.report-page .decision {
+  border-radius: 0.5rem;
+  display: inline-block;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  padding: 0.15rem 0.45rem;
+}
+
+.report-page .decision-invest {
+  background: rgba(60, 190, 120, 0.18);
+  border: 1px solid rgba(60, 190, 120, 0.4);
+}
+
+.report-page .decision-pass {
+  background: rgba(232, 102, 140, 0.15);
+  border: 1px solid rgba(232, 102, 140, 0.35);
+}

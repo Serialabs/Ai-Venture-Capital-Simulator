@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "title": "YouTube — 2005 Pitch Analysis",
+    "subtitle": "An early UGC video thesis assessed through the same static IC process.",
+    "date": "2026-02-12",
+    "source": "YouTube deck narrative (2005)",
+    "chips": ["Consumer Internet", "UGC", "Seed"]
+  },
+  "evidence_summary": {
+    "cards": [
+      {
+        "title": "Distribution strength",
+        "summary": "Low-friction sharing loops can accelerate awareness rapidly."
+      },
+      {
+        "title": "Monetization uncertainty",
+        "summary": "Ad durability depends on moderation and brand-safety maturity."
+      }
+    ],
+    "verdict": "INVEST"
+  },
+  "stages": {
+    "stage_1": {
+      "kv": {
+        "Market": "User-generated online video",
+        "Business model": "Advertising + creator ecosystem",
+        "Primary risk": "Policy and copyright enforcement"
+      },
+      "lists": [
+        {
+          "title": "Core strengths",
+          "items": [
+            "Strong creator and viewer pull",
+            "Shareability drives top-of-funnel growth",
+            "Large long-term ad inventory potential"
+          ]
+        }
+      ]
+    },
+    "stage_2": {
+      "personas": [
+        {
+          "name": "Growth Optimist",
+          "summary": "Expects audience and creator loops to outpace incumbents.",
+          "signals": ["Retention cohorts improving", "Network effects compounding"]
+        }
+      ]
+    },
+    "stage_3": {
+      "rounds": [
+        {
+          "title": "Round 1 — Initial IC pass",
+          "summary": "Team views engagement dynamics as unusually strong for the stage.",
+          "points": ["Usage growth credible", "Governance model still early"]
+        }
+      ]
+    },
+    "stage_4": {
+      "summary": "Strong engagement signal with material policy and moderation execution risk.",
+      "insights": [
+        "Creator supply appears durable",
+        "Monetization must follow trust and safety maturity"
+      ],
+      "questions": [
+        "How quickly can takedown workflows scale?",
+        "Which cohorts best predict ad-quality inventory?"
+      ],
+      "plans": [
+        "Collect creator/viewer retention cohorts",
+        "Review trust-and-safety operating model"
+      ]
+    }
+  }
+}

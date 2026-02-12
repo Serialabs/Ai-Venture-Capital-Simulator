@@ -3,106 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reports Dev Harness — Signal Ledger</title>
-  <link rel="stylesheet" href="../assets/styles.css" />
+  <title>Report Renderer Dev Harness</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
   <link rel="stylesheet" href="../assets/report.css" />
   <style>
-    .harness-shell { display: grid; gap: 1rem; }
-    .harness-panel { border: 1px solid var(--border, #d9d9d9); border-radius: 12px; padding: 1rem; background: #fff; }
-    .harness-controls, .harness-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .harness-btn { border: 1px solid #cfcfcf; border-radius: 999px; background: #fff; padding: 0.35rem 0.8rem; cursor: pointer; }
-    .harness-btn[aria-selected="true"] { background: #111; color: #fff; border-color: #111; }
-    .harness-status { margin-top: 0.75rem; padding: 0.75rem; border-radius: 8px; background: #f7f7f7; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .harness-view { border: 1px solid #d9d9d9; border-radius: 12px; overflow: hidden; }
-    .harness-frame { width: 100%; height: min(70vh, 900px); border: 0; }
+    .dev-harness { display:grid; gap:1rem; grid-template-columns:300px minmax(0,1fr); margin:1.5rem auto; }
+    .panel { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:1rem; }
+    .control-grid { display:grid; gap:.5rem; }
+    .control-grid button { width:100%; }
+    .tab-row { display:flex; gap:.5rem; margin-bottom:.75rem; }
+    .tab-row button[aria-selected="true"] { background:#9ab4ff; color:#111; }
+    .report-mount { min-height: 70vh; }
+    [data-reveal] { opacity:.45; transform:translateY(4px); transition: opacity .2s ease, transform .2s ease; }
+    .reduced-motion-sim [data-reveal] { transition:none; }
+    [data-reveal].is-revealed { opacity:1; transform:none; }
+    .counter-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.6rem; margin-bottom:.8rem; }
+    .counter-card { background:rgba(0,0,0,.2); border:1px solid rgba(255,255,255,.08); border-radius:8px; padding:.5rem; text-align:center; }
+    .counter-card span { display:block; font-weight:700; font-size:1.3rem; }
+    .card-grid { display:grid; gap:.6rem; }
+    .dev-report section { border-top:1px solid rgba(255,255,255,.12); margin-top:1rem; padding-top:1rem; }
+    .checklist { list-style:none; padding:0; margin:0; display:grid; gap:.35rem; }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-row">
       <a class="brand" href="../index.html">Signal Ledger</a>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="./index.html">Published Reports</a>
-        <a href="./dev-harness.html" aria-current="page">Dev Harness</a>
-      </nav>
+      <nav><a href="./index.html">Reports</a></nav>
     </div>
   </header>
 
-  <main class="container prose harness-shell">
-    <section>
-      <p class="eyebrow">Development</p>
-      <h1>Reports Dev Harness</h1>
-      <p class="lede">Use this page to quickly switch between mock report fixtures and run lightweight rendering checks.</p>
-    </section>
+  <main class="container dev-harness">
+    <aside class="panel">
+      <h2>Harness Controls</h2>
+      <label><input id="reduced-motion-toggle" type="checkbox" /> Reduced-motion simulation (html class)</label>
 
-    <section class="harness-panel" aria-labelledby="tabs-heading">
-      <h2 id="tabs-heading">Mock Tabs</h2>
-      <div class="harness-tabs" role="tablist" aria-label="Mock reports">
-        <button class="harness-btn" role="tab" id="tab-golden" aria-selected="true" aria-controls="harness-frame" data-target="./mock-golden-path.html">Mock Golden Path</button>
-        <button class="harness-btn" role="tab" id="tab-edge" aria-selected="false" aria-controls="harness-frame" data-target="./mock-edge-cases.html">Mock Edge Cases</button>
+      <div class="control-grid">
+        <button id="btn-reveal-reset" type="button">Reset reveal</button>
+        <button id="btn-reveal-force" type="button">Force reveal</button>
+        <button id="btn-personas-expand" type="button">Expand personas</button>
+        <button id="btn-personas-collapse" type="button">Collapse personas</button>
+        <button id="btn-rounds-expand" type="button">Expand rounds</button>
+        <button id="btn-rounds-collapse" type="button">Collapse rounds</button>
+        <button id="btn-start-counters" type="button">Start counters</button>
       </div>
-    </section>
 
-    <section class="harness-panel" aria-labelledby="controls-heading">
-      <h2 id="controls-heading">Test Panel</h2>
-      <div class="harness-controls">
-        <button class="harness-btn" type="button" data-action="reload">Reload active tab</button>
-        <button class="harness-btn" type="button" data-action="open">Open active tab in new page</button>
-        <button class="harness-btn" type="button" data-action="smoke">Run smoke check</button>
+      <h3>Status</h3>
+      <pre id="status-panel" aria-live="polite">{}</pre>
+
+      <h3>Validation Checklist</h3>
+      <ul class="checklist" id="validation-checklist">
+        <li><label><input type="checkbox" /> Toggle reduced-motion and verify class on html.</label></li>
+        <li><label><input type="checkbox" /> Tabs switch between UberCab and WeWork mock JSON.</label></li>
+        <li><label><input type="checkbox" /> Reveal reset/force buttons update section visibility.</label></li>
+        <li><label><input type="checkbox" /> Persona and round expand/collapse controls work.</label></li>
+        <li><label><input type="checkbox" /> Counter animation starts and status updates.</label></li>
+      </ul>
+    </aside>
+
+    <section class="panel">
+      <div class="tab-row" role="tablist" aria-label="Mock reports">
+        <button role="tab" aria-selected="true" data-tab="ubercab-2008">UberCab 2008</button>
+        <button role="tab" aria-selected="false" data-tab="wework-2012">WeWork 2012</button>
       </div>
-      <div id="status-area" class="harness-status" aria-live="polite">Ready.</div>
-    </section>
-
-    <section class="harness-view" aria-label="Report preview">
-      <iframe
-        id="harness-frame"
-        class="harness-frame"
-        title="Mock report preview"
-        src="./mock-golden-path.html">
-      </iframe>
+      <div id="report-mount" class="report-mount"></div>
     </section>
   </main>
 
+  <script src="../assets/report.js"></script>
   <script>
+    const renderer = window.ReportRenderer;
+    const mount = document.getElementById('report-mount');
+    const statusPanel = document.getElementById('status-panel');
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-    const frame = document.getElementById('harness-frame');
-    const statusArea = document.getElementById('status-area');
 
-    function setStatus(message) {
-      statusArea.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    const reportSources = {
+      'ubercab-2008': '../assets/reports/ubercab-2008.json',
+      'wework-2012': '../assets/reports/wework-2012.json',
+    };
+
+    async function activateTab(slug) {
+      tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.tab === slug)));
+      const data = await renderer.loadReportJson(reportSources[slug]);
+      renderer.renderInteractiveReport(mount, data);
+      renderer.startCounters();
     }
 
-    function activateTab(nextTab) {
-      tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab === nextTab)));
-      frame.src = nextTab.dataset.target;
-      setStatus(`Loaded ${nextTab.textContent.trim()}.`);
-    }
+    renderer.onStatusChange((status) => {
+      statusPanel.textContent = JSON.stringify({
+        jsonLoadState: status.jsonLoadState,
+        activeScrollspySection: status.activeSection,
+        progressPercent: status.progress,
+        counterState: status.countersRunning ? 'running' : 'idle',
+      }, null, 2);
+    });
+
+    document.getElementById('reduced-motion-toggle').addEventListener('change', (event) => {
+      renderer.setReducedMotionSimulation(event.target.checked);
+    });
+    document.getElementById('btn-reveal-reset').addEventListener('click', () => renderer.resetReveals());
+    document.getElementById('btn-reveal-force').addEventListener('click', () => renderer.forceReveal());
+    document.getElementById('btn-personas-expand').addEventListener('click', () => renderer.setPersonasExpanded(true));
+    document.getElementById('btn-personas-collapse').addEventListener('click', () => renderer.setPersonasExpanded(false));
+    document.getElementById('btn-rounds-expand').addEventListener('click', () => renderer.setRoundsExpanded(true));
+    document.getElementById('btn-rounds-collapse').addEventListener('click', () => renderer.setRoundsExpanded(false));
+    document.getElementById('btn-start-counters').addEventListener('click', () => renderer.startCounters());
 
     tabs.forEach((tab) => {
-      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('click', () => {
+        activateTab(tab.dataset.tab);
+      });
     });
 
-    document.querySelector('[data-action="reload"]').addEventListener('click', () => {
-      frame.src = frame.src;
-      setStatus('Reloaded active mock report.');
-    });
-
-    document.querySelector('[data-action="open"]').addEventListener('click', () => {
-      const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true');
-      window.location.href = active?.dataset.target || './mock-golden-path.html';
-    });
-
-    document.querySelector('[data-action="smoke"]').addEventListener('click', () => {
-      const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true');
-      const checks = [
-        ['Active tab exists', Boolean(active)],
-        ['Frame mounted', Boolean(frame)],
-        ['Status area mounted', Boolean(statusArea)],
-      ];
-      const passed = checks.filter(([, ok]) => ok).length;
-      setStatus(`Smoke check ${passed}/${checks.length} passed for ${active?.textContent.trim() || 'unknown tab'}.`);
-    });
+    activateTab('ubercab-2008');
   </script>
 </body>
 </html>

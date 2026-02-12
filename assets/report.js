@@ -12,10 +12,20 @@ function slugify(value) {
 }
 
 async function loadReportManifest() {
-  const response = await fetch('../assets/data/reports.json');
+  const response = await fetch('/assets/data/reports.json');
   if (!response.ok) {
     throw new Error('Unable to load report manifest.');
   }
+
+  return response.json();
+}
+
+async function loadFullReportBySlug(slug) {
+  const response = await fetch(`/assets/reports/${encodeURIComponent(slug)}.json`);
+  if (!response.ok) {
+    throw new Error(`Unable to load report content for "${slug}".`);
+  }
+
   return response.json();
 }
 

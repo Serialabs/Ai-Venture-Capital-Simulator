@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signal Ledger — Coming Soon</title>
-  <meta name="description" content="Signal Ledger homepage is being refreshed." />
+  <title>Signal Ledger</title>
+  <meta name="description" content="AI-powered venture committee simulation reports with methods, recent analyses, and project context." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
@@ -20,14 +20,17 @@
     </div>
   </header>
 
-  <main class="container prose">
-    <section class="card placeholder-card">
-      <p class="eyebrow">Homepage</p>
-      <h1>Coming soon</h1>
-      <p>We are updating the Signal Ledger landing experience. Use the links above to browse current content.</p>
-    </section>
-  </main>
+  <main id="home-react-root" class="container home-v2"></main>
 
+  <noscript>
+    <main class="container prose">
+      <section class="card"><h1>Signal Ledger</h1><p>Please enable JavaScript to view the animated homepage.</p></section>
+    </main>
+  </noscript>
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="assets/js/homepage-react.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

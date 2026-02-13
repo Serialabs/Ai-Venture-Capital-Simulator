@@ -89,6 +89,19 @@ h2 { margin-top: 2.7rem; margin-bottom: 1rem; font-size: clamp(1.5rem, 2.5vw, 2r
 .info-page section { margin-bottom: 2.2rem; }
 .round-list { margin: 1rem 0 0; padding-left: 1.2rem; }
 .round-list li { margin: 0.45rem 0; }
+
+.persona-roster-section { display: grid; gap: 1.2rem; }
+.persona-group { display: grid; gap: 0.7rem; }
+.persona-group-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.persona-group-head h3 { margin: 0; }
+.persona-card-grid { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.persona-card { display: grid; gap: 0.65rem; }
+.persona-card h4 { margin: 0; font-size: 1rem; }
+.persona-card p { margin: 0; }
+.persona-card-head { display: flex; align-items: flex-start; gap: 0.6rem; }
+.persona-icon { font-size: 1.15rem; line-height: 1.2; }
+.persona-tag-rows { display: grid; gap: 0.45rem; }
+.persona-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 1.6rem; }
 .name-list {
   list-style: none;
   margin: 1rem 0 0;
@@ -106,7 +119,7 @@ h2 { margin-top: 2.7rem; margin-bottom: 1rem; font-size: clamp(1.5rem, 2.5vw, 2r
 .footer-row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
-  .upload-grid, .four-up, .three-up, .name-list { grid-template-columns: 1fr; }
+  .upload-grid, .four-up, .three-up, .name-list, .persona-card-grid { grid-template-columns: 1fr; }
 }
 
 .dynamic-report { display: grid; gap: 1rem; }

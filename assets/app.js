@@ -59,9 +59,27 @@ async function renderPersonas() {
 
   try {
     const data = await fetchJson('assets/data/personas.json');
-    mount.innerHTML = data.names_exact.map((name) => `<span class="chip">${name}</span>`).join('');
+    const list = Array.isArray(data) ? data : data?.personas || data?.names_exact || [];
+
+    if (!Array.isArray(list) || !list.length) {
+      mount.innerHTML = `
+        <article class="report-card">
+          <h3>No personas found</h3>
+          <p class="muted">Add persona names to <code>assets/data/personas.json</code> using an array payload, <code>{ personas: [] }</code>, or <code>{ names_exact: [] }</code>.</p>
+        </article>
+      `;
+      return;
+    }
+
+    mount.innerHTML = list.map((name) => `<span class="chip">${name}</span>`).join('');
   } catch (error) {
-    mount.innerHTML = `<p>${error.message}</p>`;
+    mount.innerHTML = `
+      <article class="report-card" role="alert">
+        <h3>Unable to load personas</h3>
+        <p class="muted">Expected persona data at <code>assets/data/personas.json</code>.</p>
+        <p>${error.message}</p>
+      </article>
+    `;
   }
 }
 

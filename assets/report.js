@@ -2,7 +2,57 @@
   const root = document.querySelector('[data-report-root]');
   if (!root) return;
 
-  const data = await fetch('assets/mock-youtube-2005.json').then((r) => r.json());
+  const reportShell = document.querySelector('main[data-report-slug]');
+  const slug = reportShell?.dataset.reportSlug;
+
+  const resolveReportJsonPath = () => {
+    if (slug) return `../assets/reports/${slug}.json`;
+
+    return reportShell?.dataset.reportJson
+      || root.dataset.reportJson
+      || window.REPORT_DATA_PATH
+      || 'assets/mock-youtube-2005.json';
+  };
+
+  const renderLoadError = (message) => {
+    root.innerHTML = `<article class="panel"><h3>Report unavailable</h3><p>${message}</p></article>`;
+  };
+
+  const loadReportData = async () => {
+    const candidates = [resolveReportJsonPath()];
+
+    if (!slug) {
+      candidates.push('../assets/mock-youtube-2005.json');
+      candidates.push('assets/mock-youtube-2005.json');
+    }
+
+    let lastError;
+    for (const path of candidates) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    throw lastError || new Error('Unknown report loading failure');
+  };
+
+  let data;
+  try {
+    data = await loadReportData();
+  } catch (error) {
+    renderLoadError(
+      slug
+        ? `Could not load report data for “${slug}”.`
+        : 'Could not load report data. Set data-report-slug or provide a mock data path.'
+    );
+    console.error('[report] Failed to load report data', error);
+    return;
+  }
+
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const bind = (selector, value) => {

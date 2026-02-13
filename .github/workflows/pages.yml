@@ -71,6 +71,36 @@ jobs:
         with:
           path: .
 
+      - name: Debug Pages artifacts for current run
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const run_id = context.runId;
+
+            const artifacts = await github.paginate(
+              github.rest.actions.listWorkflowRunArtifacts,
+              { owner, repo, run_id, per_page: 100 }
+            );
+
+            const countsByName = artifacts.reduce((acc, artifact) => {
+              acc[artifact.name] = (acc[artifact.name] || 0) + 1;
+              return acc;
+            }, {});
+
+            core.info(`Found ${artifacts.length} artifact(s) for run ${run_id}.`);
+            for (const [name, count] of Object.entries(countsByName)) {
+              core.info(`- ${name}: ${count}`);
+            }
+
+            const pagesArtifactCount = countsByName['github-pages'] || 0;
+            if (pagesArtifactCount > 1) {
+              core.warning(
+                `Detected duplicate github-pages artifacts (${pagesArtifactCount}) in run ${run_id}. ` +
+                'This can cause deployment to fail. Recommendation: trigger a new workflow run to generate a single fresh artifact.'
+              );
+            }
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

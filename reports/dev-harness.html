@@ -54,7 +54,7 @@
       <h3>Validation Checklist</h3>
       <ul class="checklist" id="validation-checklist">
         <li><label><input type="checkbox" /> Toggle reduced-motion and verify class on html.</label></li>
-        <li><label><input type="checkbox" /> Tabs switch between UberCab and WeWork mock JSON.</label></li>
+        <li><label><input type="checkbox" /> Tabs switch between YouTube and WeWork mock JSON.</label></li>
         <li><label><input type="checkbox" /> Reveal reset/force buttons update section visibility.</label></li>
         <li><label><input type="checkbox" /> Persona and round expand/collapse controls work.</label></li>
         <li><label><input type="checkbox" /> Counter animation starts and status updates.</label></li>
@@ -63,7 +63,7 @@
 
     <section class="panel">
       <div class="tab-row" role="tablist" aria-label="Mock reports">
-        <button role="tab" aria-selected="true" data-tab="ubercab-2008">UberCab 2008</button>
+        <button role="tab" aria-selected="true" data-tab="youtube-2005">YouTube 2005</button>
         <button role="tab" aria-selected="false" data-tab="wework-2012">WeWork 2012</button>
       </div>
       <div id="report-mount" class="report-mount"></div>
@@ -78,7 +78,7 @@
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
 
     const reportSources = {
-      'ubercab-2008': '../assets/reports/ubercab-2008.json',
+      'youtube-2005': '../assets/reports/youtube-2005.json',
       'wework-2012': '../assets/reports/wework-2012.json',
     };
 
@@ -115,7 +115,7 @@
       });
     });
 
-    activateTab('ubercab-2008');
+    activateTab('youtube-2005');
   </script>
 </body>
 </html>

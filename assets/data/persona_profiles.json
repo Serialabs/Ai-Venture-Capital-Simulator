@@ -1,22 +1,362 @@
 [
-  {"name":"Peter Thiel","tagline":"Contrarian monopoly hunter","lens":"Looks for non-obvious truths and asymmetric outcomes.","keywords":["Zero-to-one","Moats","Secrets"]},
-  {"name":"Marc Andreessen","tagline":"Platform and software expansion","lens":"Prioritizes markets where software can redraw the value chain.","keywords":["Platforms","Timing","Disruption"]},
-  {"name":"Bill Gurley","tagline":"Marketplace and unit economics","lens":"Tests whether growth quality survives under realistic assumptions.","keywords":["Unit economics","Marketplaces","Discipline"]},
-  {"name":"Elad Gil","tagline":"Execution-first operator lens","lens":"Focuses on speed, market timing, and pragmatic go-to-market leverage.","keywords":["Scaling","Operations","Market timing"]},
-  {"name":"Fred Wilson","tagline":"Community and network effects","lens":"Evaluates whether user behavior compounds into durable defensibility.","keywords":["Network effects","Community","Open ecosystems"]},
-  {"name":"Arjun Sethi","tagline":"Data integrity watchdog","lens":"Demands evidence in retention, conversion, and cohort durability.","keywords":["Cohorts","Retention","Signal quality"]},
-  {"name":"Reid Hoffman","tagline":"Strategic blitzscaling","lens":"Assesses when speed creates irreversible category leadership.","keywords":["Blitzscaling","Strategy","Distribution"]},
-  {"name":"Sam Altman","tagline":"Category-defining ambition","lens":"Rewards bold technical bets with long-term societal upside.","keywords":["Moonshots","AI","Energy"]},
-  {"name":"Garry Tan","tagline":"Underdog conviction","lens":"Finds founder-market fit in overlooked, anti-consensus spaces.","keywords":["Underdogs","Product instinct","Contrarian"]},
-  {"name":"Naval Ravikant","tagline":"Compounding leverage","lens":"Frames outcomes through leverage, optionality, and specific knowledge.","keywords":["Leverage","Compounding","Specific knowledge"]},
-  {"name":"Paul Graham","tagline":"Founder craftsmanship","lens":"Looks for builder intensity and authentic problem obsession.","keywords":["Founder quality","Early signal","Craft"]},
-  {"name":"Clayton Christensen","tagline":"Disruption diagnostics","lens":"Tests jobs-to-be-done and entrant pathways from underserved segments.","keywords":["JTBD","Disruption","Incumbent risk"]},
-  {"name":"Elon Musk","tagline":"First-principles pressure test","lens":"Rebuilds assumptions from fundamentals and physics constraints.","keywords":["First principles","10x outcomes","Execution risk"]},
-  {"name":"Thales Teixeira","tagline":"Customer-value-chain decoupling","lens":"Analyzes where customer value is being unbundled and recaptured.","keywords":["Decoupling","Customer behavior","Value chain"]},
-  {"name":"Vinod Khosla","tagline":"High-variance frontier bets","lens":"Accepts failure distribution in exchange for transformational upside.","keywords":["Frontier tech","Risk appetite","Black swans"]},
-  {"name":"Michael Moritz","tagline":"Narrative and founder endurance","lens":"Looks for resilient founders who can execute through volatility.","keywords":["Narrative","Frugality","Long-term execution"]},
-  {"name":"Kirsten Green","tagline":"Consumer behavior signaler","lens":"Examines cultural pull, repeat behavior, and brand elasticity.","keywords":["Consumer psychology","Brand","Lifestyle shifts"]},
-  {"name":"Steve Jurvetson","tagline":"Future-tech pattern matcher","lens":"Searches for step-change technologies with nonlinear adoption curves.","keywords":["Deep tech","S-curves","Long horizon"]},
-  {"name":"Arthur Rock","tagline":"Character-first conviction","lens":"Weights founder integrity and judgment as primary decision criteria.","keywords":["Integrity","Leadership","Governance"]},
-  {"name":"Don Valentine","tagline":"Market-size realism","lens":"Starts with demand magnitude and monetization potential.","keywords":["Market size","Revenue path","Commercial fit"]}
+  {
+    "name": "Peter Thiel",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udd88",
+    "subtitle": "Contrarian monopoly hunter",
+    "description": "Looks for non-obvious truths and asymmetric outcomes.",
+    "tag_rows": [
+      [
+        "Zero-to-one"
+      ],
+      [
+        "Moats"
+      ],
+      [
+        "Secrets"
+      ]
+    ]
+  },
+  {
+    "name": "Marc Andreessen",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udde9",
+    "subtitle": "Platform and software expansion",
+    "description": "Prioritizes markets where software can redraw the value chain.",
+    "tag_rows": [
+      [
+        "Platforms"
+      ],
+      [
+        "Timing"
+      ],
+      [
+        "Disruption"
+      ]
+    ]
+  },
+  {
+    "name": "Bill Gurley",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udcca",
+    "subtitle": "Marketplace and unit economics",
+    "description": "Tests whether growth quality survives under realistic assumptions.",
+    "tag_rows": [
+      [
+        "Unit economics"
+      ],
+      [
+        "Marketplaces"
+      ],
+      [
+        "Discipline"
+      ]
+    ]
+  },
+  {
+    "name": "Elad Gil",
+    "group": "VC Gurus",
+    "icon": "\u2699\ufe0f",
+    "subtitle": "Execution-first operator lens",
+    "description": "Focuses on speed, market timing, and pragmatic go-to-market leverage.",
+    "tag_rows": [
+      [
+        "Scaling"
+      ],
+      [
+        "Operations"
+      ],
+      [
+        "Market timing"
+      ]
+    ]
+  },
+  {
+    "name": "Fred Wilson",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udd78\ufe0f",
+    "subtitle": "Community and network effects",
+    "description": "Evaluates whether user behavior compounds into durable defensibility.",
+    "tag_rows": [
+      [
+        "Network effects"
+      ],
+      [
+        "Community"
+      ],
+      [
+        "Open ecosystems"
+      ]
+    ]
+  },
+  {
+    "name": "Arjun Sethi",
+    "group": "VC Gurus",
+    "icon": "\ud83e\uddea",
+    "subtitle": "Data integrity watchdog",
+    "description": "Demands evidence in retention, conversion, and cohort durability.",
+    "tag_rows": [
+      [
+        "Cohorts"
+      ],
+      [
+        "Retention"
+      ],
+      [
+        "Signal quality"
+      ]
+    ]
+  },
+  {
+    "name": "Reid Hoffman",
+    "group": "VC Gurus",
+    "icon": "\ud83d\ude80",
+    "subtitle": "Strategic blitzscaling",
+    "description": "Assesses when speed creates irreversible category leadership.",
+    "tag_rows": [
+      [
+        "Blitzscaling"
+      ],
+      [
+        "Strategy"
+      ],
+      [
+        "Distribution"
+      ]
+    ]
+  },
+  {
+    "name": "Sam Altman",
+    "group": "VC Gurus",
+    "icon": "\ud83c\udf0c",
+    "subtitle": "Category-defining ambition",
+    "description": "Rewards bold technical bets with long-term societal upside.",
+    "tag_rows": [
+      [
+        "Moonshots"
+      ],
+      [
+        "AI"
+      ],
+      [
+        "Energy"
+      ]
+    ]
+  },
+  {
+    "name": "Garry Tan",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udd25",
+    "subtitle": "Underdog conviction",
+    "description": "Finds founder-market fit in overlooked, anti-consensus spaces.",
+    "tag_rows": [
+      [
+        "Underdogs"
+      ],
+      [
+        "Product instinct"
+      ],
+      [
+        "Contrarian"
+      ]
+    ]
+  },
+  {
+    "name": "Naval Ravikant",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udded",
+    "subtitle": "Compounding leverage",
+    "description": "Frames outcomes through leverage, optionality, and specific knowledge.",
+    "tag_rows": [
+      [
+        "Leverage"
+      ],
+      [
+        "Compounding"
+      ],
+      [
+        "Specific knowledge"
+      ]
+    ]
+  },
+  {
+    "name": "Paul Graham",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udee0\ufe0f",
+    "subtitle": "Founder craftsmanship",
+    "description": "Looks for builder intensity and authentic problem obsession.",
+    "tag_rows": [
+      [
+        "Founder quality"
+      ],
+      [
+        "Early signal"
+      ],
+      [
+        "Craft"
+      ]
+    ]
+  },
+  {
+    "name": "Clayton Christensen",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcda",
+    "subtitle": "Disruption diagnostics",
+    "description": "Tests jobs-to-be-done and entrant pathways from underserved segments.",
+    "tag_rows": [
+      [
+        "JTBD"
+      ],
+      [
+        "Disruption"
+      ],
+      [
+        "Incumbent risk"
+      ]
+    ]
+  },
+  {
+    "name": "Elon Musk",
+    "group": "Bright Minds",
+    "icon": "\ud83e\udde0",
+    "subtitle": "First-principles pressure test",
+    "description": "Rebuilds assumptions from fundamentals and physics constraints.",
+    "tag_rows": [
+      [
+        "First principles"
+      ],
+      [
+        "10x outcomes"
+      ],
+      [
+        "Execution risk"
+      ]
+    ]
+  },
+  {
+    "name": "Thales Teixeira",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udd0d",
+    "subtitle": "Customer-value-chain decoupling",
+    "description": "Analyzes where customer value is being unbundled and recaptured.",
+    "tag_rows": [
+      [
+        "Decoupling"
+      ],
+      [
+        "Customer behavior"
+      ],
+      [
+        "Value chain"
+      ]
+    ]
+  },
+  {
+    "name": "Vinod Khosla",
+    "group": "Bright Minds",
+    "icon": "\ud83c\udfaf",
+    "subtitle": "High-variance frontier bets",
+    "description": "Accepts failure distribution in exchange for transformational upside.",
+    "tag_rows": [
+      [
+        "Frontier tech"
+      ],
+      [
+        "Risk appetite"
+      ],
+      [
+        "Black swans"
+      ]
+    ]
+  },
+  {
+    "name": "Michael Moritz",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcf0",
+    "subtitle": "Narrative and founder endurance",
+    "description": "Looks for resilient founders who can execute through volatility.",
+    "tag_rows": [
+      [
+        "Narrative"
+      ],
+      [
+        "Frugality"
+      ],
+      [
+        "Long-term execution"
+      ]
+    ]
+  },
+  {
+    "name": "Kirsten Green",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udecd\ufe0f",
+    "subtitle": "Consumer behavior signaler",
+    "description": "Examines cultural pull, repeat behavior, and brand elasticity.",
+    "tag_rows": [
+      [
+        "Consumer psychology"
+      ],
+      [
+        "Brand"
+      ],
+      [
+        "Lifestyle shifts"
+      ]
+    ]
+  },
+  {
+    "name": "Steve Jurvetson",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udef0\ufe0f",
+    "subtitle": "Future-tech pattern matcher",
+    "description": "Searches for step-change technologies with nonlinear adoption curves.",
+    "tag_rows": [
+      [
+        "Deep tech"
+      ],
+      [
+        "S-curves"
+      ],
+      [
+        "Long horizon"
+      ]
+    ]
+  },
+  {
+    "name": "Arthur Rock",
+    "group": "Bright Minds",
+    "icon": "\ud83e\udd1d",
+    "subtitle": "Character-first conviction",
+    "description": "Weights founder integrity and judgment as primary decision criteria.",
+    "tag_rows": [
+      [
+        "Integrity"
+      ],
+      [
+        "Leadership"
+      ],
+      [
+        "Governance"
+      ]
+    ]
+  },
+  {
+    "name": "Don Valentine",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcc8",
+    "subtitle": "Market-size realism",
+    "description": "Starts with demand magnitude and monetization potential.",
+    "tag_rows": [
+      [
+        "Market size"
+      ],
+      [
+        "Revenue path"
+      ],
+      [
+        "Commercial fit"
+      ]
+    ]
+  }
 ]

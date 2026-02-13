@@ -54,48 +54,114 @@ async function renderReports() {
 }
 
 async function renderPersonas() {
-  const mount = document.getElementById('persona-grid');
-  if (!mount) return;
+  const groupMounts = {
+    'VC Gurus': document.getElementById('vc-gurus-grid'),
+    'Bright Minds': document.getElementById('bright-minds-grid')
+  };
 
-  try {
-    const data = await fetchJson('assets/data/personas.json');
-    mount.innerHTML = data.names_exact.map((name) => `<span class="chip">${name}</span>`).join('');
-  } catch (error) {
-    mount.innerHTML = `<p>${error.message}</p>`;
-  }
-}
+  if (!groupMounts['VC Gurus'] && !groupMounts['Bright Minds']) return;
 
-async function renderPersonaNameList() {
-  const mount = document.getElementById('persona-name-list');
-  if (!mount) return;
+  const countMounts = {
+    'VC Gurus': document.getElementById('vc-gurus-count'),
+    'Bright Minds': document.getElementById('bright-minds-count')
+  };
 
-  try {
-    const data = await fetchJson('assets/data/personas.json');
-    mount.innerHTML = data.names_exact.map((name) => `<li>${name}</li>`).join('');
-  } catch (error) {
-    mount.innerHTML = `<li>${error.message}</li>`;
-  }
-}
+  const toTagRows = (persona) => {
+    if (Array.isArray(persona.tag_rows) && persona.tag_rows.length) return persona.tag_rows;
+    if (Array.isArray(persona.tagRows) && persona.tagRows.length) return persona.tagRows;
 
-async function renderPersonaCards() {
-  const mount = document.getElementById('persona-cards');
-  if (!mount) return;
+    const inferredRows = [
+      persona.focusTags || persona.focus_tags || [],
+      persona.debateTags || persona.debate_tags || [],
+      persona.watchTags || persona.watch_tags || []
+    ].filter((row) => Array.isArray(row) && row.length);
 
-  try {
-    const profiles = await fetchJson('assets/data/persona_profiles.json');
-    mount.innerHTML = profiles.map((p) => `
+    if (inferredRows.length) return inferredRows;
+    if (Array.isArray(persona.keywords) && persona.keywords.length) {
+      return [persona.keywords.slice(0, 3)];
+    }
+
+    return [];
+  };
+
+  const toTagRowHtml = (row) => {
+    const tags = Array.isArray(row)
+      ? row
+      : Object.entries(row || {}).map(([key, value]) => `${key}: ${value}`);
+    return `
+      <div class="persona-tag-row">
+        ${tags.map((tag) => `<span class="meta-chip">${tag}</span>`).join('')}
+      </div>
+    `;
+  };
+
+  const renderPersonaCard = (persona) => {
+    const subtitle = persona.subtitle || persona.tagline || '';
+    const description = persona.description || persona.lens || '';
+    const icon = persona.icon || '🧠';
+    const tagRows = toTagRows(persona).slice(0, 3);
+
+    while (tagRows.length < 3) tagRows.push([]);
+
+    return `
       <article class="card persona-card reveal fade-up">
-        <h3>${p.name}</h3>
-        <p class="muted">${p.tagline}</p>
-        <p>${p.lens}</p>
-        <div class="inline-chips">
-          ${(p.keywords || []).map((k) => `<span class="meta-chip">${k}</span>`).join('')}
+        <div class="persona-card-head">
+          <span class="persona-icon" aria-hidden="true">${icon}</span>
+          <div>
+            <h4>${persona.name || 'Unknown Persona'}</h4>
+            <p class="muted">${subtitle}</p>
+          </div>
+        </div>
+        <p>${description}</p>
+        <div class="persona-tag-rows">
+          ${tagRows.map((row) => toTagRowHtml(row)).join('')}
         </div>
       </article>
-    `).join('');
+    `;
+  };
+
+  try {
+    const data = await fetchJson('assets/data/persona_profiles.json');
+    const profiles = Array.isArray(data) ? data : data?.personas || [];
+
+    if (!profiles.length) {
+      Object.values(groupMounts).forEach((mount) => {
+        if (!mount) return;
+        mount.innerHTML = '<article class="report-card"><p>No persona profiles found.</p></article>';
+      });
+      return;
+    }
+
+    const grouped = profiles.reduce((acc, persona) => {
+      const key = persona.group || 'VC Gurus';
+      acc[key] = acc[key] || [];
+      acc[key].push(persona);
+      return acc;
+    }, {});
+
+    Object.entries(groupMounts).forEach(([groupName, mount]) => {
+      if (!mount) return;
+      const groupPersonas = grouped[groupName] || [];
+      mount.innerHTML = groupPersonas.map(renderPersonaCard).join('') || '<article class="card"><p class="muted">No personas in this group yet.</p></article>';
+
+      const countMount = countMounts[groupName];
+      if (countMount) {
+        const count = groupPersonas.length;
+        countMount.textContent = `${count} member${count === 1 ? '' : 's'}`;
+      }
+    });
+
     setupRevealOnScroll();
   } catch (error) {
-    mount.innerHTML = `<article class="card"><p>${error.message}</p></article>`;
+    Object.values(groupMounts).forEach((mount) => {
+      if (!mount) return;
+      mount.innerHTML = `
+        <article class="report-card" role="alert">
+          <h4>Unable to load persona profiles</h4>
+          <p>${error.message}</p>
+        </article>
+      `;
+    });
   }
 }
 
@@ -142,7 +208,5 @@ function setupRevealOnScroll() {
 
 renderReports();
 renderPersonas();
-renderPersonaNameList();
-renderPersonaCards();
 setupCopyPromptButton();
 setupRevealOnScroll();

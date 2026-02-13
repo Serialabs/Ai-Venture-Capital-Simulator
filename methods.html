@@ -19,7 +19,7 @@
     </div>
   </header>
 
-  <main class="container prose methods-page">
+  <main class="container prose info-page">
     <section class="hero reveal fade-up">
       <p class="section-kicker">Methods</p>
       <h1 class="section-title">How this static simulation works</h1>
@@ -33,8 +33,7 @@
     </section>
 
     <section class="reveal fade-up">
-      <p class="section-kicker">Pipeline</p>
-      <h2 class="section-title">4-stage analysis pipeline</h2>
+      <h2>4-stage pipeline</h2>
       <div class="cards four-up">
         <article class="card methods-card">
           <h3>1. Parse the deal brief</h3>
@@ -82,11 +81,31 @@
       </ul>
     </section>
 
+    <section class="reveal fade-up persona-roster-section">
+      <h2>Persona roster</h2>
+      <p class="muted">Profiles are loaded from <code>/assets/data/persona_profiles.json</code>.</p>
+
+      <div class="persona-group">
+        <div class="persona-group-head">
+          <h3>VC Gurus</h3>
+          <span id="vc-gurus-count" class="meta-chip">0 members</span>
+        </div>
+        <div id="vc-gurus-grid" class="persona-card-grid" aria-live="polite"></div>
+      </div>
+
+      <div class="persona-group">
+        <div class="persona-group-head">
+          <h3>Bright Minds</h3>
+          <span id="bright-minds-count" class="meta-chip">0 members</span>
+        </div>
+        <div id="bright-minds-grid" class="persona-card-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
     <section class="reveal fade-up">
-      <p class="section-kicker">Personas</p>
-      <h2 class="section-title">Persona roster</h2>
-      <p class="section-intro">Names are loaded directly from <code>/assets/data/personas.json</code>.</p>
-      <ul id="persona-name-list" class="name-list"></ul>
+      <h2>IC prompt v2</h2>
+      <button id="copy-prompt" class="btn secondary" type="button">Copy Full Prompt</button>
+      <pre id="prompt-text" data-prompt-src="assets/content/ic_prompt_v2.txt">Loading prompt...</pre>
     </section>
   </main>
 
@@ -96,6 +115,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>

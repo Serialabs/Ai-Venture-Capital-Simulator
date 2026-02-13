@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signal Ledger — Coming Soon</title>
-  <meta name="description" content="Signal Ledger homepage is being refreshed." />
+  <title>Signal Ledger</title>
+  <meta name="description" content="AI-powered venture committee simulation reports with methods, recent analyses, and project context." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
@@ -20,11 +20,84 @@
     </div>
   </header>
 
-  <main class="container prose">
-    <section class="card placeholder-card">
-      <p class="eyebrow">Homepage</p>
-      <h1>Coming soon</h1>
-      <p>We are updating the Signal Ledger landing experience. Use the links above to browse current content.</p>
+  <main class="container home-v2">
+    <section class="home-v2__hero">
+      <span class="hero-badge">AIVC Reports</span>
+      <h1>AI-Powered VC<br />Investment Committee</h1>
+      <p>Investment-committee style startup analysis with transparent methods, structured debate, and readable final verdicts.</p>
+    </section>
+
+    <section class="home-v2__section">
+      <p class="home-v2__label">How it works</p>
+      <article class="home-v2__panel">
+        <div class="home-v2__panel-head">
+          <h2>AIVC Prompt — System Instructions</h2>
+          <a class="chip-link" href="methods.html">Open methods</a>
+        </div>
+        <p>Review the framework that powers the simulation: personas, round-by-round analysis, and evaluation logic used across all reports.</p>
+        <div class="chip-row">
+          <span class="home-chip">Prompt Engineering</span>
+          <span class="home-chip">20 Personas</span>
+          <span class="home-chip">5-Round IC Debate</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="home-v2__section">
+      <div class="section-head">
+        <p class="home-v2__label">Published reports</p>
+        <a href="published-reports.html">View all</a>
+      </div>
+      <article class="home-v2__report">
+        <div class="home-v2__panel-head">
+          <h3>UberCab — 2008 Original Pitch Deck</h3>
+          <div class="score-pills">
+            <span class="score-pill score-pill--invest">Invest +4</span>
+            <span class="score-pill score-pill--pass">Pass +2</span>
+          </div>
+        </div>
+        <p>An asset-heavy transportation thesis with strong market pull signals and controversial early unit economics.</p>
+        <div class="home-v2__report-foot">
+          <div class="chip-row">
+            <span class="home-chip">Marketplace</span>
+            <span class="home-chip">Transportation</span>
+          </div>
+          <a class="report-link" href="reports/ubercab-2008.html">Read →</a>
+        </div>
+      </article>
+
+      <article class="home-v2__report">
+        <div class="home-v2__panel-head">
+          <h3>YouTube — 2005 Pitch Deck</h3>
+          <div class="score-pills">
+            <span class="score-pill score-pill--invest">Invest +5</span>
+            <span class="score-pill score-pill--pass">Pass +1</span>
+          </div>
+        </div>
+        <p>A high-risk media bet where user behavior and distribution loops outweighed infrastructure and rights concerns.</p>
+        <div class="home-v2__report-foot">
+          <div class="chip-row">
+            <span class="home-chip">Video</span>
+            <span class="home-chip">UGC</span>
+          </div>
+          <a class="report-link" href="reports/youtube-2005.html">Read →</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="home-v2__section">
+      <p class="home-v2__label">About this project</p>
+      <article class="home-v2__panel">
+        <h2>What if 20 VCs reviewed your pitch?</h2>
+        <p>Signal Ledger gives builders context for what they are actually building. Reports combine independent persona reviews, structured committee debate, and evidence-led conclusions so decisions are understandable and auditable.</p>
+        <div class="chip-row">
+          <span class="home-chip">Peter Thiel</span>
+          <span class="home-chip">Reid Hoffman</span>
+          <span class="home-chip">Bill Gurley</span>
+          <span class="home-chip">Marc Andreessen</span>
+          <span class="home-chip">Naval Ravikant</span>
+        </div>
+      </article>
     </section>
   </main>
 

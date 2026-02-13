@@ -2,38 +2,46 @@
 
 body {
   background:
-    radial-gradient(circle at 50% -10%, rgba(120, 230, 197, 0.12), transparent 40%),
-    radial-gradient(circle at 10% 0%, rgba(146, 179, 255, 0.09), transparent 34%),
-    #070a12;
+    radial-gradient(circle at 50% -10%, rgba(120, 230, 197, 0.14), transparent 40%),
+    radial-gradient(circle at 12% 0%, rgba(146, 179, 255, 0.1), transparent 35%),
+    #060a12;
 }
 
 .home-v2 {
   display: grid;
   gap: 2rem;
-  padding: 2rem 0 3rem;
+  padding: 2rem 0 3.4rem;
 }
 
 .home-v2__hero {
   text-align: center;
-  padding: 4rem 1rem 3rem;
-  border-bottom: 1px solid rgba(108, 122, 167, 0.28);
+  padding: 4.5rem 1rem 3.2rem;
+  border-bottom: 1px solid rgba(108, 122, 167, 0.25);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.home-v2__hero.is-ready {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-badge {
   display: inline-block;
-  padding: 0.32rem 0.9rem;
+  padding: 0.34rem 1rem;
   border-radius: 999px;
-  border: 1px solid #46578b;
+  border: 1px solid #495688;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.72rem;
-  color: #f2d39e;
+  color: #f0cb8f;
   margin-bottom: 1rem;
 }
 
 .home-v2__hero h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 5vw, 4.1rem);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
 }
 
 .home-v2__hero p {
@@ -49,7 +57,7 @@ body {
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #64a4ff;
+  color: #66a7ff;
   font-weight: 700;
 }
 
@@ -58,8 +66,8 @@ body {
   border: 1px solid rgba(79, 95, 134, 0.55);
   border-radius: 16px;
   padding: 1.3rem 1.2rem;
-  background: linear-gradient(105deg, rgba(19, 24, 39, 0.94), rgba(15, 20, 34, 0.88));
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(105deg, rgba(19, 24, 39, 0.95), rgba(14, 20, 34, 0.88));
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.24);
 }
 
 .home-v2__panel-head {
@@ -79,7 +87,7 @@ body {
 }
 
 .chip-link {
-  border: 1px solid #5340a4;
+  border: 1px solid #5846a5;
   color: #d8d1ff;
   border-radius: 999px;
   font-size: 0.72rem;
@@ -104,11 +112,7 @@ body {
   background: rgba(44, 52, 79, 0.62);
 }
 
-.score-pills {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-}
+.score-pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
 
 .score-pill {
   font-size: 0.7rem;
@@ -136,6 +140,20 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 1rem;
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: cardIn 520ms ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 760px) {

@@ -20,42 +20,79 @@
   </header>
 
   <main class="container report-page" data-report-slug="youtube-2005">
-    <article data-report-mount>
-      <p class="eyebrow">Published report • Consumer Internet • Seed context</p>
-      <h1>YouTube — 2005 Pitch Analysis</h1>
-      <div class="report-meta-line" data-report-meta></div>
-      <p class="lede">An early user-generated video platform thesis reviewed with the same static investment-committee format.</p>
+    <article data-report-root aria-live="polite">
+      <section class="report-hero" data-section id="overview">
+        <p class="eyebrow" data-bind="hero.kicker"></p>
+        <h1 data-bind="hero.title"></h1>
+        <div class="report-meta-line" data-bind="meta.subtitle"></div>
+        <p class="lede" data-bind="hero.subline"></p>
+        <div class="chip-row" data-hero-metrics></div>
+        <div class="cta-row" data-hero-ctas></div>
+      </section>
 
-      <section class="report-section">
+
+      <section class="report-section" data-section id="deal-memo">
+        <h2>Deal Memo</h2>
+        <div data-deal-memo-cards></div>
+      </section>
+
+      <section class="report-section" data-section id="market">
+        <h2>Market</h2>
+        <div data-market-stats></div>
+      </section>
+
+      <section class="report-section" data-section id="team">
+        <h2>Team</h2>
+        <div data-team-cards></div>
+      </section>
+
+      <section class="report-section" data-section id="competition">
+        <h2>Competition</h2>
+        <div data-competition></div>
+      </section>
+
+      <section class="report-section" data-section id="spotlight">
+        <h2>Spotlight</h2>
+        <div data-spotlight></div>
+      </section>
+
+      <section class="report-section" data-section id="evaluations">
+        <h2>Evaluator Panels</h2>
+        <div data-evaluations></div>
+      </section>
+
+      <section class="report-section" data-section id="debate-rounds">
+        <h2>Debate Rounds</h2>
+        <div data-debate-rounds></div>
+      </section>
+      <section class="report-section" data-section id="executive-summary">
         <h2>Executive Summary</h2>
-        <p><span class="decision decision-invest">Lean Invest</span>Distribution and creator flywheel potential are exceptional, while copyright and moderation risk remain material unknowns.</p>
+        <div data-exec-summary></div>
       </section>
 
-      <section class="report-section">
+      <section class="report-section" data-section id="key-insights">
         <h2>Key Insights</h2>
-        <ul>
-          <li><strong>Breakout engagement loop:</strong> upload friction is low and sharing primitives support rapid user acquisition.</li>
-          <li><strong>Monetization uncertainty:</strong> ad model durability depends on brand safety controls and viewing depth.</li>
-          <li><strong>Platform defensibility:</strong> scale in content, creators, and audience can compound into a strong moat.</li>
-        </ul>
+        <div data-key-insights></div>
       </section>
 
-      <section class="report-section">
+      <section class="report-section" data-section id="founder-questions">
         <h2>Founder Questions</h2>
-        <ol>
-          <li>How quickly can copyright detection and takedown workflows mature without harming creator growth?</li>
-          <li>What retention and session-depth cohorts validate long-term ad inventory quality?</li>
-          <li>Which partnerships accelerate distribution while preserving platform control?</li>
-        </ol>
+        <div data-founder-questions></div>
       </section>
 
-      <section class="report-section">
+      <section class="report-section" data-section id="action-plans">
         <h2>Action Plan</h2>
-        <ul>
-          <li>Request cohort data across uploaders, viewers, and returning sessions.</li>
-          <li>Stress-test moderation tooling roadmap and legal response times.</li>
-          <li>Evaluate monetization sequencing: direct sales, self-serve ads, and creator rev-share structure.</li>
-        </ul>
+        <div data-action-plans></div>
+      </section>
+
+      <section class="report-section" data-section id="epilogue">
+        <h2>Epilogue</h2>
+        <div data-epilogue></div>
+      </section>
+
+      <section class="report-section" data-section id="debate-triggers">
+        <h2>Debate Triggers</h2>
+        <div data-debate-triggers></div>
       </section>
     </article>
   </main>

@@ -116,16 +116,23 @@ async function renderPersonaCards() {
 
   try {
     const profiles = await fetchJson('assets/data/persona_profiles.json');
-    mount.innerHTML = profiles.map((p) => `
+    mount.innerHTML = profiles.map((p) => {
+      const subtitle = p.subtitle || p.tagline || '';
+      const description = p.description || p.lens || '';
+      const chips = p.tags_positive || p.keywords || [];
+      const icon = p.icon ? `<span aria-hidden="true">${p.icon}</span> ` : '';
+
+      return `
       <article class="card persona-card reveal fade-up">
-        <h3>${p.name}</h3>
-        <p class="muted">${p.tagline}</p>
-        <p>${p.lens}</p>
+        <h3>${icon}${p.name}</h3>
+        <p class="muted">${subtitle}</p>
+        <p>${description}</p>
         <div class="inline-chips">
-          ${(p.keywords || []).map((k) => `<span class="meta-chip">${k}</span>`).join('')}
+          ${chips.map((k) => `<span class="meta-chip">${k}</span>`).join('')}
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
     setupRevealOnScroll();
   } catch (error) {
     mount.innerHTML = `<article class="card"><p>${error.message}</p></article>`;

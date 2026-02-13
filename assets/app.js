@@ -54,32 +54,114 @@ async function renderReports() {
 }
 
 async function renderPersonas() {
-  const mount = document.getElementById('persona-grid');
-  if (!mount) return;
+  const groupMounts = {
+    'VC Gurus': document.getElementById('vc-gurus-grid'),
+    'Bright Minds': document.getElementById('bright-minds-grid')
+  };
+
+  if (!groupMounts['VC Gurus'] && !groupMounts['Bright Minds']) return;
+
+  const countMounts = {
+    'VC Gurus': document.getElementById('vc-gurus-count'),
+    'Bright Minds': document.getElementById('bright-minds-count')
+  };
+
+  const toTagRows = (persona) => {
+    if (Array.isArray(persona.tag_rows) && persona.tag_rows.length) return persona.tag_rows;
+    if (Array.isArray(persona.tagRows) && persona.tagRows.length) return persona.tagRows;
+
+    const inferredRows = [
+      persona.focusTags || persona.focus_tags || [],
+      persona.debateTags || persona.debate_tags || [],
+      persona.watchTags || persona.watch_tags || []
+    ].filter((row) => Array.isArray(row) && row.length);
+
+    if (inferredRows.length) return inferredRows;
+    if (Array.isArray(persona.keywords) && persona.keywords.length) {
+      return [persona.keywords.slice(0, 3)];
+    }
+
+    return [];
+  };
+
+  const toTagRowHtml = (row) => {
+    const tags = Array.isArray(row)
+      ? row
+      : Object.entries(row || {}).map(([key, value]) => `${key}: ${value}`);
+    return `
+      <div class="persona-tag-row">
+        ${tags.map((tag) => `<span class="meta-chip">${tag}</span>`).join('')}
+      </div>
+    `;
+  };
+
+  const renderPersonaCard = (persona) => {
+    const subtitle = persona.subtitle || persona.tagline || '';
+    const description = persona.description || persona.lens || '';
+    const icon = persona.icon || '🧠';
+    const tagRows = toTagRows(persona).slice(0, 3);
+
+    while (tagRows.length < 3) tagRows.push([]);
+
+    return `
+      <article class="card persona-card reveal fade-up">
+        <div class="persona-card-head">
+          <span class="persona-icon" aria-hidden="true">${icon}</span>
+          <div>
+            <h4>${persona.name || 'Unknown Persona'}</h4>
+            <p class="muted">${subtitle}</p>
+          </div>
+        </div>
+        <p>${description}</p>
+        <div class="persona-tag-rows">
+          ${tagRows.map((row) => toTagRowHtml(row)).join('')}
+        </div>
+      </article>
+    `;
+  };
 
   try {
-    const data = await fetchJson('assets/data/personas.json');
-    const list = Array.isArray(data) ? data : data?.personas || data?.names_exact || [];
+    const data = await fetchJson('assets/data/persona_profiles.json');
+    const profiles = Array.isArray(data) ? data : data?.personas || [];
 
-    if (!Array.isArray(list) || !list.length) {
-      mount.innerHTML = `
-        <article class="report-card">
-          <h3>No personas found</h3>
-          <p class="muted">Add persona names to <code>assets/data/personas.json</code> using an array payload, <code>{ personas: [] }</code>, or <code>{ names_exact: [] }</code>.</p>
-        </article>
-      `;
+    if (!profiles.length) {
+      Object.values(groupMounts).forEach((mount) => {
+        if (!mount) return;
+        mount.innerHTML = '<article class="report-card"><p>No persona profiles found.</p></article>';
+      });
       return;
     }
 
-    mount.innerHTML = list.map((name) => `<span class="chip">${name}</span>`).join('');
+    const grouped = profiles.reduce((acc, persona) => {
+      const key = persona.group || 'VC Gurus';
+      acc[key] = acc[key] || [];
+      acc[key].push(persona);
+      return acc;
+    }, {});
+
+    Object.entries(groupMounts).forEach(([groupName, mount]) => {
+      if (!mount) return;
+      const groupPersonas = grouped[groupName] || [];
+      mount.innerHTML = groupPersonas.map(renderPersonaCard).join('') || '<article class="card"><p class="muted">No personas in this group yet.</p></article>';
+
+      const countMount = countMounts[groupName];
+      if (countMount) {
+        const count = groupPersonas.length;
+        countMount.textContent = `${count} member${count === 1 ? '' : 's'}`;
+      }
+    });
+
+    setupRevealOnScroll();
   } catch (error) {
-    mount.innerHTML = `
-      <article class="report-card" role="alert">
-        <h3>Unable to load personas</h3>
-        <p class="muted">Expected persona data at <code>assets/data/personas.json</code>.</p>
-        <p>${error.message}</p>
-      </article>
-    `;
+    Object.values(groupMounts).forEach((mount) => {
+      if (!mount) return;
+      mount.innerHTML = `
+        <article class="report-card" role="alert">
+          <h4>Unable to load persona profiles</h4>
+          <p>${error.message}</p>
+        </article>
+      `;
+    });
   }
 }
 

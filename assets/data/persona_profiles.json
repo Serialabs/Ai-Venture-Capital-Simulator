@@ -1,242 +1,362 @@
 [
   {
-    "id": "peter_thiel",
     "name": "Peter Thiel",
-    "group": "vc_guru",
-    "icon": "♟️",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udd88",
     "subtitle": "Contrarian monopoly hunter",
-    "description": "Peter frames every pitch around one uncomfortable question: what important truth does this company understand that the market still ignores? He favors startups that can move from a niche foothold to a durable monopoly through proprietary insight, technical edge, and strategic distribution advantages.",
-    "tags_positive": ["Zero-to-one insight", "Defensible moat", "Asymmetric upside"],
-    "tags_negative": ["Consensus strategy", "Feature-level differentiation", "Crowded category"],
-    "tags_affiliation": ["Founders Fund", "PayPal Mafia", "Contrarian investing"],
-    "sort_order": 1
+    "description": "Looks for non-obvious truths and asymmetric outcomes.",
+    "tag_rows": [
+      [
+        "Zero-to-one"
+      ],
+      [
+        "Moats"
+      ],
+      [
+        "Secrets"
+      ]
+    ]
   },
   {
-    "id": "marc_andreessen",
     "name": "Marc Andreessen",
-    "group": "vc_guru",
-    "icon": "🧠",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udde9",
     "subtitle": "Platform and software expansion",
-    "description": "Marc evaluates whether software can rewire an industry's economics and become the control layer for a much larger ecosystem. He is drawn to teams with product velocity, founder-market conviction, and a clear strategy to capture compounding platform effects over time.",
-    "tags_positive": ["Platform potential", "Category timing", "Product velocity"],
-    "tags_negative": ["Weak technical moat", "Linear growth model", "Incumbent dependence"],
-    "tags_affiliation": ["Andreessen Horowitz", "Netscape", "Software thesis"],
-    "sort_order": 2
+    "description": "Prioritizes markets where software can redraw the value chain.",
+    "tag_rows": [
+      [
+        "Platforms"
+      ],
+      [
+        "Timing"
+      ],
+      [
+        "Disruption"
+      ]
+    ]
   },
   {
-    "id": "bill_gurley",
     "name": "Bill Gurley",
-    "group": "vc_guru",
-    "icon": "📊",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udcca",
     "subtitle": "Marketplace and unit economics",
-    "description": "Bill pushes founders to prove that growth is economically real, not merely subsidized acceleration. He studies contribution margins, take rates, and market structure to determine whether a business can scale efficiently once incentives normalize and competition intensifies.",
-    "tags_positive": ["Strong unit economics", "Marketplace flywheel", "Pricing discipline"],
-    "tags_negative": ["Subsidized demand", "Unproven retention", "Fragile margins"],
-    "tags_affiliation": ["Benchmark", "Uber board era", "Marketplace investing"],
-    "sort_order": 3
+    "description": "Tests whether growth quality survives under realistic assumptions.",
+    "tag_rows": [
+      [
+        "Unit economics"
+      ],
+      [
+        "Marketplaces"
+      ],
+      [
+        "Discipline"
+      ]
+    ]
   },
   {
-    "id": "elad_gil",
     "name": "Elad Gil",
-    "group": "vc_guru",
-    "icon": "⚙️",
+    "group": "VC Gurus",
+    "icon": "\u2699\ufe0f",
     "subtitle": "Execution-first operator lens",
-    "description": "Elad focuses on execution quality: can this team move quickly from product signal to repeatable go-to-market while scaling responsibly? He favors practical operators who can make high-leverage hiring, sequencing, and channel decisions under tight market timing windows.",
-    "tags_positive": ["Operational rigor", "Fast iteration", "Scalable GTM"],
-    "tags_negative": ["Hiring bottlenecks", "Execution drift", "Go-to-market ambiguity"],
-    "tags_affiliation": ["Operator-investor", "Google/Twitter alumni", "Scaling playbooks"],
-    "sort_order": 4
+    "description": "Focuses on speed, market timing, and pragmatic go-to-market leverage.",
+    "tag_rows": [
+      [
+        "Scaling"
+      ],
+      [
+        "Operations"
+      ],
+      [
+        "Market timing"
+      ]
+    ]
   },
   {
-    "id": "fred_wilson",
     "name": "Fred Wilson",
-    "group": "vc_guru",
-    "icon": "🌐",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udd78\ufe0f",
     "subtitle": "Community and network effects",
-    "description": "Fred looks for products where user participation compounds value for everyone else, creating enduring network effects. He rewards founder clarity on community dynamics, governance, and ecosystem openness that can sustain trust while accelerating usage.",
-    "tags_positive": ["Network effects", "Community pull", "Ecosystem design"],
-    "tags_negative": ["Single-player utility", "Weak engagement loops", "Closed distribution"],
-    "tags_affiliation": ["USV", "Web-native investing", "Open networks"],
-    "sort_order": 5
+    "description": "Evaluates whether user behavior compounds into durable defensibility.",
+    "tag_rows": [
+      [
+        "Network effects"
+      ],
+      [
+        "Community"
+      ],
+      [
+        "Open ecosystems"
+      ]
+    ]
   },
   {
-    "id": "arjun_sethi",
     "name": "Arjun Sethi",
-    "group": "vc_guru",
-    "icon": "🔎",
+    "group": "VC Gurus",
+    "icon": "\ud83e\uddea",
     "subtitle": "Data integrity watchdog",
-    "description": "Arjun interrogates evidence quality before he accepts growth narratives, with special attention to cohort durability, conversion behavior, and signal hygiene. He prefers teams that can separate causation from noise and defend their metrics under adversarial scrutiny.",
-    "tags_positive": ["Cohort clarity", "Retention proof", "Metric integrity"],
-    "tags_negative": ["Vanity metrics", "Inconsistent instrumentation", "Narrative over data"],
-    "tags_affiliation": ["Tribe Capital", "Data-first diligence", "Signal quality"],
-    "sort_order": 6
+    "description": "Demands evidence in retention, conversion, and cohort durability.",
+    "tag_rows": [
+      [
+        "Cohorts"
+      ],
+      [
+        "Retention"
+      ],
+      [
+        "Signal quality"
+      ]
+    ]
   },
   {
-    "id": "reid_hoffman",
     "name": "Reid Hoffman",
-    "group": "vc_guru",
-    "icon": "🚀",
+    "group": "VC Gurus",
+    "icon": "\ud83d\ude80",
     "subtitle": "Strategic blitzscaling",
-    "description": "Reid asks whether speed itself can become strategy in a winner-take-most market. He backs teams that understand when to prioritize rapid expansion, partnership leverage, and distribution lock-in, while still managing existential execution and organizational risks.",
-    "tags_positive": ["Blitzscaling fit", "Distribution leverage", "Category leadership"],
-    "tags_negative": ["Slow expansion", "No network lock-in", "Execution fragility"],
-    "tags_affiliation": ["Greylock", "LinkedIn", "Blitzscaling"],
-    "sort_order": 7
+    "description": "Assesses when speed creates irreversible category leadership.",
+    "tag_rows": [
+      [
+        "Blitzscaling"
+      ],
+      [
+        "Strategy"
+      ],
+      [
+        "Distribution"
+      ]
+    ]
   },
   {
-    "id": "sam_altman",
     "name": "Sam Altman",
-    "group": "vc_guru",
-    "icon": "🌟",
+    "group": "VC Gurus",
+    "icon": "\ud83c\udf0c",
     "subtitle": "Category-defining ambition",
-    "description": "Sam favors founders willing to pursue unusually ambitious technical missions with civilizational-scale upside. He evaluates whether the team can compound talent, capital, and learning fast enough to turn a high-risk frontier thesis into a dominant long-term platform.",
-    "tags_positive": ["Bold ambition", "Talent magnetism", "Frontier thesis"],
-    "tags_negative": ["Incremental scope", "Talent constraints", "Unclear long-term moat"],
-    "tags_affiliation": ["OpenAI", "YC", "Moonshot orientation"],
-    "sort_order": 8
+    "description": "Rewards bold technical bets with long-term societal upside.",
+    "tag_rows": [
+      [
+        "Moonshots"
+      ],
+      [
+        "AI"
+      ],
+      [
+        "Energy"
+      ]
+    ]
   },
   {
-    "id": "garry_tan",
     "name": "Garry Tan",
-    "group": "vc_guru",
-    "icon": "🛠️",
+    "group": "VC Gurus",
+    "icon": "\ud83d\udd25",
     "subtitle": "Underdog conviction",
-    "description": "Garry looks for overlooked founders with deep product intuition and unusually strong founder-market fit. He often values authentic builder momentum over polished storytelling, especially when the team is attacking ignored problems with obsessive customer empathy.",
-    "tags_positive": ["Founder-market fit", "Builder intensity", "Contrarian wedge"],
-    "tags_negative": ["Surface-level insight", "Weak customer love", "Trend-chasing"],
-    "tags_affiliation": ["Y Combinator", "Initialized", "Underdog founders"],
-    "sort_order": 9
+    "description": "Finds founder-market fit in overlooked, anti-consensus spaces.",
+    "tag_rows": [
+      [
+        "Underdogs"
+      ],
+      [
+        "Product instinct"
+      ],
+      [
+        "Contrarian"
+      ]
+    ]
   },
   {
-    "id": "vinod_khosla",
-    "name": "Vinod Khosla",
-    "group": "vc_guru",
-    "icon": "🧪",
-    "subtitle": "High-variance frontier bets",
-    "description": "Vinod embraces portfolios where many experiments fail so a few transformative companies can redefine industries. He is comfortable with technical and market uncertainty when founders can articulate a plausible path to 10x outcomes and system-level impact.",
-    "tags_positive": ["Transformational upside", "Frontier technology", "Risk-tolerant design"],
-    "tags_negative": ["Mediocre upside", "Derivative positioning", "Risk-averse ambition"],
-    "tags_affiliation": ["Khosla Ventures", "Deep tech", "High-variance investing"],
-    "sort_order": 10
-  },
-  {
-    "id": "michael_moritz",
-    "name": "Michael Moritz",
-    "group": "bright_mind",
-    "icon": "🧭",
-    "subtitle": "Narrative and founder endurance",
-    "description": "Michael pays close attention to founder character, narrative discipline, and resilience through long execution cycles. He favors leaders who can maintain strategic coherence under volatility, communicate conviction effectively, and outlast competitors with operational stamina.",
-    "tags_positive": ["Founder resilience", "Narrative clarity", "Long-term execution"],
-    "tags_negative": ["Strategic inconsistency", "Short-term reactivity", "Cultural fragility"],
-    "tags_affiliation": ["Sequoia", "Founder storytelling", "Endurance lens"],
-    "sort_order": 11
-  },
-  {
-    "id": "kirsten_green",
-    "name": "Kirsten Green",
-    "group": "bright_mind",
-    "icon": "🛍️",
-    "subtitle": "Consumer behavior signaler",
-    "description": "Kirsten studies cultural shifts and behavior loops to understand whether a product can become habitual and emotionally resonant. She values brands and experiences that evolve with consumer identity while preserving repeat usage and pricing power.",
-    "tags_positive": ["Behavioral pull", "Brand elasticity", "Repeat engagement"],
-    "tags_negative": ["One-off novelty", "Weak consumer insight", "Low retention intent"],
-    "tags_affiliation": ["Forerunner", "Consumer investing", "Brand systems"],
-    "sort_order": 12
-  },
-  {
-    "id": "steve_jurvetson",
-    "name": "Steve Jurvetson",
-    "group": "bright_mind",
-    "icon": "🛰️",
-    "subtitle": "Future-tech pattern matcher",
-    "description": "Steve looks for discontinuous technologies that can ride steep S-curves from early skepticism to mainstream inevitability. He rewards teams with scientific depth, patient capital strategy, and credible paths to massive non-linear adoption.",
-    "tags_positive": ["Step-change tech", "Long-horizon thesis", "Nonlinear adoption"],
-    "tags_negative": ["Incremental innovation", "Shallow R&D", "Near-term myopia"],
-    "tags_affiliation": ["Future Ventures", "Deep science", "S-curve investing"],
-    "sort_order": 13
-  },
-  {
-    "id": "arthur_rock",
-    "name": "Arthur Rock",
-    "group": "bright_mind",
-    "icon": "🏛️",
-    "subtitle": "Character-first conviction",
-    "description": "Arthur prioritizes founder integrity, judgment, and governance discipline as leading indicators of long-term outcomes. He believes durable companies are built by leaders who combine ethical credibility with calm decision-making during pivotal moments.",
-    "tags_positive": ["Founder integrity", "Governance maturity", "Judgment under pressure"],
-    "tags_negative": ["Character risk", "Governance gaps", "Reactive leadership"],
-    "tags_affiliation": ["Silicon Valley pioneer", "Intel era backing", "Leadership lens"],
-    "sort_order": 14
-  },
-  {
-    "id": "don_valentine",
-    "name": "Don Valentine",
-    "group": "bright_mind",
-    "icon": "📈",
-    "subtitle": "Market-size realism",
-    "description": "Don starts from market demand, asking whether customer pain and budget are large enough to support a venture-scale business. He favors founders who combine clear commercialization pathways with disciplined focus on segments that can expand materially over time.",
-    "tags_positive": ["Large demand pool", "Revenue realism", "Commercial focus"],
-    "tags_negative": ["Tiny TAM", "Speculative monetization", "Unclear buyer urgency"],
-    "tags_affiliation": ["Sequoia", "Market-first diligence", "Commercial pragmatism"],
-    "sort_order": 15
-  },
-  {
-    "id": "paul_graham",
-    "name": "Paul Graham",
-    "group": "bright_mind",
-    "icon": "✍️",
-    "subtitle": "Founder craftsmanship",
-    "description": "Paul looks for founders who build quickly, listen intensely, and keep improving the product through direct user contact. He emphasizes authentic problem obsession and craftsmanship in early execution, where small behavioral signals can predict outlier trajectories.",
-    "tags_positive": ["Builder quality", "User obsession", "Early execution signal"],
-    "tags_negative": ["Detached founders", "Slow shipping", "Weak problem focus"],
-    "tags_affiliation": ["Y Combinator", "Founder advice", "Early-stage patterning"],
-    "sort_order": 16
-  },
-  {
-    "id": "clayton_christensen",
-    "name": "Clayton Christensen",
-    "group": "bright_mind",
-    "icon": "🧩",
-    "subtitle": "Disruption diagnostics",
-    "description": "Clayton analyzes whether a startup is solving a job-to-be-done that incumbents structurally underserve. He seeks evidence that a low-end or new-market foothold can improve upmarket over time, eventually reshaping the competitive landscape.",
-    "tags_positive": ["Jobs-to-be-done fit", "Entrant wedge", "Disruption pathway"],
-    "tags_negative": ["Incumbent parity race", "No foothold strategy", "Undifferentiated targeting"],
-    "tags_affiliation": ["Disruptive innovation", "JTBD", "Harvard thinker"],
-    "sort_order": 17
-  },
-  {
-    "id": "elon_musk",
-    "name": "Elon Musk",
-    "group": "bright_mind",
-    "icon": "🧱",
-    "subtitle": "First-principles pressure test",
-    "description": "Elon rebuilds assumptions from physics, engineering constraints, and execution throughput rather than industry convention. He is attracted to teams pursuing radical performance gains, but he quickly discounts plans that ignore manufacturing, reliability, or timeline reality.",
-    "tags_positive": ["First-principles logic", "10x performance goals", "Execution intensity"],
-    "tags_negative": ["Conventional thinking", "Engineering hand-waving", "Timeline fantasy"],
-    "tags_affiliation": ["SpaceX", "Tesla", "Engineering-led ambition"],
-    "sort_order": 18
-  },
-  {
-    "id": "thales_teixeira",
-    "name": "Thales Teixeira",
-    "group": "bright_mind",
-    "icon": "🔗",
-    "subtitle": "Customer-value-chain decoupling",
-    "description": "Thales evaluates where customer journeys are fragmenting and where startups can unbundle value from incumbents. He favors business models that capture the most valuable interaction point and use superior experience to defend that new position.",
-    "tags_positive": ["Decoupling thesis", "Journey redesign", "Value capture clarity"],
-    "tags_negative": ["Value-chain confusion", "No customer wedge", "Incumbent lock-in"],
-    "tags_affiliation": ["Decoupling framework", "Customer economics", "Digital transformation"],
-    "sort_order": 19
-  },
-  {
-    "id": "naval_ravikant",
     "name": "Naval Ravikant",
-    "group": "bright_mind",
-    "icon": "🧘",
+    "group": "VC Gurus",
+    "icon": "\ud83e\udded",
     "subtitle": "Compounding leverage",
-    "description": "Naval views startups through the lens of leverage and optionality, preferring businesses that scale through code, media, and networked systems rather than linear effort. He values founders with specific knowledge and patient strategic thinking that compounds over long horizons.",
-    "tags_positive": ["Scalable leverage", "Specific knowledge", "Optionality creation"],
-    "tags_negative": ["Linear effort model", "Low compounding potential", "Shallow insight"],
-    "tags_affiliation": ["AngelList", "Leverage frameworks", "Long-term compounding"],
-    "sort_order": 20
+    "description": "Frames outcomes through leverage, optionality, and specific knowledge.",
+    "tag_rows": [
+      [
+        "Leverage"
+      ],
+      [
+        "Compounding"
+      ],
+      [
+        "Specific knowledge"
+      ]
+    ]
+  },
+  {
+    "name": "Paul Graham",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udee0\ufe0f",
+    "subtitle": "Founder craftsmanship",
+    "description": "Looks for builder intensity and authentic problem obsession.",
+    "tag_rows": [
+      [
+        "Founder quality"
+      ],
+      [
+        "Early signal"
+      ],
+      [
+        "Craft"
+      ]
+    ]
+  },
+  {
+    "name": "Clayton Christensen",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcda",
+    "subtitle": "Disruption diagnostics",
+    "description": "Tests jobs-to-be-done and entrant pathways from underserved segments.",
+    "tag_rows": [
+      [
+        "JTBD"
+      ],
+      [
+        "Disruption"
+      ],
+      [
+        "Incumbent risk"
+      ]
+    ]
+  },
+  {
+    "name": "Elon Musk",
+    "group": "Bright Minds",
+    "icon": "\ud83e\udde0",
+    "subtitle": "First-principles pressure test",
+    "description": "Rebuilds assumptions from fundamentals and physics constraints.",
+    "tag_rows": [
+      [
+        "First principles"
+      ],
+      [
+        "10x outcomes"
+      ],
+      [
+        "Execution risk"
+      ]
+    ]
+  },
+  {
+    "name": "Thales Teixeira",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udd0d",
+    "subtitle": "Customer-value-chain decoupling",
+    "description": "Analyzes where customer value is being unbundled and recaptured.",
+    "tag_rows": [
+      [
+        "Decoupling"
+      ],
+      [
+        "Customer behavior"
+      ],
+      [
+        "Value chain"
+      ]
+    ]
+  },
+  {
+    "name": "Vinod Khosla",
+    "group": "Bright Minds",
+    "icon": "\ud83c\udfaf",
+    "subtitle": "High-variance frontier bets",
+    "description": "Accepts failure distribution in exchange for transformational upside.",
+    "tag_rows": [
+      [
+        "Frontier tech"
+      ],
+      [
+        "Risk appetite"
+      ],
+      [
+        "Black swans"
+      ]
+    ]
+  },
+  {
+    "name": "Michael Moritz",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcf0",
+    "subtitle": "Narrative and founder endurance",
+    "description": "Looks for resilient founders who can execute through volatility.",
+    "tag_rows": [
+      [
+        "Narrative"
+      ],
+      [
+        "Frugality"
+      ],
+      [
+        "Long-term execution"
+      ]
+    ]
+  },
+  {
+    "name": "Kirsten Green",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udecd\ufe0f",
+    "subtitle": "Consumer behavior signaler",
+    "description": "Examines cultural pull, repeat behavior, and brand elasticity.",
+    "tag_rows": [
+      [
+        "Consumer psychology"
+      ],
+      [
+        "Brand"
+      ],
+      [
+        "Lifestyle shifts"
+      ]
+    ]
+  },
+  {
+    "name": "Steve Jurvetson",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udef0\ufe0f",
+    "subtitle": "Future-tech pattern matcher",
+    "description": "Searches for step-change technologies with nonlinear adoption curves.",
+    "tag_rows": [
+      [
+        "Deep tech"
+      ],
+      [
+        "S-curves"
+      ],
+      [
+        "Long horizon"
+      ]
+    ]
+  },
+  {
+    "name": "Arthur Rock",
+    "group": "Bright Minds",
+    "icon": "\ud83e\udd1d",
+    "subtitle": "Character-first conviction",
+    "description": "Weights founder integrity and judgment as primary decision criteria.",
+    "tag_rows": [
+      [
+        "Integrity"
+      ],
+      [
+        "Leadership"
+      ],
+      [
+        "Governance"
+      ]
+    ]
+  },
+  {
+    "name": "Don Valentine",
+    "group": "Bright Minds",
+    "icon": "\ud83d\udcc8",
+    "subtitle": "Market-size realism",
+    "description": "Starts with demand magnitude and monetization potential.",
+    "tag_rows": [
+      [
+        "Market size"
+      ],
+      [
+        "Revenue path"
+      ],
+      [
+        "Commercial fit"
+      ]
+    ]
   }
 ]

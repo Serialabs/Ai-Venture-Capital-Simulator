@@ -80,10 +80,25 @@
       </ul>
     </section>
 
-    <section class="reveal fade-up">
+    <section class="reveal fade-up persona-roster-section">
       <h2>Persona roster</h2>
-      <p class="muted">Names are loaded directly from <code>/assets/data/personas.json</code>.</p>
-      <div id="persona-grid" class="chips-grid"></div>
+      <p class="muted">Profiles are loaded from <code>/assets/data/persona_profiles.json</code>.</p>
+
+      <div class="persona-group">
+        <div class="persona-group-head">
+          <h3>VC Gurus</h3>
+          <span id="vc-gurus-count" class="meta-chip">0 members</span>
+        </div>
+        <div id="vc-gurus-grid" class="persona-card-grid" aria-live="polite"></div>
+      </div>
+
+      <div class="persona-group">
+        <div class="persona-group-head">
+          <h3>Bright Minds</h3>
+          <span id="bright-minds-count" class="meta-chip">0 members</span>
+        </div>
+        <div id="bright-minds-grid" class="persona-card-grid" aria-live="polite"></div>
+      </div>
     </section>
 
     <section class="reveal fade-up">

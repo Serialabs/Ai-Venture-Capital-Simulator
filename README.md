@@ -31,3 +31,16 @@ To add a new report:
 - This build is static and does not call APIs.
 - Upload controls are UI placeholders by design.
 - Footer credit is included as requested.
+
+## Pages CI troubleshooting
+
+If a Pages deploy fails unexpectedly, inspect the artifact debug output in the workflow logs.
+
+1. Open the failed workflow run in **Actions**.
+2. Find the **Debug Pages artifacts for current run** step.
+3. Check the printed summary:
+   - total artifact count for the run
+   - per-artifact name counts
+4. If you see a warning about duplicate `github-pages` artifacts, trigger a new workflow run.
+
+The deploy job now prints a specific warning when duplicate `github-pages` artifacts are detected, with a recommendation to re-run the workflow so a single fresh artifact is used.

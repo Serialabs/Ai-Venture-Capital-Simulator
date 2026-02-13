@@ -1,6 +1,42 @@
 @import url("./css/styles.css");
 
-.placeholder-card {
-  margin-top: 2rem;
+.homepage {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+
+.home-hero {
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.home-hero .lede {
+  margin-inline: auto;
+}
+
+.home-note {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.home-box {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.home-box h2 {
+  margin: 0;
+}
+
+.home-reports {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .home-reports {
+    grid-template-columns: 1fr;
+  }
 }

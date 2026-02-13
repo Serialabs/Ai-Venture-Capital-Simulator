@@ -6,20 +6,42 @@ async function fetchJson(path) {
 
 const ALLOWED_VERDICTS = new Set(['INVEST', 'DIG_DEEPER', 'PASS']);
 
-function getReports(data) {
-  if (!data || !Array.isArray(data.reports)) {
-    throw new Error('Invalid reports payload: expected { reports: [] }');
-  }
+function normalizeReport(report) {
+  const verdicts = report?.verdicts || {};
+  const hasStructuredVerdicts = ['bull', 'bear', 'wild'].every((key) => verdicts[key]);
 
-  return data.reports.map((report) => {
-    const verdicts = report?.verdicts || {};
+  if (hasStructuredVerdicts) {
     ['bull', 'bear', 'wild'].forEach((key) => {
       if (!ALLOWED_VERDICTS.has(verdicts[key])) {
         throw new Error(`Invalid verdict for ${report.slug || 'unknown report'}: ${key}`);
       }
     });
-    return report;
-  });
+  }
+
+  return {
+    title: report.title || 'Untitled report',
+    subtitle: report.subtitle || report.summary || '',
+    description: report.description || report.summary || '',
+    tags: Array.isArray(report.tags) ? report.tags : [],
+    date: report.date || report.published_at || '',
+    slug: report.slug,
+    verdicts: hasStructuredVerdicts ? verdicts : null
+  };
+}
+
+function getReports(data) {
+  const rawReports = Array.isArray(data) ? data : data?.reports;
+  if (!Array.isArray(rawReports)) {
+    throw new Error('Invalid reports payload: expected [] or { reports: [] }');
+  }
+
+  return rawReports.map(normalizeReport);
+}
+
+function getReportHref(report) {
+  if (!report?.slug) return '#';
+  if (report.slug === 'youtube-2005') return 'youtube-2005.html';
+  return `reports/${report.slug}.html`;
 }
 
 async function renderReports() {
@@ -35,9 +57,10 @@ async function renderReports() {
           <h3>${report.title}</h3>
           <p class="muted">${report.subtitle || ''}</p>
           <div class="report-meta">
+            ${report.verdicts ? `
             <span class="meta-chip">Bull: ${report.verdicts.bull}</span>
             <span class="meta-chip">Bear: ${report.verdicts.bear}</span>
-            <span class="meta-chip">Wild: ${report.verdicts.wild}</span>
+            <span class="meta-chip">Wild: ${report.verdicts.wild}</span>` : `<span class="meta-chip">${report.subtitle}</span>`}
           </div>
         </div>
         <p>${report.description}</p>
@@ -45,7 +68,7 @@ async function renderReports() {
           ${(report.tags || []).map((tag) => `<span class="meta-chip">${tag}</span>`).join('')}
           <span class="meta-chip">${report.date}</span>
         </div>
-        <a class="report-link" href="reports/${report.slug}.html">Read report →</a>
+        <a class="report-link" href="${getReportHref(report)}">Read report →</a>
       </article>
     `).join('');
   } catch (error) {

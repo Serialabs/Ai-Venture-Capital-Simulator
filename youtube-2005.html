@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIVC Report — YouTube 2005</title>
+  <link rel="stylesheet" href="assets/report.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="top-nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">AIVC Reports</a>
+      <nav aria-label="Report sections">
+        <a href="#deal-memo" data-nav-link>Deal Memo</a>
+        <a href="#vc-evaluation" data-nav-link>VC Evaluation</a>
+        <a href="#ic-debate" data-nav-link>IC Debate</a>
+        <a href="#final-report" data-nav-link>Final Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap report" data-report-root>
+    <section class="hero" id="hero" data-reveal>
+      <p class="pill" data-bind="hero.kicker"></p>
+      <h1 class="hero-title" data-bind="hero.title"></h1>
+      <p class="hero-subtitle" data-bind="meta.subtitle"></p>
+      <p class="hero-subline" data-bind="hero.subline"></p>
+      <div class="hero-metrics" data-hero-metrics></div>
+      <div class="hero-ctas" data-hero-ctas></div>
+    </section>
+
+    <section id="deal-memo" class="section" data-section data-reveal>
+      <header class="section-head">
+        <h2>Stage 1 · Deal Memo</h2>
+        <p>Initial market framing, founder fit, and early conviction checkpoints.</p>
+      </header>
+      <div class="grid four" data-deal-memo-cards></div>
+      <div class="market-stats" data-market-stats></div>
+
+      <div class="grid three compact" data-team-cards></div>
+      <article class="panel prose" data-competition></article>
+
+      <section class="panel">
+        <h3>Debate Triggers</h3>
+        <div data-debate-triggers></div>
+      </section>
+
+      <section>
+        <h3>Spotlight Row</h3>
+        <div class="grid three" data-spotlight></div>
+      </section>
+    </section>
+
+    <section id="vc-evaluation" class="section" data-section data-reveal>
+      <header class="section-head">
+        <h2>Stage 2 · 10-VC Evaluation</h2>
+        <p>Ten persona-style reviews balancing upside, risk, and diligence gaps.</p>
+      </header>
+      <div class="stack" data-evaluations></div>
+    </section>
+
+    <section id="ic-debate" class="section" data-section data-reveal>
+      <header class="section-head">
+        <h2>Stage 3 · Investment Committee Debate</h2>
+        <p>Round-by-round dialogue to pressure test the decision.</p>
+      </header>
+      <div class="stack" data-debate-rounds></div>
+    </section>
+
+    <section id="final-report" class="section" data-section data-reveal>
+      <header class="section-head">
+        <h2>Stage 4 · Final Report</h2>
+        <p>Key findings, open questions, and role-specific next steps.</p>
+      </header>
+      <div class="stack" data-key-insights></div>
+      <div class="grid two" data-founder-questions></div>
+      <div class="grid two" data-action-plans></div>
+
+      <article class="panel prose" data-exec-summary></article>
+
+      <article class="epilogue" data-epilogue></article>
+    </section>
+  </main>
+
+  <script src="assets/report.js" defer></script>
+</body>
+</html>

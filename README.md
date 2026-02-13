@@ -18,6 +18,11 @@ Then open `http://localhost:8000`.
 4. Select branch `main` (or your default branch) and folder `/ (root)`.
 5. Save. GitHub Pages will publish the static files.
 
+### Deployment retry note
+
+- If GitHub Pages fails after artifact upload, **do not use Re-run** on that same workflow run.
+- Trigger a **new workflow run** instead via `workflow_dispatch` or by pushing a new commit.
+
 ## Content workflow
 
 To add a new report:

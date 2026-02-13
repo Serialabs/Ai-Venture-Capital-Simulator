@@ -77,3 +77,7 @@ Use this checklist for desktop and mobile validation of report-page behavior.
 - [ ] Animation checks pass in normal + reduced motion modes.
 - [ ] Data validation passes with zero critical console/runtime errors.
 - [ ] Performance checks show no regression versus pre-animation baseline.
+
+## PR/release checklist (Pages deployment)
+- [ ] For GitHub Pages deployment retries, use a **fresh run only** (start via `workflow_dispatch` or a new commit).
+- [ ] If a run failed after artifact upload, do **not** click **Re-run** on that same run.

@@ -87,15 +87,72 @@ async function loadPromptText() {
   const promptText = document.getElementById('prompt-text');
   if (!promptText) return;
 
+  const EXPECTED_PROMPT_PATH = 'assets/content/ic_prompt_v2.txt';
+
+  const ensurePromptAlert = () => {
+    const existingAlert = document.getElementById('prompt-alert');
+    if (existingAlert) return existingAlert;
+
+    const alert = document.createElement('div');
+    alert.id = 'prompt-alert';
+    alert.className = 'prompt-alert';
+    alert.style.display = 'none';
+    alert.style.marginTop = '0.75rem';
+    alert.style.padding = '0.75rem 1rem';
+    alert.style.border = '1px solid #fecaca';
+    alert.style.borderRadius = '0.75rem';
+    alert.style.background = '#fef2f2';
+    alert.style.color = '#991b1b';
+    alert.setAttribute('role', 'alert');
+
+    promptText.insertAdjacentElement('afterend', alert);
+    return alert;
+  };
+
+  const setPromptState = ({ status, message, errorMessage }) => {
+    const alert = ensurePromptAlert();
+    promptText.classList.remove('prompt-loading', 'prompt-success', 'prompt-error');
+    promptText.classList.add(`prompt-${status}`);
+    promptText.dataset.promptAvailable = status === 'success' ? 'true' : 'false';
+
+    if (status === 'error') {
+      promptText.textContent = message || '';
+      alert.textContent = errorMessage || `Prompt unavailable. Expected file: ${EXPECTED_PROMPT_PATH}.`;
+      alert.style.display = 'block';
+      promptText.dispatchEvent(new CustomEvent('prompt-state-change'));
+      return;
+    }
+
+    promptText.textContent = message;
+    alert.style.display = 'none';
+    alert.textContent = '';
+    promptText.dispatchEvent(new CustomEvent('prompt-state-change'));
+  };
+
   const src = promptText.dataset.promptSrc;
-  if (!src) return;
+  if (!src) {
+    setPromptState({
+      status: 'error',
+      message: '',
+      errorMessage: `Prompt source is missing. Expected file: ${EXPECTED_PROMPT_PATH}.`
+    });
+    return;
+  }
+
+  setPromptState({ status: 'loading', message: 'Loading prompt...' });
 
   try {
-    const res = await fetch(src);
+    const promptUrl = new URL(src, document.baseURI);
+    const res = await fetch(promptUrl.toString());
     if (!res.ok) throw new Error('Failed to load prompt');
-    promptText.textContent = await res.text();
+    const promptContent = await res.text();
+    setPromptState({ status: 'success', message: promptContent });
   } catch (error) {
-    promptText.textContent = error.message;
+    setPromptState({
+      status: 'error',
+      message: '',
+      errorMessage: `${error.message}. Expected file: ${EXPECTED_PROMPT_PATH}.`
+    });
   }
 }
 
@@ -104,16 +161,38 @@ function setupCopyPromptButton() {
   const promptText = document.getElementById('prompt-text');
   if (!copyButton || !promptText) return;
 
+  const resetCopyButtonText = () => {
+    copyButton.textContent = 'Copy Full Prompt';
+  };
+
+  const setTemporaryButtonText = (text) => {
+    copyButton.textContent = text;
+    setTimeout(resetCopyButtonText, 1200);
+  };
+
+  const updateCopyButtonAvailability = () => {
+    const promptAvailable = promptText.dataset.promptAvailable === 'true';
+    copyButton.disabled = !promptAvailable;
+    copyButton.setAttribute('aria-disabled', String(!promptAvailable));
+  };
+
+  updateCopyButtonAvailability();
+  promptText.addEventListener('prompt-state-change', updateCopyButtonAvailability);
+
   copyButton.addEventListener('click', async () => {
+    const promptAvailable = promptText.dataset.promptAvailable === 'true';
+    if (!promptAvailable) {
+      setTemporaryButtonText('Prompt unavailable');
+      updateCopyButtonAvailability();
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(promptText.textContent || '');
-      copyButton.textContent = 'Copied';
+      setTemporaryButtonText('Copied');
     } catch (_error) {
-      copyButton.textContent = 'Copy failed';
+      setTemporaryButtonText('Copy failed');
     }
-    setTimeout(() => {
-      copyButton.textContent = 'Copy Full Prompt';
-    }, 1200);
   });
 }
 

@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "title": "YouTube",
+    "year": "2005",
+    "category": "Consumer Internet",
+    "subtitle": "Seed Round Analysis"
+  },
+  "hero": {
+    "kicker": "YouTube · 2005",
+    "title": "The Video Layer of the Social Web",
+    "subline": "A mock diligence report exploring whether early user-generated video could become a default habit product.",
+    "metrics": [
+      "15 Personas",
+      "4 Stages",
+      "5 Debate Rounds",
+      "1 IC Decision"
+    ],
+    "ctas": [
+      { "label": "Jump to Deal Memo", "href": "#deal-memo" },
+      { "label": "Read Final Report", "href": "#final-report" }
+    ]
+  },
+  "dealMemoCards": [
+    {
+      "title": "Problem",
+      "heading": "Online video is still awkward and fragmented",
+      "body": "Users can discover clips, but uploading and sharing remains technical, slow, and scattered across niche sites with weak identity loops."
+    },
+    {
+      "title": "Solution",
+      "heading": "Upload in minutes, share everywhere",
+      "body": "The product removes encoding complexity, gives each video a simple URL, and encourages remix-friendly distribution through embeds and links."
+    },
+    {
+      "title": "Business Model",
+      "heading": "Engagement first, monetization staged",
+      "body": "Near-term focus is growth quality and creator supply; mid-term options include brand ads, promoted channels, and tools for commercial creators."
+    },
+    {
+      "title": "Stage",
+      "heading": "Early traction with unclear legal ceiling",
+      "body": "The usage curve is promising but policy tooling and copyright workflows must scale faster than content velocity to avoid a hard stop."
+    }
+  ],
+  "marketStats": [
+    { "label": "TAM", "value": 420, "unit": "M", "sublabel": "Global video viewers" },
+    { "label": "SAM", "value": 95, "unit": "M", "sublabel": "Active social web users" },
+    { "label": "SOM", "value": 12, "unit": "M", "sublabel": "3-year reachable core" }
+  ],
+  "team": [
+    {
+      "name": "Ari Nolan",
+      "role": "CEO · Product",
+      "bio": "Consumer instinct with strong shipping cadence; obsessed with making creator workflows frictionless."
+    },
+    {
+      "name": "Mina Patel",
+      "role": "CTO · Infrastructure",
+      "bio": "Built distributed media tooling before; focused on keeping reliability ahead of usage spikes."
+    },
+    {
+      "name": "Leo Kim",
+      "role": "Head of Community",
+      "bio": "Runs creator onboarding and moderation ops, balancing growth with trust from day one."
+    }
+  ],
+  "competition": {
+    "body": "Incumbents can replicate interface features quickly, but they are slower to nurture creator-native behavior. The current race is less about raw hosting capacity and more about becoming the default place users publish first and viewers check daily."
+  },
+  "debateTriggers": [
+    { "id": 1, "title": "Copyright risk velocity", "detail": "Does rights-claim volume outpace takedown throughput by Q4 next year?" },
+    { "id": 2, "title": "Creator retention quality", "detail": "Are upload cohorts stabilizing after novelty traffic fades?" },
+    { "id": 3, "title": "Infrastructure cost curve", "detail": "Can cost per streamed minute decline fast enough as watch-time expands?" },
+    { "id": 4, "title": "Distribution concentration", "detail": "How dependent is growth on external embeds vs destination behavior?" },
+    { "id": 5, "title": "Brand safety readiness", "detail": "Can ad inventory be packaged without harming the open-upload identity?" },
+    { "id": 6, "title": "Founder bandwidth", "detail": "Is leadership depth sufficient to run product, legal, and hiring simultaneously?" },
+    { "id": 7, "title": "Incumbent reaction window", "detail": "How long before major portals deploy credible clones to existing audiences?" }
+  ],
+  "spotlight": [
+    {
+      "label": "The Bull",
+      "name": "Nora Adesina",
+      "rationale": "Pattern-matched category-defining habit loops in prior consumer bets and sees the share-upload loop compounding quickly."
+    },
+    {
+      "label": "The Bear",
+      "name": "Victor Han",
+      "rationale": "Strong on legal downside; worries unresolved rights workflows could cap valuation despite growth." 
+    },
+    {
+      "label": "Wild Card",
+      "name": "Samir Rao",
+      "rationale": "Believes community tools could unlock defensibility if shipped before incumbent feature parity arrives."
+    }
+  ],
+  "evaluations": [
+    {
+      "name": "Mara (Consumer Partner)",
+      "tagline": "Habit loops over feature checklists",
+      "verdict": "INVEST",
+      "strengths": ["Upload-to-share cycle is exceptionally tight", "Creator motivation appears intrinsic, not purely financial"],
+      "concerns": ["Daily active ratio still volatile by geography", "Needs clearer plan for non-viral discovery"],
+      "quote": "If this becomes where people post first, distribution alone can outpace better-funded competitors."
+    },
+    {
+      "name": "Jon (Infra Specialist)",
+      "tagline": "Scale discipline from day zero",
+      "verdict": "DIG DEEPER",
+      "strengths": ["Technical team understands pipeline bottlenecks", "Latency improvements already visible quarter-on-quarter"],
+      "concerns": ["Storage assumptions may be too optimistic", "No clear failover narrative for major spikes"],
+      "quote": "The product can win demand, but infrastructure must keep trust from cracking under its own growth."
+    },
+    {
+      "name": "Elise (Risk Partner)",
+      "tagline": "Legal architecture is product architecture",
+      "verdict": "PASS",
+      "strengths": ["Founders are transparent about risk", "Early moderation protocols are directionally right"],
+      "concerns": ["Limited precedent for current rights approach", "Escalation paths are understaffed"],
+      "quote": "Without legal throughput, growth can convert from advantage to liability in a single cycle."
+    },
+    {
+      "name": "David (Monetization)",
+      "tagline": "Ad market timing lens",
+      "verdict": "DIG DEEPER",
+      "strengths": ["High session depth suggests future ad inventory", "Brand storytelling potential is obvious"],
+      "concerns": ["Safety controls lag revenue ambitions", "Direct sales motion not yet designed"],
+      "quote": "Monetization will come, but only if trust-and-safety maturity arrives first."
+    },
+    {
+      "name": "Priya (Go-to-Market)",
+      "tagline": "Distribution strategist",
+      "verdict": "INVEST",
+      "strengths": ["Embeds convert external traffic efficiently", "Organic referral channels are diversified"],
+      "concerns": ["Partnerships still ad hoc", "Search discoverability relies on immature metadata"],
+      "quote": "They are quietly becoming infrastructure for internet sharing behavior."
+    },
+    {
+      "name": "Kenji (Operating Partner)",
+      "tagline": "Execution speed matters",
+      "verdict": "INVEST",
+      "strengths": ["Weekly product cadence", "Founders recruit above their stage"],
+      "concerns": ["Middle-management layer missing", "Process debt accumulating in incident response"],
+      "quote": "I trust this team to ship their way out of early chaos if board support is active."
+    },
+    {
+      "name": "Lina (Fintech Crossover)",
+      "tagline": "Unit economics skeptic",
+      "verdict": "PASS",
+      "strengths": ["Potentially massive demand pool", "Clear engagement momentum"],
+      "concerns": ["No convincing path to near-term gross margin", "Compute exposure could dominate planning"],
+      "quote": "Great product signals do not erase bad economics; we need evidence, not optimism."
+    },
+    {
+      "name": "Owen (Growth Scientist)",
+      "tagline": "Data-first conviction",
+      "verdict": "DIG DEEPER",
+      "strengths": ["Uploader cohorts show improving repeat rates", "Viewer return intervals trending down"],
+      "concerns": ["Segment-level churn analysis incomplete", "North-star metric debate unresolved"],
+      "quote": "The growth data is promising, but not yet complete enough for blind confidence."
+    },
+    {
+      "name": "Sara (Policy Advisor)",
+      "tagline": "Trust systems lens",
+      "verdict": "INVEST",
+      "strengths": ["Leadership accepts policy as core function", "Community moderation behavior is constructive"],
+      "concerns": ["Tooling depth still basic", "Global policy posture undefined"],
+      "quote": "I would rather back a team that knows policy is hard than one pretending it isn't."
+    },
+    {
+      "name": "Noah (General Partner)",
+      "tagline": "Portfolio construction view",
+      "verdict": "INVEST",
+      "strengths": ["Asymmetric upside against seed pricing", "Strong brand-shaping potential"],
+      "concerns": ["Governance terms must include tighter reporting", "Follow-on capital needs may arrive earlier"],
+      "quote": "This is exactly the kind of volatile but category-scale bet the fund is built to take."
+    }
+  ],
+  "debateRounds": [
+    {
+      "roundTitle": "Round 1 · Demand Quality",
+      "summary": "The committee opens by separating short-term novelty from durable behavior.",
+      "turns": [
+        { "speaker": "Mara", "text": "Viewer return cadence is tightening, suggesting routine rather than occasional curiosity." },
+        { "speaker": "Lina", "text": "We still need segment data to know if heavy users are masking weak cohorts." },
+        { "speaker": "Owen", "text": "Early cohort cuts support retention, but not enough to dismiss concentration risk." }
+      ],
+      "callouts": ["Ask for cohort retention by upload frequency", "Validate destination traffic trend quarter-over-quarter"]
+    },
+    {
+      "roundTitle": "Round 2 · Legal Operating Risk",
+      "summary": "Focus shifts to whether legal obligations can be operationalized at scale.",
+      "turns": [
+        { "speaker": "Elise", "text": "Current policy process is well intentioned but underpowered for a volume spike." },
+        { "speaker": "Sara", "text": "The team is coachable; we can help staff policy and improve escalation pathways." }
+      ],
+      "callouts": ["Tie funding to policy hiring milestones", "Implement monthly rights-claim dashboard"]
+    },
+    {
+      "roundTitle": "Round 3 · Defensibility",
+      "summary": "Debate on whether creator behavior can become a moat before incumbents replicate features.",
+      "turns": [
+        { "speaker": "Priya", "text": "Embeds create distribution gravity that copycat products may struggle to recreate quickly." },
+        { "speaker": "Victor", "text": "Large portals can bundle video into existing traffic channels overnight." },
+        { "speaker": "Kenji", "text": "Execution speed plus creator goodwill can buy a meaningful lead window." }
+      ],
+      "callouts": ["Measure creator multi-homing rates", "Track embed-origin watch-time share"]
+    },
+    {
+      "roundTitle": "Round 4 · Economics",
+      "summary": "The room pressure-tests growth against gross margin realities.",
+      "turns": [
+        { "speaker": "Jon", "text": "Efficiency gains are possible, but we need a transparent cost-per-minute path." },
+        { "speaker": "David", "text": "Revenue timing should follow trust improvements to avoid damaging user trust." }
+      ],
+      "callouts": ["Require quarterly unit-economics deck", "Scenario test long-form content impact"]
+    },
+    {
+      "roundTitle": "Round 5 · Decision Framing",
+      "summary": "Final vote balances conviction with risk-control terms.",
+      "turns": [
+        { "speaker": "Noah", "text": "We should invest with governance guardrails instead of waiting for certainty." },
+        { "speaker": "Lina", "text": "I can support only if reporting rights are explicit and frequent." },
+        { "speaker": "Mara", "text": "The upside justifies measured risk if execution support is hands-on." }
+      ],
+      "callouts": ["Decision: conditional INVEST", "Attach board-level legal and infra checkpoints"]
+    }
+  ],
+  "finalReport": {
+    "insights": [
+      { "title": "People Form the Product Moat", "body": "Creator identity and repeat sharing behaviors are currently more defensible than any technical feature set." },
+      { "title": "Policy Throughput Is a Core KPI", "body": "Legal responsiveness should be tracked with the same discipline as growth and retention metrics." },
+      { "title": "Monetization Must Follow Trust", "body": "Revenue rollout should be phased behind safeguards to protect brand confidence and creator incentives." },
+      { "title": "Infra Planning Cannot Be Deferred", "body": "Scaling costs will determine strategic flexibility; instrumentation is required now, not post-Series A." },
+      { "title": "Execution Tempo Is an Asset", "body": "The team’s shipping velocity is a key edge, provided hiring keeps pace with operational complexity." },
+      { "title": "Governance Should Be Active", "body": "Board involvement is a practical lever for reducing downside while preserving speed." }
+    ],
+    "founderQuestions": [
+      {
+        "persona": "Mara · Behavioral Product Lens",
+        "questions": [
+          "Which creator cohorts sustain uploads after week eight?",
+          "What is the strongest signal of destination intent vs incidental viewing?",
+          "Where does sharing break today for high-frequency users?"
+        ]
+      },
+      {
+        "persona": "Elise · Risk & Policy Lens",
+        "questions": [
+          "How will rights claims be triaged as volume scales 10x?",
+          "What legal response SLA can the team commit to this year?",
+          "Which policy hires are mission-critical pre-next round?"
+        ]
+      },
+      {
+        "persona": "Jon · Infrastructure Lens",
+        "questions": [
+          "What drives cost-per-minute variance across user segments?",
+          "Where are current reliability bottlenecks under peak traffic?",
+          "What redundancy plan exists for major regional outages?"
+        ]
+      }
+    ],
+    "actionPlans": [
+      {
+        "persona": "Operating Partner",
+        "actions": [
+          "Stand up weekly operating review with growth, policy, and infra metrics.",
+          "Recruit trust-and-safety lead within 45 days.",
+          "Create incident playbook with escalation owners and response windows."
+        ]
+      },
+      {
+        "persona": "Consumer Partner",
+        "actions": [
+          "Instrument creator funnel from signup to third upload.",
+          "Run discovery experiments to reduce dependence on viral spikes.",
+          "Define destination behavior KPI and monitor monthly."
+        ]
+      },
+      {
+        "persona": "Finance Partner",
+        "actions": [
+          "Implement rolling 12-month cost scenario model.",
+          "Set guardrails for burn multiple tied to milestone achievement.",
+          "Prepare financing strategy for accelerated infrastructure spend."
+        ]
+      }
+    ],
+    "execSummary": [
+      "This mock IC process recommends a conditional invest: demand signals are unusually strong for the stage, and creator behavior suggests the possibility of a durable category position.",
+      "The primary threat is not competition alone, but operational fragility across policy and infrastructure. With explicit governance rights and milestone-based support, the upside remains compelling relative to entry price."
+    ],
+    "epilogueMetric": {
+      "value": "$1.7B",
+      "detail": "Illustrative five-year equity value in our base case if destination behavior compounds and policy execution remains ahead of growth."
+    }
+  }
+}

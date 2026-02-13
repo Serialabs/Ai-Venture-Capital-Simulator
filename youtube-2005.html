@@ -2,90 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AIVC Report — YouTube 2005</title>
-  <link rel="stylesheet" href="assets/report.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Ledger — YouTube 2005 Report</title>
+  <meta name="description" content="Signal Ledger report on YouTube's 2005 pitch with full staged VC analysis." />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-
-  <div class="ambient" aria-hidden="true"></div>
-
-  <header class="top-nav" id="top">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top">AIVC Reports</a>
-      <nav aria-label="Report sections">
-        <a href="#deal-memo" data-nav-link>Deal Memo</a>
-        <a href="#vc-evaluation" data-nav-link>VC Evaluation</a>
-        <a href="#ic-debate" data-nav-link>IC Debate</a>
-        <a href="#final-report" data-nav-link>Final Report</a>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="index.html">Signal Ledger</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="methods.html">Methods</a>
+        <a href="pipeline.html">Pipeline</a>
+        <a href="personas.html">Personas</a>
+        <a href="published-reports.html">Reports</a>
       </nav>
     </div>
   </header>
 
-  <main id="main-content" class="wrap report" data-report-root>
-    <section class="hero" id="hero" data-reveal>
-      <p class="pill" data-bind="hero.kicker"></p>
-      <h1 class="hero-title" data-bind="hero.title"></h1>
-      <p class="hero-subtitle" data-bind="meta.subtitle"></p>
-      <p class="hero-subline" data-bind="hero.subline"></p>
-      <div class="hero-metrics" data-hero-metrics></div>
-      <div class="hero-ctas" data-hero-ctas></div>
+  <main class="container prose report-layout">
+    <section class="hero">
+      <p class="eyebrow">Published report • Consumer Internet • Seed context</p>
+      <h1>YouTube — 2005 Pitch Analysis</h1>
+      <p class="lede">Full static memo in the Signal Ledger format. This page has no toggles and presents all stages in one continuous view.</p>
+      <div class="chips-grid">
+        <span class="chip">Verdict: Lean Invest</span>
+        <span class="chip">Confidence: Medium-High</span>
+        <span class="chip">Reading time: ~14 min</span>
+      </div>
     </section>
 
-    <section id="deal-memo" class="section" data-section data-reveal>
-      <header class="section-head">
-        <h2>Stage 1 · Deal Memo</h2>
-        <p>Initial market framing, founder fit, and early conviction checkpoints.</p>
-      </header>
-      <div class="grid four" data-deal-memo-cards></div>
-      <div class="market-stats" data-market-stats></div>
+    <section class="report-section" id="stage-1">
+      <h2>📋 Stage 1: Deal Memo Extraction</h2>
+      <h3>Deal Structure</h3>
+      <p><strong>Problem</strong></p>
+      <ul>
+        <li>Video files are too large to email.</li>
+        <li>Video files are too large to host.</li>
+        <li>No standardization of video file formats.</li>
+        <li>Videos exist as isolated files.</li>
+      </ul>
+      <p><strong>Solution</strong></p>
+      <ul>
+        <li>Consumers upload videos to YouTube.</li>
+        <li>YouTube serves content to millions of viewers.</li>
+        <li>Backend converts uploaded videos into Flash Video.</li>
+        <li>Community layer connects users-to-videos, users-to-users, and videos-to-videos.</li>
+      </ul>
+      <p><strong>Business Model</strong></p>
+      <ul>
+        <li>Advertising.</li>
+        <li>Paid distribution channel for promotional videos.</li>
+        <li>Premium features for members.</li>
+        <li>Premium content for viewers.</li>
+      </ul>
+      <p><strong>Stage:</strong> Seed to early Seed.</p>
+      <p><strong>Rationale:</strong> Product launched, early dominance claim, monetization paths listed but no financials shown.</p>
 
-      <div class="grid three compact" data-team-cards></div>
-      <article class="panel prose" data-competition></article>
+      <h3>Key Metrics</h3>
+      <p><strong>Market Size / Enabling trends</strong></p>
+      <ul>
+        <li>Cheap consumer digital video capture becoming mass-market.</li>
+        <li>Home broadband reaching critical mass for internet video delivery.</li>
+        <li>TAM / SAM / SOM not quantified in the deck.</li>
+      </ul>
+      <p><strong>Traction</strong></p>
+      <ul>
+        <li>“Launched June 11th.”</li>
+        <li>Claims it has overtaken competitors and is now the dominant player.</li>
+        <li>Users / growth / retention not provided.</li>
+      </ul>
+      <p><strong>Ask:</strong> Investment amount, valuation, and use of funds are missing.</p>
 
-      <section class="panel">
-        <h3>Debate Triggers</h3>
-        <div data-debate-triggers></div>
-      </section>
+      <h3>Team</h3>
+      <ul>
+        <li><strong>Steve Chen:</strong> One of PayPal's first engineers (recruited by Max Levchin); University of Illinois CS.</li>
+        <li><strong>Chad Hurley:</strong> PayPal's first designer; responsible for logo, main features, and design.</li>
+        <li><strong>Jawed Karim:</strong> Stanford CS grad student; one of PayPal's first engineers; University of Illinois CS.</li>
+      </ul>
 
-      <section>
-        <h3>Spotlight Row</h3>
-        <div class="grid three" data-spotlight></div>
-      </section>
+      <h3>Competition</h3>
+      <p>OurMedia.org, Open Media Network, Google Video, Putfile, Dailymotion, Vimeo.</p>
+
+      <h3>🚨 Debate Triggers</h3>
+      <ul>
+        <li>Unit economics black box: bandwidth + storage costs vs ad yield unknown.</li>
+        <li>Rights + moderation risk: copyright, unsafe content, takedowns, brand safety.</li>
+        <li>Moat clarity: encoding/hosting vs community/network effects vs both.</li>
+        <li>GTM path: “target vertical markets” is mentioned but unspecified.</li>
+        <li>Monetization sequencing: ads vs premium features vs paid distribution — what comes first.</li>
+        <li>Metric definition: “dominant player” needs proof (DAU, uploads, watch time, retention, growth rate).</li>
+      </ul>
+
+      <h3>Debate Panel Selection</h3>
+      <ul>
+        <li><strong>🟢 Bull: Marc Andreessen 🔵</strong> — Platform dynamics, software leverage, network effects.</li>
+        <li><strong>🔴 Bear: Bill Gurley 🩷</strong> — Unit economics, legal exposure, and quality of revenue.</li>
+        <li><strong>🃏 Wild Card: Peter Thiel 🟣</strong> — Contrarian monopoly wedge and hidden “secret.”</li>
+      </ul>
     </section>
 
-    <section id="vc-evaluation" class="section" data-section data-reveal>
-      <header class="section-head">
-        <h2>Stage 2 · 10-VC Evaluation</h2>
-        <p>Ten persona-style reviews balancing upside, risk, and diligence gaps.</p>
-      </header>
-      <div class="stack" data-evaluations></div>
+    <section class="report-section" id="stage-2">
+      <h2>🧠 Stage 2: 10-Person VC Evaluation</h2>
+      <ul>
+        <li><strong>Peter Thiel 🟣 (🟡 Dig Deeper):</strong> Could become category-defining, but “video hosting” alone is commodity. Core question: what secret about public sharing creates a dominant loop?</li>
+        <li><strong>Marc Andreessen 🔵 (🟢 Invest):</strong> Broadband and cheap capture are perfect timing tailwinds. Sees platform potential in creators + viewers + discovery graph.</li>
+        <li><strong>Bill Gurley 🩷 (🟡 Dig Deeper):</strong> Real pain point solved, but cost/revenue mismatch risk is high without CPM, fill-rate, and brand safety clarity.</li>
+        <li><strong>Elad Gil 🟤 (🟢 Invest):</strong> Strong team and timing. Wants clearer repeatable distribution loops and GTM specifics.</li>
+        <li><strong>Fred Wilson 🟢 (🟢 Invest):</strong> Sees network effects potential in subscriptions/sharing/identity, but asks for retention proof.</li>
+        <li><strong>Arjun Sethi ⚫ (🟡 Dig Deeper):</strong> No cohorts, no retention curves, no upload-to-watch conversion. Wants hard data.</li>
+        <li><strong>Reid Hoffman 🔷 (🟢 Invest):</strong> Winner-take-most possible if YouTube blitzscales to social default fast enough.</li>
+        <li><strong>Sam Altman 🌐 (🟢 Invest):</strong> Billion-user scale possible if this becomes internet's default video layer, not just hosting.</li>
+        <li><strong>Garry Tan 🟡 (🟢 Invest):</strong> Strong product intuition and team mix; monetization must not degrade user delight.</li>
+        <li><strong>Vinod Khosla 🌿 (🟡 Dig Deeper):</strong> Massive macro shift, but moat must be more than being early.</li>
+      </ul>
+
+      <h3>Addendum: Remaining 10 Personas (Lightning IC Notes)</h3>
+      <p>Michael Moritz 🟡 · Kirsten Green 🟢 · Steve Jurvetson 🟡 · Arthur Rock 🟢 · Don Valentine 🟢 · Paul Graham 🟢 · Clayton Christensen 🟢 · Elon Musk 🟡 · Thales Teixeira 🟡 · Naval Ravikant 🟢.</p>
     </section>
 
-    <section id="ic-debate" class="section" data-section data-reveal>
-      <header class="section-head">
-        <h2>Stage 3 · Investment Committee Debate</h2>
-        <p>Round-by-round dialogue to pressure test the decision.</p>
-      </header>
-      <div class="stack" data-debate-rounds></div>
+    <section class="report-section" id="stage-3">
+      <h2>🔥 Stage 3: Investment Committee Debate (5 Rounds)</h2>
+      <p class="evidence"><strong>Note:</strong> Any numbers are illustrative pressure-tests, not claims from the deck.</p>
+      <ol>
+        <li><strong>Round 1:</strong> Bull frames internet video as a platform inflection; Bear warns scale may outpace revenue; Wild Card asks for monopoly secret beyond hosting.</li>
+        <li><strong>Round 2:</strong> Bull argues frictionless upload/playback creates consolidation; Bear counters with CPM/fill/legal canyon; Wild Card reframes around attention routing and social identity.</li>
+        <li><strong>Round 3:</strong> Bull cites multiple monetization options and improving cost curve; Bear says too many options can mean no strategy; Wild Card advocates dominating amateur sharing first.</li>
+        <li><strong>Round 4:</strong> Committee converges on required proof: retention cohorts, viral loops, infra plan, declining cost curve, legal workflow, and first revenue milestone.</li>
+        <li><strong>Round 5:</strong> Final stances — Andreessen: Invest; Gurley: Dig Deeper; Thiel: Dig Deeper leaning Invest if identity + discovery wedge is real.</li>
+      </ol>
+
+      <h3>🏛️ Final Verdicts</h3>
+      <ul>
+        <li><strong>Andreessen 🔵:</strong> INVEST — inflection is real and platform shape is visible if engagement compounds.</li>
+        <li><strong>Gurley 🩷:</strong> DIG DEEPER — prove retention, cost per view, legal survivability, and monetization sequence.</li>
+        <li><strong>Thiel 🟣:</strong> DIG DEEPER — validate monopoly wedge in identity + attention graph.</li>
+      </ul>
     </section>
 
-    <section id="final-report" class="section" data-section data-reveal>
-      <header class="section-head">
-        <h2>Stage 4 · Final Report</h2>
-        <p>Key findings, open questions, and role-specific next steps.</p>
-      </header>
-      <div class="stack" data-key-insights></div>
-      <div class="grid two" data-founder-questions></div>
-      <div class="grid two" data-action-plans></div>
+    <section class="report-section" id="stage-4">
+      <h2>📊 Stage 4: Final Report</h2>
+      <h3>🔑 5 Key Insights</h3>
+      <ol>
+        <li><strong>Timing trade disguised as product:</strong> broadband + cheap capture create flood conditions; winner becomes default pipe/habit.</li>
+        <li><strong>Moat is the graph, not encoding:</strong> identity, subscriptions, sharing, and recommendations can compound defensibility.</li>
+        <li><strong>Scale can destroy before it crowns:</strong> without declining cost per view and a monetization plan, growth becomes liability.</li>
+        <li><strong>Moderation/copyright are core infra:</strong> policy and takedowns determine viability of ads/partnerships.</li>
+        <li><strong>Monetization needs sequence:</strong> pick one revenue machine first, then earn the right to layer others.</li>
+      </ol>
 
-      <article class="panel prose" data-exec-summary></article>
+      <h3>❓ Founder Questions</h3>
+      <p><strong>Andreessen 🔵</strong></p>
+      <ul>
+        <li>What is strongest growth loop today: embeds, shares, search, or other?</li>
+        <li>What defines a power user (uploads, followers, watch time)?</li>
+        <li>How does discovery avoid content chaos?</li>
+        <li>How do identity + subscriptions stay sticky across the web?</li>
+        <li>If incumbents clone features, what remains unique?</li>
+      </ul>
+      <p><strong>Gurley 🩷</strong></p>
+      <ul>
+        <li>Current cost per 1,000 views and trend with scale?</li>
+        <li>Viewer/uploader retention cohorts by week?</li>
+        <li>Realistic ad CPM and fill-rate assumptions for next 12 months?</li>
+        <li>Operational copyright workflow for repeat offenders?</li>
+        <li>Which revenue stream comes first and what milestone unlocks it?</li>
+      </ul>
+      <p><strong>Thiel 🟣</strong></p>
+      <ul>
+        <li>What secret about behavior makes default status likely?</li>
+        <li>Which small market will be dominated first?</li>
+        <li>What creates switching costs: graph, rec quality, creator-fan ties?</li>
+        <li>Why will community be substantive, not shallow?</li>
+        <li>Monopoly story in one sentence?</li>
+      </ul>
 
-      <article class="epilogue" data-epilogue></article>
+      <h3>🎯 Action Plans: “If I Were You...”</h3>
+      <p><strong>Andreessen 🔵</strong>: lock upload→share→view→subscribe loop, win embedding distribution, build graph features, scale infra as product.</p>
+      <p><strong>Gurley 🩷</strong>: instrument cohorts/costs, prove cost curve down, de-risk monetization with one engine, operationalize trust and rights workflow.</p>
+      <p><strong>Thiel 🟣</strong>: define monopoly wedge in identity+attention routing, dominate one niche first, create social switching costs, avoid premium licensing battles too early.</p>
+
+      <h3>📝 Executive Summary</h3>
+      <p>This deck argues two inflections — cheap video creation and home broadband — make internet video inevitable, and positions YouTube as default upload, encoding, hosting, and community layer. Upside is platform-scale network effects and an attention graph that can become deeply defensible. Main risks are unproven unit economics, undefined monetization sequencing, and legal/moderation exposure. Net: strong INVEST energy if retention and cost curves validate; otherwise risk of becoming a popular but expensive hobby.</p>
     </section>
   </main>
 
-  <script src="assets/report.js" defer></script>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>AIVC Reports · Powered by AI</p>
+      <p>Inspired by Ian Park's AIVC report format; implementation and content are original.</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
 </body>
 </html>
